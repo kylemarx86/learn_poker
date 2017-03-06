@@ -68,6 +68,13 @@ body{
 .card_number_top .suit{
     
 }
+
+.token_area{
+    display: inline-block;
+    width: 49px;
+    height: 49px;
+}
+
 .ace{
     
 }
@@ -87,7 +94,6 @@ body{
 .jack{}
 .queen{}
 .king{}
-
 
 
 /*@media screen and (max-height: 450px) {*/
