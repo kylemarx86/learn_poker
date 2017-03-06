@@ -59,15 +59,14 @@ body{
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 1.5em;
 }
-
 .suit{
     position: absolute;
     width: 25px;
     height: 25px;
     bottom: 0;
 }
-
 .top{
     top: 2%;
     left: 2%;
@@ -79,28 +78,57 @@ body{
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-
-.ace{
-    
+.middle{
+    /*background-color: black;*/
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 75%;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
-.two{
+
+.rank_A {
 
 }
-.three{
+.rank_2 {
 
 }
-.four{}
-.five{}
-.six{}
-.seven{}
-.eight{}
-.nine{}
-.ten{}
-.jack{}
-.queen{}
-.king{}
+.rank_3 {
 
+}
+.rank_4 {
 
+}
+.rank_5 {
+
+}
+.rank_6 {
+
+}
+.rank_7 {
+
+}
+.rank_8 {
+
+}
+.rank_9 {
+
+}
+.rank_10 {
+
+}
+.rank_J {
+
+}
+.rank_Q {
+
+}
+.rank_K {
+
+}
 /*@media screen and (max-height: 450px) {*/
 
 /*}*/
