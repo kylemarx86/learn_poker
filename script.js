@@ -5,21 +5,25 @@ $(document).ready(function(){
 });
 
 function draw_cards(){
-    add_numbers_to_card('6');
-    add_suit_to_card('clubs');
+    draw_card('.card_1', '6', 'clubs');
+    draw_card('.card_2', '4', 'clubs');
+    draw_card('.card_3', '5', 'clubs');
+    draw_card('.card_4', 'K', 'clubs');
+    draw_card('.card_5', 'Q', 'clubs');
 }
 
-function draw_card(){
-
+function draw_card(card, rank, suit){
+    add_numbers_to_card(card, rank);
+    add_suit_to_card(card, suit);
 }
 
-function add_numbers_to_card(number){
-    $('.card_number_top').text(number);
-    $('.card_number_bottom').text(number);
+function add_numbers_to_card(card, number){
+    $(card + ' .rank').text(number);
+    $(card + ' .rank').text(number);
 }
 
 //add a parameter to this once if drawn out all suits
-function add_suit_to_card(suit){
+function add_suit_to_card(card, suit){
     var $div = $('.suit');
     
     //make svg
