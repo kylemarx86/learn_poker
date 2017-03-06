@@ -6,7 +6,7 @@ $(document).ready(function(){
 function draw_cards(){
     console.log('draw_cards');
     add_numbers_to_card('6');
-    add_suit_to_card();
+    add_suit_to_card('.suit');
 }
 
 function draw_card(){
@@ -19,9 +19,13 @@ function add_numbers_to_card(number){
 }
 
 //add a parameter to this once if drawn out all suits
-function add_suit_to_card(){
+function add_suit_to_card(location_identifier){
     // identify div to make svg in
-    var $div = $('.token_area');
+    // var $div = $('.token_area');
+    // var $div = $('.card_suit_top');
+    var $div = $(location_identifier);
+    
+    
     //make svg
     $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
     $svg = $div.find('svg');
