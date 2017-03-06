@@ -20,8 +20,9 @@ function add_numbers_to_card(number){
 
 //add a parameter to this once if drawn out all suits
 function add_suit_to_card(){
-    // create div with svg within
-    var $div = $('<div>');
+    // identify div to make svg in
+    var $div = $('.token_area');
+    //make svg
     $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
     $svg = $div.find('svg');
     $svg.attr({'width':'49', 'height':'49'});
@@ -30,13 +31,14 @@ function add_suit_to_card(){
     // create rect with background fill
             //change second part of attribute once i have all suits drawn out
     var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
-    $rect.setAttribute('style', 'fill: url("#clubs"); width:49; height:49;');
+    $rect.setAttribute('style','fill: url("#clubs")');
+    $rect.setAttribute('width', '49');
+    $rect.setAttribute('height', '49');
+    $rect.setAttribute('transform', 'scale(0.5)');
     // add rect to group
     group.appendChild($rect);
     // add group to svg
     $svg.append(group);
-    // add div to card
-    $('.token_area').append($div);
 }
 
 var rank_classes = ['rankA', 'rank2', 'rank3', 'rank4', 'rank5', 'rank6', 'rank7', 'rank8', 'rank9', 'rank10', 'rankJ', 'rankQ', 'rankK'];
