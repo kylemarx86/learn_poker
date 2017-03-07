@@ -45,57 +45,90 @@ body{
     }
 }
 /*inner area for the picture/emblems is 50% the width of the card and 60% the height*/
-.card_number_top{
+
+/*i should really have card rank as a separate parent class and then top and bottom as extra*/
+/*better yet, create top, bottom, and middle of card. place rank and suit as subclasses within top and bottom*/
+.top, .bottom{
     position: absolute;
+    height: 50px;
+    width: 25px;
+}
+.rank{
+    /*display: inline-block;*/
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+}
+.suit{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    bottom: 0;
+}
+.top{
     top: 2%;
     left: 2%;
-/*
-    -ms-transform: ;
-    -webkit-transform: ;
-    transform: ;*/
 }
-.card_number_top .suit{
-
-}
-.card_number_bottom{
-    position: absolute;
+.bottom{
     bottom: 2%;
     right: 2%;
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-.card_number_top .suit{
-    
+.middle{
+    /*background-color: black;*/
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 75%;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.token_area{
-    display: inline-block;
-    width: 49px;
-    height: 49px;
-}
-
-.ace{
-    
-}
-.two{
+.rank_A {
 
 }
-.three{
+.rank_2 {
 
 }
-.four{}
-.five{}
-.six{}
-.seven{}
-.eight{}
-.nine{}
-.ten{}
-.jack{}
-.queen{}
-.king{}
+.rank_3 {
 
+}
+.rank_4 {
 
+}
+.rank_5 {
+
+}
+.rank_6 {
+
+}
+.rank_7 {
+
+}
+.rank_8 {
+
+}
+.rank_9 {
+
+}
+.rank_10 {
+
+}
+.rank_J {
+
+}
+.rank_Q {
+
+}
+.rank_K {
+
+}
 /*@media screen and (max-height: 450px) {*/
 
 /*}*/
