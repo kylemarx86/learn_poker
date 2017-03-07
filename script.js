@@ -1,5 +1,6 @@
-var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
-var number_of_cards = 7;    //number of cards to deal out
+// var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
+var number_of_cards = 11;    //number of cards to deal out
+var dealt_cards = [];
 var cards = null;
 $(document).ready(function(){
     apply_event_handlers();
@@ -16,6 +17,7 @@ function apply_event_handlers(){
 
 //assigns cards to be dealt
 function deal_cards(){
+    dealt_cards = [];
     cards = [];
     //create array representing full deck of cards
     deck_arr = [];
@@ -32,6 +34,20 @@ function deal_cards(){
         cards[i] = new card(card_val, i);
 
         console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
+    }
+
+    //determine best available hand
+    determine_best_hand();    
+}
+
+//determine best available hand
+function determine_best_hand(){
+    sort_players_hand();
+}
+//
+function sort_players_hand(player_num){
+    for(var i = 0; i < dealt_cards.length; i++){
+
     }
 }
 

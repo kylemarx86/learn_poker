@@ -16,6 +16,7 @@ body{
     border-radius: 5px;
     width: 125px;
     height: 175px;
+    margin: 0 5px;
 }
 
 
@@ -96,13 +97,20 @@ body{
     transform: translate(-50%, -50%);
 }
 
-
-.player_1{
+.players_cards{
     position: absolute;
-    bottom: 5%;
+    width: 100%;
+    height: 50%;
+    top: 50%;
     left: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
-
+.player{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
 
 
 .rank_A {
