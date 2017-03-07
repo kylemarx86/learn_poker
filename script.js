@@ -2,7 +2,6 @@ var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6',
 var number_of_cards = 5;    //number of cards to deal out
 var cards = null;
 $(document).ready(function(){
-
     deal_cards();
     render_cards();
 });
@@ -20,14 +19,8 @@ function deal_cards(){
 
 function render_cards(){
     for(var i = 0; i < number_of_cards; i++){
-        // draw_card('.card_'+(i+1), cards[i].get_rank(), cards[i].get_suit());
         cards[i].render_card();
     }
-    // draw_card('.card_1', cards[0].get_rank(), cards[0].get_suit());
-    // draw_card('.card_2', '4', 'clubs');
-    // draw_card('.card_3', '5', 'clubs');
-    // draw_card('.card_4', 'K', 'clubs');
-    // draw_card('.card_5', 'Q', 'clubs');
 }
 
 function card(number_in_deck, dom_index){
