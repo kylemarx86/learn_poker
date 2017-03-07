@@ -1,75 +1,40 @@
 var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
 var number_of_cards = 5;    //number of cards to deal out
+var cards = null;
 $(document).ready(function(){
+
     deal_cards();
-    // draw_cards();
+    render_cards();
 });
 
 function deal_cards(){
-    var cards = [];
+    cards = [];
     for(var i = 0; i < number_of_cards; i++){
-        cards[i] = new card(Math.floor(Math.random()*52));
-    }
-    //only for testing
-    for(var i = 0; i< number_of_cards; i++){
-        console.log(cards[i].get_card());
+        cards[i] = new card(Math.floor(Math.random()*52), i);
+        //only for testing
         console.log(cards[i].get_rank());
         console.log(cards[i].get_suit());
     }
     
 }
 
-function draw_cards(){
-
-    draw_card('.card_1', '6', 'clubs');
-    draw_card('.card_2', '4', 'clubs');
-    draw_card('.card_3', '5', 'clubs');
-    draw_card('.card_4', 'K', 'clubs');
-    draw_card('.card_5', 'Q', 'clubs');
+function render_cards(){
+    for(var i = 0; i < number_of_cards; i++){
+        // draw_card('.card_'+(i+1), cards[i].get_rank(), cards[i].get_suit());
+        cards[i].render_card();
+    }
+    // draw_card('.card_1', cards[0].get_rank(), cards[0].get_suit());
+    // draw_card('.card_2', '4', 'clubs');
+    // draw_card('.card_3', '5', 'clubs');
+    // draw_card('.card_4', 'K', 'clubs');
+    // draw_card('.card_5', 'Q', 'clubs');
 }
 
-function draw_card(card, rank, suit){
-    add_numbers_to_corners(card, rank);
-    add_suit_to_corners(card, suit);
-    //create function to 
-}
-
-function add_numbers_to_corners(card, number){
-    $(card + ' .rank').text(number);
-    $(card + ' .rank').text(number);
-}
-
-//add a parameter to this once if drawn out all suits
-function add_suit_to_corners(card, suit){
-    var $div = $('.suit');
-    
-    //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-    $svg = $div.find('svg');
-    $svg.attr({'width':'49', 'height':'49'});
-    // create group
-    var group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rect with background fill
-    var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
-    //add suit to rect
-    $rect.setAttribute('style','fill: url("#' + suit + '")');
-    $rect.setAttribute('width', '49');
-    $rect.setAttribute('height', '49');
-    $rect.setAttribute('transform', 'scale(0.5)');
-    // add rect to group
-    group.appendChild($rect);
-    // add group to svg
-    $svg.append(group);
-}
-
-// var card = {
-//     suit: null,
-//     rank: null
-// }
-function card(number_in_deck){
+function card(number_in_deck, dom_index){
     this.number_in_deck = number_in_deck;
-    this.rank = this.turn_number_to_rank();
-    this.suit = this.turn_number_to_suit();
+    this.dom_index = dom_index;
+    this.rank = this.convert_number_to_rank();
+    this.suit = this.convert_number_to_suit();
 }
 card.prototype.get_card = function(){
     return this.number_in_deck;
@@ -81,7 +46,7 @@ card.prototype.get_suit = function(){
     return this.suit;
 }
 //converts number of card in the deck into the rank of the card
-card.prototype.turn_number_to_rank = function(){
+card.prototype.convert_number_to_rank = function(){
     switch(this.number_in_deck % 13){
         case 0:
             return 'A';
@@ -125,7 +90,7 @@ card.prototype.turn_number_to_rank = function(){
     }
 }
 //converts number of card in the deck into the suit of the card
-card.prototype.turn_number_to_suit = function(){
+card.prototype.convert_number_to_suit = function(){
     switch(Math.floor(this.number_in_deck / 13)){
         case 0:
             return 'spades';
@@ -142,24 +107,21 @@ card.prototype.turn_number_to_suit = function(){
     }
 }
 
-card.prototype.draw_card = function(){
 
+
+card.prototype.render_card = function(){
+    this.add_ranks_to_corners();
+    this.add_suits_to_corners();
+    //create function to add stuff to middle of the card
 }
 
-card.prototype.draw_card = function(card){
-    add_numbers_to_corners(card, this.rank);
-    add_suit_to_corners(card, this.suit);
-    //create function to 
+card.prototype.add_ranks_to_corners = function(){
+    $('.card_' + this.dom_index + ' .rank').text(this.rank);
 }
 
- card.prototype.add_numbers_to_corners = function(card){
-    $(card + ' .rank').text(this.number);
-    $(card + ' .rank').text(this.number);
-}
-
-//add a parameter to this once if drawn out all suits
-card.prototype.add_suit_to_corners = function(card){
-    var $div = $('.suit');
+card.prototype.add_suits_to_corners = function(card){
+    var $div = $('.card_' + this.dom_index + ' .suit');
+    
     //make svg
     $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
     $svg = $div.find('svg');
@@ -178,4 +140,3 @@ card.prototype.add_suit_to_corners = function(card){
     // add group to svg
     $svg.append(group);
 }
-
