@@ -67,6 +67,12 @@ body{
     height: 25px;
     bottom: 0;
 }
+.red{
+    color: red;
+}
+.black{
+    color: black;
+}
 .top{
     top: 2%;
     left: 2%;

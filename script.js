@@ -110,6 +110,11 @@ card.prototype.render_card = function(){
 
 card.prototype.add_ranks_to_corners = function(){
     $('.card_' + this.dom_index + ' .rank').text(this.rank);
+    if(this.get_suit()==='hearts' || this.get_suit()==='diamonds'){
+        $('.card_' + this.dom_index + ' .rank').removeClass('black').addClass('red');
+    }else{
+        $('.card_' + this.dom_index + ' .rank').removeClass('red').addClass('black');
+    }
 }
 
 card.prototype.add_suits_to_corners = function(card){
