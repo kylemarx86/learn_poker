@@ -14,16 +14,29 @@ function apply_event_handlers(){
     });
 }
 
+//assigns cards to be dealt
 function deal_cards(){
     cards = [];
+    //create array representing full deck of cards
+    deck_arr = [];
+    for(var i = 0; i < 52; i++){
+        deck_arr[i] = i;
+    }
+
     for(var i = 0; i < number_of_cards; i++){
-        cards[i] = new card(Math.floor(Math.random()*52), i);
-        //only for testing
-        console.log(cards[i].get_rank());
-        console.log(cards[i].get_suit());
+        //find index of card to take from remaining deck
+        var arr_index = Math.floor(Math.random()*deck_arr.length);
+        //find value of the card from the deck
+        var card_val = deck_arr.splice(arr_index, 1);
+        //assign card value to card
+        cards[i] = new card(card_val, i);
+
+        console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
     }
 }
 
+//renders cards to the screen
+// calls the render_card method of the card class
 function render_cards(){
     for(var i = 0; i < number_of_cards; i++){
         cards[i].render_card();
