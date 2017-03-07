@@ -2,9 +2,17 @@ var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6',
 var number_of_cards = 7;    //number of cards to deal out
 var cards = null;
 $(document).ready(function(){
+    apply_event_handlers();
     deal_cards();
     render_cards();
 });
+
+function apply_event_handlers(){
+    $('#deal').click(function(){
+        deal_cards();
+        render_cards();
+    });
+}
 
 function deal_cards(){
     cards = [];
@@ -14,7 +22,6 @@ function deal_cards(){
         console.log(cards[i].get_rank());
         console.log(cards[i].get_suit());
     }
-    
 }
 
 function render_cards(){
@@ -99,8 +106,6 @@ card.prototype.convert_number_to_suit = function(){
             break;
     }
 }
-
-
 
 card.prototype.render_card = function(){
     this.add_ranks_to_corners();
