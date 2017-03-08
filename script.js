@@ -344,6 +344,8 @@ player_hand.prototype.there_is_a_four_of_a_kind = function(){
             this.hand_strength.push( (this.ranks_arr.length - 1) - rank);
             for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
                 //simply looking for the highest rank that hasn't been accounted for yet
+
+                    //fix this the rank should not equal the first rank. not that it shouldn't just be 4
                 if(this.ranks_arr[rank2] > 0 && this.ranks_arr[rank2] !== 4){
                     //strength of the final card
                     this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
@@ -356,8 +358,26 @@ player_hand.prototype.there_is_a_four_of_a_kind = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there is a full house and determine its strength against similar hands
 player_hand.prototype.there_is_a_full_house = function(){
+    for(var rank1 = this.ranks_arr.length - 1; rank1 >= 0; rank1--){
+        if(this.ranks_arr[rank1] === 3){
+            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
+                //looking for the highest rank that has at least a pair that hasn't been accounted for yet
+                if(this.ranks_arr[rank2] > 1 && rank2 !== rank1){
+                    //the hand is a full house, 2 representing a full house
+                    this.hand_strength.push(2);
+                    //strength of the three of a kind in the full house
+                    this.hand_strength.push( (this.ranks_arr.length - 1) - rank1);
+                    //strength of the pair in the full house
+                    this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
+                    //since we have found a full house we can return true
+                    return true;
+                }
+            }
+        }
+    }
+    //if none found
     return false;
 }
 //incomplete
@@ -379,4 +399,7 @@ player_hand.prototype.there_are_two_pairs = function(){
 //incomplete
 player_hand.prototype.there_is_a_pair = function(){
     return false;
+}
+player_hand.prototype.display_best_hand = function(){
+
 }
