@@ -52,6 +52,19 @@ function deal_cards(){
         // console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
     }
 
+
+    // // for testing hard-coding a straight flush
+    // cards[0] = new card(0 ,0);
+    // cards[1] = new card(1 ,1);
+    // cards[2] = new card(2 ,2);
+    // cards[3] = new card(3 ,3);
+    // cards[4] = new card(17 ,4);
+
+    // cards[5] = new card(4 ,5);
+    // cards[6] = new card(27 ,6);
+    // cards[7] = new card(40 ,7);
+    // cards[8] = new card(12 ,8);
+
     // //for testing hard-coding a four of a kind
     // cards[0] = new card(0 ,0);
     // cards[1] = new card(13 ,1);
@@ -319,6 +332,7 @@ player_hand.prototype.determine_best_hand = function(){
                                 }else{
                                     //else the best hand available is a high card
                                     //find a way to return this value in a method that will also find 
+                                    this.there_is_high_card();
                                     return "high card";
                                 }
                             }
@@ -380,18 +394,22 @@ player_hand.prototype.there_is_a_full_house = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there is a flush and determine its strength against similar hands
 player_hand.prototype.there_is_a_flush = function(){
+    //run through each suit
     for(var suit = 0; suit < this.suits_arr.length; suit++){
+        //check to see if there are at least five cards of that suit
         if(this.suits_arr[suit] > 4){
             //the hand is a flush, 3 representing a flush
             this.hand_strength.push(3);
+            //run through each of the cards in the players hand (from largest to smallest number)
             for(var index = this.cards.length - 1; index >= 0; index--){
-                //this conditional needs work. need to hammer down the end points
+                //if the card falls within the numbers of the suit count it towards the strength of the flush
                 if(13*suit <= this.cards[index] && this.cards[index] < 13*(suit+1) ){
                     this.hand_strength.push(this.cards[index] % 13);
                 }
             }
+            //we have found a flush, so return true
             return true;
         }
     }
@@ -414,6 +432,19 @@ player_hand.prototype.there_are_two_pairs = function(){
 player_hand.prototype.there_is_a_pair = function(){
     return false;
 }
+//incomplete
+player_hand.prototype.there_is_high_card = function(){
+    //the hand only has a high card, 8 represents a high card hand
+    this.hand_strength.push(8);
+    //run through the ranks of the cards in the players hand (from largest to smallest number)
+    for(var rank = this.ranks_arr.length - 1; rank >= 0; rank--){
+        //if there is a card of the rank count it towards the strength of the hand
+        if(this.ranks_arr[rank] > 0){
+            this.hand_strength.push(rank);
+        }
+    }
+}
+//incomplete
 player_hand.prototype.display_best_hand = function(){
-
+    
 }
