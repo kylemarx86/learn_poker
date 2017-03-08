@@ -40,6 +40,7 @@ function deal_cards(){
         deck_arr[i] = i;
     }
 
+    //consider moving to a separate function
     for(var i = 0; i < number_of_cards; i++){
         //find index of card to take from remaining deck
         var arr_index = Math.floor(Math.random()*deck_arr.length);
@@ -50,18 +51,57 @@ function deal_cards(){
 
         // console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
     }
+
+    // //for testing hard-coding a four of a kind
+    // cards[0] = new card(0 ,0);
+    // cards[1] = new card(13 ,1);
+    // cards[2] = new card(1 ,2);
+    // cards[3] = new card(14 ,3);
+    // cards[4] = new card(5 ,4);
+
+    // cards[5] = new card(39 ,5);
+    // cards[6] = new card(26 ,6);
+    // cards[7] = new card(40 ,7);
+    // cards[8] = new card(27 ,8);
+
+
+    // // for testing hard-coding a full house
+    // cards[0] = new card(0 ,0);
+    // cards[1] = new card(13 ,1);
+    // cards[2] = new card(39 ,2);
+    // cards[3] = new card(14 ,3);
+    // cards[4] = new card(10 ,4);
+
+    // cards[5] = new card(40 ,5);
+    // cards[6] = new card(27 ,6);
+    // cards[7] = new card(1 ,7);
+    // cards[8] = new card(2 ,8);
+
+
+    // // for testing hard-coding a flush
+    // cards[0] = new card(0 ,0);
+    // cards[1] = new card(1 ,1);
+    // cards[2] = new card(2 ,2);
+    // cards[3] = new card(3 ,3);
+    // cards[4] = new card(17 ,4);
+
+    // cards[5] = new card(5 ,5);
+    // cards[6] = new card(27 ,6);
+    // cards[7] = new card(40 ,7);
+    // cards[8] = new card(39 ,8);
+
+
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
     player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
     player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
 
-    console.log('player1_hand pre sort: ', player1_hand_arr);
+    // console.log('player1_hand pre sort: ', player1_hand_arr);
     player1_hand = new player_hand(player1_hand_arr);
     player2_hand = new player_hand(player2_hand_arr);
 
     // console.log('community_cards: ', community_cards);
     console.log('player1_hand: ', player1_hand.cards);
-    // console.log('player2_hand: ', player2_hand);
     //determine best available hand, best left to a players_hand object
     // determine_best_hand();    
 }
@@ -189,11 +229,22 @@ card.prototype.add_suits_to_corners = function(card){
     // add group to svg
     $svg.append(group);
 }
+
+
 //card1, card2, card3, card4, card5, card6, card7
+// hand_strength will be an array that will hold different pieces of information. 
+    // the first piece of info wil be held in the first index and will relate to the type of hand the player has
+    // hands will be given points as follows: 0 = straight flush, 1 = four of a kind, 2 = full house, 3 = flush, 4 = straight, 5 = three of a kind, 6 = two pairs, 7 = pair, 8 = high card
+    // the subsequent data will tell how strong the hand is against other hands of this type. 
+    // for both of these pieces of information, lower numbers will signal stronger hands and will be used later to determine winners.
 function player_hand(card_arr){
     this.cards = this.sort_cards(card_arr);
-    this.best_hand = this.determine_best_hand();
-    this.hand_strength = this.determine_hand_strength();
+    this.hand_strength = [];
+    this.ranks_arr = [];
+    this.suits_arr = [];
+    this.best_hand_name = this.determine_best_hand();
+    console.log(this.best_hand_name);
+    console.log(this.hand_strength);
 }
 //i could add in a way to sort the cards with associated indices so that I could reference back where the cards are on the DOM. Would require me to store more info earlier.
 player_hand.prototype.sort_cards = function(cards){
@@ -212,46 +263,120 @@ player_hand.prototype.sort_cards = function(cards){
     return cards;
 }
 //for simplicity in the initial writing of this aces will only be considered high for straights. which means aces can be placed at the high end within a suit
+    //when the time comes I will rewrite this to incorporate high and low aces for straights.
 player_hand.prototype.determine_best_hand = function(){
     // initialize the arrays counting the numbers in each rank and suit
-    var ranks_arr = [];
-    var suits_arr = [];
+    this.ranks_arr = [];
+    this.suits_arr = [];
     for(var i = 0; i < 13; i++){
-        ranks_arr[i] = 0;
+        this.ranks_arr[i] = 0;
     }
     for(var i = 0; i < 4; i++){
-        suits_arr[i] = 0;
+        this.suits_arr[i] = 0;
     }
     for(var i = 0; i < this.cards.length; i++){
         //add one to the count of a rank if one of the cards is in the hand
-        ranks_arr[this.cards[i] % 13]++;
+        this.ranks_arr[this.cards[i] % 13]++;
         //add one to the count of a suit if one of the cards is in the hand
-        suits_arr[Math.floor(this.cards[i] / 13)]++;
+        this.suits_arr[Math.floor(this.cards[i] / 13)]++;
     }
-    console.log('ranks_arr: ', ranks_arr);
-    console.log('suits_arr: ', suits_arr);
+    
+    //for testing
+    // console.log('ranks_arr: ', this.ranks_arr);
+    // console.log('suits_arr: ', this.suits_arr);
 
     //determine if there is a straight flush
-        //need to rework method
-    // for(var suit = 0; suit < 4; suit++){
-
-    // }
-
-
-    //determine if there is a four of a kind
-        // recall aces are high and low
-    // for(var rank = ranks_arr.length; rank--){
-
-    // }
-    //determine if there is a full house
-    //determine if there is a flush
-    //determine if there is a straight
-    //determine if there is a three of a kind
-    //determine if there are two pairs
-    //determine if there is a pair
-
-
+    if(this.there_is_a_straight_flush()){
+        return "straight flush";
+    }else{
+        //determine if there is a four of a kind
+        if(this.there_is_a_four_of_a_kind()){
+            return "four of a kind";
+        }else{
+            //determine if there is a full house
+            if(this.there_is_a_full_house()){
+                return "full house";
+            }else{
+                //determine if there is a flush
+                if(this.there_is_a_flush()){
+                    return "flush";
+                }else{
+                    //determine if there is a straight
+                    if(this.there_is_a_straight()){
+                        return "straight";
+                    }else{
+                        //determine if there is a three of a kind
+                        if(this.there_is_a_three_of_a_kind()){
+                            return "three of a kind";
+                        }else{
+                            //determine if there are two pairs
+                            if(this.there_are_two_pairs()){
+                                return "two pairs";
+                            }else{
+                                //determine if there is a pair
+                                if(this.there_is_a_pair()){
+                                    return "pair";
+                                }else{
+                                    //else the best hand available is a high card
+                                    //find a way to return this value in a method that will also find 
+                                    return "high card";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-player_hand.prototype.determine_hand_strength = function(){
 
+//incomplete
+player_hand.prototype.there_is_a_straight_flush = function(){
+    return false;
+}
+//method to test if there is a four of a kind and determine its strength against similar hands
+player_hand.prototype.there_is_a_four_of_a_kind = function(){
+    for(var rank = this.ranks_arr.length - 1; rank >= 0; rank--){
+        if(this.ranks_arr[rank] === 4){
+            //the hand is a four of a kind, 1 representing a four of a kind
+            this.hand_strength.push(1);
+            //strength of the four cards in the four of a kind
+            this.hand_strength.push( (this.ranks_arr.length - 1) - rank);
+            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
+                //simply looking for the highest rank that hasn't been accounted for yet
+                if(this.ranks_arr[rank2] > 0 && this.ranks_arr[rank2] !== 4){
+                    //strength of the final card
+                    this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
+                    //since we have found the final card we can return
+                    return true;
+                }
+            }
+        }
+    }
+    //if none found
+    return false;
+}
+//incomplete
+player_hand.prototype.there_is_a_full_house = function(){
+    return false;
+}
+//incomplete
+player_hand.prototype.there_is_a_flush = function(){
+    return false;
+}
+//incomplete
+player_hand.prototype.there_is_a_straight = function(){
+    return false;
+}
+//incomplete
+player_hand.prototype.there_is_a_three_of_a_kind = function(){
+    return false;
+}
+//incomplete
+player_hand.prototype.there_are_two_pairs = function(){
+    return false;
+}
+//incomplete
+player_hand.prototype.there_is_a_pair = function(){
+    return false;
 }
