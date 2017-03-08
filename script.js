@@ -88,7 +88,7 @@ function deal_cards(){
     // cards[5] = new card(5 ,5);
     // cards[6] = new card(27 ,6);
     // cards[7] = new card(40 ,7);
-    // cards[8] = new card(39 ,8);
+    // cards[8] = new card(12 ,8);
 
 
     // create players_hands
@@ -382,6 +382,20 @@ player_hand.prototype.there_is_a_full_house = function(){
 }
 //incomplete
 player_hand.prototype.there_is_a_flush = function(){
+    for(var suit = 0; suit < this.suits_arr.length; suit++){
+        if(this.suits_arr[suit] > 4){
+            //the hand is a flush, 3 representing a flush
+            this.hand_strength.push(3);
+            for(var index = this.cards.length - 1; index >= 0; index--){
+                //this conditional needs work. need to hammer down the end points
+                if(13*suit <= this.cards[index] && this.cards[index] < 13*(suit+1) ){
+                    this.hand_strength.push(this.cards[index] % 13);
+                }
+            }
+            return true;
+        }
+    }
+    //if none found
     return false;
 }
 //incomplete
