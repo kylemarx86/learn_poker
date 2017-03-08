@@ -52,15 +52,15 @@ function deal_cards(){
     }
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
-    player1_hand_arr = community_cards.concat(cards[6].get_card(), cards[7].get_card());
-    player2_hand_arr = community_cards.concat(cards[8].get_card(), cards[9].get_card());
+    player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
+    player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
 
     console.log('player1_hand pre sort: ', player1_hand_arr);
     player1_hand = new player_hand(player1_hand_arr);
     player2_hand = new player_hand(player2_hand_arr);
 
     // console.log('community_cards: ', community_cards);
-    console.log('player1_hand: ', player1_hand);
+    console.log('player1_hand: ', player1_hand.cards);
     // console.log('player2_hand: ', player2_hand);
     //determine best available hand, best left to a players_hand object
     // determine_best_hand();    
@@ -211,7 +211,21 @@ player_hand.prototype.sort_cards = function(cards){
     return cards;
 }
 player_hand.prototype.determine_best_hand = function(){
-
+    // initialize the arrays counting the numbers in each rank and suit
+    var ranks_arr = [];
+    var suits_arr = [];
+    for(var i = 0; i < 13; i++){
+        ranks_arr[i] = 0;
+    }
+    for(var i = 0; i < 4; i++){
+        suits_arr[i] = 0;
+    }
+    for(var i = 0; i < this.cards.length; i++){
+        ranks_arr[this.cards[i] % 13]++;
+        suits_arr[Math.floor(this.cards[i] / 13)]++;
+    }
+    console.log('ranks_arr: ', ranks_arr);
+    console.log('suits_arr: ', suits_arr);
 }
 player_hand.prototype.determine_hand_strength = function(){
 
