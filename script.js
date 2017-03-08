@@ -91,46 +91,47 @@ card.prototype.get_suit = function(){
     return this.suit;
 }
 //converts number of card in the deck into the rank of the card
+    // aces will be considered high not low
 card.prototype.convert_number_to_rank = function(){
     switch(this.number_in_deck % 13){
         case 0:
-            return 'A';
-            break;
-        case 1:
             return '2';
             break;
-        case 2:
+        case 1:
             return '3';
             break;
-        case 3:
+        case 2:
             return '4';
             break;
-        case 4:
+        case 3:
             return '5';
             break;
-        case 5:
+        case 4:
             return '6';
             break;
-        case 6:
+        case 5:
             return '7';
             break;
-        case 7:
+        case 6:
             return '8';
             break;
-        case 8:
+        case 7:
             return '9';
             break;
-        case 9:
+        case 8:
             return '10';
             break;
-        case 10:
+        case 9:
             return 'J';
             break;
-        case 11:
+        case 10:
             return 'Q';
             break;
-        default:
+        case 11:
             return 'K';
+            break;
+        default:
+            return 'A';
             break;
     }
 }
@@ -210,6 +211,7 @@ player_hand.prototype.sort_cards = function(cards){
     } while (swapped);
     return cards;
 }
+//for simplicity in the initial writing of this aces will only be considered high for straights. which means aces can be placed at the high end within a suit
 player_hand.prototype.determine_best_hand = function(){
     // initialize the arrays counting the numbers in each rank and suit
     var ranks_arr = [];
@@ -221,11 +223,34 @@ player_hand.prototype.determine_best_hand = function(){
         suits_arr[i] = 0;
     }
     for(var i = 0; i < this.cards.length; i++){
+        //add one to the count of a rank if one of the cards is in the hand
         ranks_arr[this.cards[i] % 13]++;
+        //add one to the count of a suit if one of the cards is in the hand
         suits_arr[Math.floor(this.cards[i] / 13)]++;
     }
     console.log('ranks_arr: ', ranks_arr);
     console.log('suits_arr: ', suits_arr);
+
+    //determine if there is a straight flush
+        //need to rework method
+    // for(var suit = 0; suit < 4; suit++){
+
+    // }
+
+
+    //determine if there is a four of a kind
+        // recall aces are high and low
+    // for(var rank = ranks_arr.length; rank--){
+
+    // }
+    //determine if there is a full house
+    //determine if there is a flush
+    //determine if there is a straight
+    //determine if there is a three of a kind
+    //determine if there are two pairs
+    //determine if there is a pair
+
+
 }
 player_hand.prototype.determine_hand_strength = function(){
 
