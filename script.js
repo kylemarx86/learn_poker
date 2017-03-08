@@ -1,9 +1,23 @@
 // var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
-var number_of_cards = 11;    //number of cards to deal out
-var dealt_cards = [];
+var num_of_players = 3;
+var number_of_cards = 11;    //number of cards to deal out, determined by the number of players, hardcoded for now
+// var dealt_cards = [];
+// var players_cards = null;
+var players_hands = null;
+var community_cards = null;
+
+//temp vars
+var player1_hand_arr = null;
+var player2_hand_arr = null;
+var player1_hand = null;
+var player2_hand = null;
 var cards = null;
+
 $(document).ready(function(){
+    num_of_players = 3;
+    number_of_cards = 5 + 2*num_of_players;
     apply_event_handlers();
+    //create areas for players hands based on number of players/cards
     deal_cards();
     render_cards();
 });
@@ -17,10 +31,11 @@ function apply_event_handlers(){
 
 //assigns cards to be dealt
 function deal_cards(){
-    dealt_cards = [];
+    // dealt_cards = [];
     cards = [];
+    players_cards = [];
     //create array representing full deck of cards
-    deck_arr = [];
+    var deck_arr = [];
     for(var i = 0; i < 52; i++){
         deck_arr[i] = i;
     }
@@ -29,26 +44,26 @@ function deal_cards(){
         //find index of card to take from remaining deck
         var arr_index = Math.floor(Math.random()*deck_arr.length);
         //find value of the card from the deck
-        var card_val = deck_arr.splice(arr_index, 1);
+        var card_val = deck_arr.splice(arr_index, 1)[0];
         //assign card value to card
         cards[i] = new card(card_val, i);
 
-        console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
+        // console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
     }
+    // create players_hands
+    community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
+    player1_hand_arr = community_cards.concat(cards[6].get_card(), cards[7].get_card());
+    player2_hand_arr = community_cards.concat(cards[8].get_card(), cards[9].get_card());
 
-    //determine best available hand
-    determine_best_hand();    
-}
+    console.log('player1_hand pre sort: ', player1_hand_arr);
+    player1_hand = new player_hand(player1_hand_arr);
+    player2_hand = new player_hand(player2_hand_arr);
 
-//determine best available hand
-function determine_best_hand(){
-    sort_players_hand();
-}
-//
-function sort_players_hand(player_num){
-    for(var i = 0; i < dealt_cards.length; i++){
-
-    }
+    // console.log('community_cards: ', community_cards);
+    console.log('player1_hand: ', player1_hand);
+    // console.log('player2_hand: ', player2_hand);
+    //determine best available hand, best left to a players_hand object
+    // determine_best_hand();    
 }
 
 //renders cards to the screen
@@ -59,6 +74,7 @@ function render_cards(){
     }
 }
 
+//card object
 function card(number_in_deck, dom_index){
     this.number_in_deck = number_in_deck;
     this.dom_index = dom_index;
@@ -171,4 +187,32 @@ card.prototype.add_suits_to_corners = function(card){
     group.appendChild($rect);
     // add group to svg
     $svg.append(group);
+}
+//card1, card2, card3, card4, card5, card6, card7
+function player_hand(card_arr){
+    this.cards = this.sort_cards(card_arr);
+    this.best_hand = this.determine_best_hand();
+    this.hand_strength = this.determine_hand_strength();
+}
+//i could add in a way to sort the cards with associated indices so that I could reference back where the cards are on the DOM. Would require me to store more info earlier.
+player_hand.prototype.sort_cards = function(cards){
+    var swapped = null;
+    do {
+        swapped = false;
+        for (var i=0; i < cards.length-1; i++) {
+            if (cards[i] > cards[i+1]) {
+                var temp = cards[i];
+                cards[i] = cards[i+1];
+                cards[i+1] = temp;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+    return cards;
+}
+player_hand.prototype.determine_best_hand = function(){
+
+}
+player_hand.prototype.determine_hand_strength = function(){
+
 }
