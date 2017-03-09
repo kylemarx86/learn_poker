@@ -142,17 +142,17 @@ function deal_cards(){
     // cards[7] = new card(1 , 7);
     // cards[8] = new card(2 , 8);
 
-    // for testing hard-coding one pair
-    cards[0] = new card(0 , 0);
-    cards[1] = new card(17 , 1);
-    cards[2] = new card(50 , 2);
-    cards[3] = new card(14 , 3);
-    cards[4] = new card(10 , 4);
+    // // for testing hard-coding one pair
+    // cards[0] = new card(0 , 0);
+    // cards[1] = new card(17 , 1);
+    // cards[2] = new card(50 , 2);
+    // cards[3] = new card(14 , 3);
+    // cards[4] = new card(10 , 4);
 
-    cards[5] = new card(36 , 5);
-    cards[6] = new card(31 , 6);
-    cards[7] = new card(1 , 7);
-    cards[8] = new card(2 , 8);
+    // cards[5] = new card(36 , 5);
+    // cards[6] = new card(31 , 6);
+    // cards[7] = new card(1 , 7);
+    // cards[8] = new card(2 , 8);
 
 
 
