@@ -400,8 +400,6 @@ player_hand.prototype.there_is_a_straight_flush = function(){
     //if none found
     return false;
 }
-
-
 //method to test if there is a four of a kind and determine its strength against similar hands
 player_hand.prototype.there_is_a_four_of_a_kind = function(){
     for(var rank = this.ranks_arr.length - 1; rank >= 0; rank--){
@@ -501,6 +499,26 @@ player_hand.prototype.there_is_a_straight = function(){
 }
 //incomplete
 player_hand.prototype.there_is_a_three_of_a_kind = function(){
+    for(var rank1 = this.ranks_arr.length - 1; rank1 >= 0; rank1--){
+        if(this.ranks_arr[rank1] === 3){
+            //the hand is a three of a kind, 5 representing a three of a kind
+            this.hand_strength.push(5);
+            //strength of the three of a kind
+            this.hand_strength.push( (this.ranks_arr.length - 1) - rank1);
+            //find the value of the next two highest cards
+            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
+                //looking for the highest rank that has at least a pair that hasn't been accounted for yet
+                if(this.ranks_arr[rank2] > 1 && rank2 !== rank1){
+                    
+                    //strength of the pair in the full house
+                    this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
+                    //since we have found a full house we can return true
+                    return true;
+                }
+            }
+        }
+    }
+    //if none found
     return false;
 }
 //incomplete
@@ -512,11 +530,13 @@ player_hand.prototype.there_is_a_pair = function(){
     return false;
 }
 //method to determine its strength of high card hands against similar hands
+    //need reworking see comment in code.
 player_hand.prototype.there_is_high_card = function(){
     //the hand only has a high card, 8 represents a high card hand
     this.hand_strength.push(8);
     //run through the ranks of the cards in the players hand (from largest to smallest number)
-    for(var rank = this.ranks_arr.length - 1; rank >= 0; rank--){
+        //need to fix this because we only want the best 5 cards.
+    for(var rank = this.ranks_arr.length - 1; rank >= 0, this.hand_strength.length < 6; rank--){
         //if there is a card of the rank count it towards the strength of the hand
         if(this.ranks_arr[rank] > 0){
             this.hand_strength.push(rank);
