@@ -66,6 +66,18 @@ function deal_cards(){
     // cards[7] = new card(40 ,7);
     // cards[8] = new card(12 ,8);
 
+    // // for testing hard-coding a straight flush2
+    // cards[0] = new card(24 ,0);
+    // cards[1] = new card(23 ,1);
+    // cards[2] = new card(22 ,2);
+    // cards[3] = new card(21 ,3);
+    // cards[4] = new card(17 ,4);
+
+    // cards[5] = new card(4 ,5);
+    // cards[6] = new card(27 ,6);
+    // cards[7] = new card(40 ,7);
+    // cards[8] = new card(25 ,8);
+
     // //for testing hard-coding a four of a kind
     // cards[0] = new card(0 ,0);
     // cards[1] = new card(13 ,1);
@@ -295,10 +307,6 @@ player_hand.prototype.determine_best_hand = function(){
         this.suits_arr[Math.floor(this.cards[i] / 13)]++;
     }
     
-    //for testing
-    // console.log('ranks_arr: ', this.ranks_arr);
-    // console.log('suits_arr: ', this.suits_arr);
-
     //determine if there is a straight flush
     if(this.there_is_a_straight_flush()){
         return "straight flush";
@@ -345,10 +353,54 @@ player_hand.prototype.determine_best_hand = function(){
     }
 }
 
-//incomplete
+//method to test if there is a straight flush and determine its strength against similar hands
+//plan: create a two-dimensional array (suits by ranks with aces listed high and low)
+    //run a check through each suit to see if there are 5 consecutive ranks that are in the hand
 player_hand.prototype.there_is_a_straight_flush = function(){
+    // create empty two-dimension card array to fill in with the cards that are there
+    var straight_flush_card_arr = [];
+    for(var i = 0; i < this.suits_arr.length; i++){
+        straight_flush_card_arr[i] = [];
+        //length of ranks plus 1 to account for ace being high and low in this representation
+        for(var j = 0; j < this.ranks_arr.length + 1; j++){
+            straight_flush_card_arr[i][j] = 0;
+        }
+    }
+
+    for(var i = 0; i < this.cards.length; i++){
+        var suit = Math.floor(this.cards[i] / 13);
+        //adding one to make room for the low ace
+        var rank = (this.cards[i] % 13) + 1;
+        straight_flush_card_arr[suit][rank] = 1;
+        // accounting for the low ace in the representation
+        if(rank === 13){
+            straight_flush_card_arr[suit][0] = 1;
+        }
+    }
+    
+    for(var suit = 0; suit < this.suits_arr.length; suit++){
+        //lowest possible high rank will be 5 (represented by a 4 in the array) as in a 5-high straight flush
+        for(var high_rank = straight_flush_card_arr[suit].length; high_rank >= 4; high_rank--){
+            //within a suit, if there is at least one card in the ranks array for the high rank and for each of the previous four ranks, then we have a straight flush
+            if(straight_flush_card_arr[suit][high_rank] > 0 
+                && straight_flush_card_arr[suit][high_rank - 1] > 0
+                && straight_flush_card_arr[suit][high_rank - 2] > 0
+                && straight_flush_card_arr[suit][high_rank - 3] > 0
+                && straight_flush_card_arr[suit][high_rank - 4] > 0){
+                    //the hand is a straight flush, 0 representing a straight
+                    this.hand_strength.push(0);
+                    //the hand has a strength of the highest possible rank of straights minus index of the high rank in the straight
+                    // this.hand_strength.push((this.ranks_arr.length - 1) - high_rank);
+                    this.hand_strength.push(this.ranks_arr.length - high_rank);
+                    return true;
+                }
+        }
+    }
+    //if none found
     return false;
 }
+
+
 //method to test if there is a four of a kind and determine its strength against similar hands
 player_hand.prototype.there_is_a_four_of_a_kind = function(){
     for(var rank = this.ranks_arr.length - 1; rank >= 0; rank--){
@@ -417,7 +469,7 @@ player_hand.prototype.there_is_a_flush = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there is a straight and determine its strength against similar hands
 player_hand.prototype.there_is_a_straight = function(){
     //initial check for all straights with the exception of ace low straights (meaning a 6 (stored as a 4 in the cards array) is the lowest possible high card)
     for(var high_rank = this.ranks_arr.length - 1; high_rank >= 4; high_rank--){
