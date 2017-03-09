@@ -117,6 +117,32 @@ function deal_cards(){
     // cards[8] = new card(12 ,8);
 
 
+    // // // for testing hard-coding a three of a kind
+    // cards[0] = new card(0 , 0);
+    // cards[1] = new card(13 , 1);
+    // cards[2] = new card(39 , 2);
+    // cards[3] = new card(14 , 3);
+    // cards[4] = new card(10 , 4);
+
+    // cards[5] = new card(37 , 5);
+    // cards[6] = new card(30 , 6);
+    // cards[7] = new card(1 , 7);
+    // cards[8] = new card(2 , 8);
+
+
+    // // for testing hard-coding two pairs
+    cards[0] = new card(0 , 0);
+    cards[1] = new card(13 , 1);
+    cards[2] = new card(50 , 2);
+    cards[3] = new card(14 , 3);
+    cards[4] = new card(10 , 4);
+
+    cards[5] = new card(36 , 5);
+    cards[6] = new card(30 , 6);
+    cards[7] = new card(1 , 7);
+    cards[8] = new card(2 , 8);
+
+
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
     player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
@@ -497,7 +523,7 @@ player_hand.prototype.there_is_a_straight = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there is a three of a kind and determine its strength against similar hands
 player_hand.prototype.there_is_a_three_of_a_kind = function(){
     for(var rank1 = this.ranks_arr.length - 1; rank1 >= 0; rank1--){
         if(this.ranks_arr[rank1] === 3){
@@ -505,17 +531,16 @@ player_hand.prototype.there_is_a_three_of_a_kind = function(){
             this.hand_strength.push(5);
             //strength of the three of a kind
             this.hand_strength.push( (this.ranks_arr.length - 1) - rank1);
-            //find the value of the next two highest cards
-            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
+            //find the value of the next three highest cards
+            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0 && this.hand_strength.length < 4; rank2--){
                 //looking for the highest rank that has at least a pair that hasn't been accounted for yet
-                if(this.ranks_arr[rank2] > 1 && rank2 !== rank1){
-                    
-                    //strength of the pair in the full house
+                if(this.ranks_arr[rank2] > 0 && rank2 !== rank1){
+                    //strength of the next card in the hand
                     this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
-                    //since we have found a full house we can return true
-                    return true;
                 }
             }
+            //since we have found a three of a kind we can return true
+            return true;
         }
     }
     //if none found
@@ -536,7 +561,7 @@ player_hand.prototype.there_is_high_card = function(){
     this.hand_strength.push(8);
     //run through the ranks of the cards in the players hand (from largest to smallest number)
         //need to fix this because we only want the best 5 cards.
-    for(var rank = this.ranks_arr.length - 1; rank >= 0, this.hand_strength.length < 6; rank--){
+    for(var rank = this.ranks_arr.length - 1; rank >= 0 && this.hand_strength.length < 6; rank--){
         //if there is a card of the rank count it towards the strength of the hand
         if(this.ranks_arr[rank] > 0){
             this.hand_strength.push(rank);
