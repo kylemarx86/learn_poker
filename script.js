@@ -31,6 +31,7 @@ function apply_event_handlers(){
 
 //assigns cards to be dealt
 function deal_cards(){
+    console.log('cards dealt');
     // dealt_cards = [];
     cards = [];
     players_cards = [];
@@ -114,7 +115,7 @@ function deal_cards(){
     player2_hand = new player_hand(player2_hand_arr);
 
     // console.log('community_cards: ', community_cards);
-    console.log('player1_hand: ', player1_hand.cards);
+    // console.log('player1_hand: ', player1_hand.cards);
     //determine best available hand, best left to a players_hand object
     // determine_best_hand();    
 }
@@ -418,6 +419,31 @@ player_hand.prototype.there_is_a_flush = function(){
 }
 //incomplete
 player_hand.prototype.there_is_a_straight = function(){
+    //initial check for all straights with the exception of ace low straights (meaning a 6 (stored as a 4 in the cards array) is the lowest possible high card)
+    for(var high_rank = this.ranks_arr.length - 1; high_rank >= 4; high_rank--){
+        // console.log(high_rank);
+        //if there is at least one card in the ranks array for the high rank and for each of the previous four ranks, then we have a straight
+        if(this.ranks_arr[high_rank] > 0 && this.ranks_arr[high_rank-1] > 0 
+                && this.ranks_arr[high_rank-2] > 0 && this.ranks_arr[high_rank-3] > 0 
+                && this.ranks_arr[high_rank-4] > 0){
+            //the hand is a straight, 4 representing a straight
+            this.hand_strength.push(4);
+            //the hand has a strength of the highest possible rank of straights minus index of the high rank in the straight
+            this.hand_strength.push((this.ranks_arr.length - 1) - high_rank);
+            return true;
+        }
+    }
+    //run addition check for ace low straights, note how aces are in the index ranks_arr.length - 1 and are the lowest card in this type of straight
+    if(this.ranks_arr[3] > 0 && this.ranks_arr[2] > 0 
+            && this.ranks_arr[1] > 0 && this.ranks_arr[0] > 0 
+            && this.ranks_arr[this.ranks_arr.length - 1] > 0){
+        //the hand is a straight, 4 representing a straight
+        this.hand_strength.push(4);
+        //the hand has a strength of the highest possible rank of straights minus index of the high rank in the straight
+        this.hand_strength.push((this.ranks_arr.length - 1) - 3);
+        return true;
+    }
+    //if none found
     return false;
 }
 //incomplete
@@ -432,7 +458,7 @@ player_hand.prototype.there_are_two_pairs = function(){
 player_hand.prototype.there_is_a_pair = function(){
     return false;
 }
-//incomplete
+//method to determine its strength of high card hands against similar hands
 player_hand.prototype.there_is_high_card = function(){
     //the hand only has a high card, 8 represents a high card hand
     this.hand_strength.push(8);
