@@ -20,13 +20,28 @@ $(document).ready(function(){
     //create areas for players hands based on number of players/cards
     deal_cards();
     render_cards();
+    show_best_hands();      //move inside another function??
 });
 
 function apply_event_handlers(){
     $('#deal').click(function(){
         deal_cards();
         render_cards();
+        show_best_hands();
     });
+}
+
+function show_best_hands(){
+    // create arrays for player hands
+    // for(var i = 0; i < num_of_players; i++){
+    //     $('.player_'+ i + ' .best_hand').text(player1_hand)
+    // }
+    $('.player_1 .best_hand').text(player1_hand.display_best_hand());
+    $('.player_2 .best_hand').text(player2_hand.display_best_hand());
+    $('.player_3 .best_hand').text(player3_hand.display_best_hand());
+    // $('.best_hand_avail').text(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
+    console.log(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
+
 }
 
 //assigns cards to be dealt
@@ -57,10 +72,12 @@ function deal_cards(){
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
     player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
     player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
+    player3_hand_arr = community_cards.concat(cards[9].get_card(), cards[10].get_card());
 
     // console.log('player1_hand pre sort: ', player1_hand_arr);
     player1_hand = new player_hand(player1_hand_arr);
     player2_hand = new player_hand(player2_hand_arr);
+    player3_hand = new player_hand(player3_hand_arr);
 
     // console.log('community_cards: ', community_cards);
     // console.log('player1_hand: ', player1_hand.cards);
@@ -207,6 +224,8 @@ function player_hand(card_arr){
     this.best_hand_name = this.determine_best_hand();
     console.log(this.best_hand_name);
     console.log(this.hand_strength);
+
+
 }
 //i could add in a way to sort the cards with associated indices so that I could reference back where the cards are on the DOM. Would require me to store more info earlier.
 player_hand.prototype.sort_cards = function(cards){
@@ -224,8 +243,7 @@ player_hand.prototype.sort_cards = function(cards){
     } while (swapped);
     return cards;
 }
-//for simplicity in the initial writing of this aces will only be considered high for straights. which means aces can be placed at the high end within a suit
-    //when the time comes I will rewrite this to incorporate high and low aces for straights.
+
 player_hand.prototype.determine_best_hand = function(){
     // initialize the arrays counting the numbers in each rank and suit
     this.ranks_arr = [];
@@ -525,5 +543,23 @@ player_hand.prototype.there_is_high_card = function(){
 }
 //incomplete
 player_hand.prototype.display_best_hand = function(){
-    
+    return this.best_hand_name;
+}
+//incomplete
+player_hand.prototype.get_strength_of_hand = function(){
+    return this.hand_strength;
+}
+//could define recursively
+player_hand.prototype.compare_hand_strength = function(arr_1, arr_2){
+    if(arr_1.length > 0){
+        for(var i = 0; i < Math.min(arr_1.length, arr_2.length); i++){
+            if(arr_1[i] < arr_2[i]){
+                return 1;
+            }else if(arr_1[i] < arr_2[i]){
+                return 2;
+            }else{
+                this.compare_hand_strength(arr_1.shift(), arr_2.shift())
+            }
+        }
+    }
 }
