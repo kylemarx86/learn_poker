@@ -53,109 +53,6 @@ function deal_cards(){
         // console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
     }
 
-
-    // // for testing hard-coding a straight flush
-    // cards[0] = new card(0 ,0);
-    // cards[1] = new card(1 ,1);
-    // cards[2] = new card(2 ,2);
-    // cards[3] = new card(3 ,3);
-    // cards[4] = new card(17 ,4);
-
-    // cards[5] = new card(4 ,5);
-    // cards[6] = new card(27 ,6);
-    // cards[7] = new card(40 ,7);
-    // cards[8] = new card(12 ,8);
-
-    // // for testing hard-coding a straight flush2
-    // cards[0] = new card(24 ,0);
-    // cards[1] = new card(23 ,1);
-    // cards[2] = new card(22 ,2);
-    // cards[3] = new card(21 ,3);
-    // cards[4] = new card(17 ,4);
-
-    // cards[5] = new card(4 ,5);
-    // cards[6] = new card(27 ,6);
-    // cards[7] = new card(40 ,7);
-    // cards[8] = new card(25 ,8);
-
-    // //for testing hard-coding a four of a kind
-    // cards[0] = new card(0 ,0);
-    // cards[1] = new card(13 ,1);
-    // cards[2] = new card(1 ,2);
-    // cards[3] = new card(14 ,3);
-    // cards[4] = new card(5 ,4);
-
-    // cards[5] = new card(39 ,5);
-    // cards[6] = new card(26 ,6);
-    // cards[7] = new card(40 ,7);
-    // cards[8] = new card(27 ,8);
-
-
-    // // for testing hard-coding a full house
-    // cards[0] = new card(0 ,0);
-    // cards[1] = new card(13 ,1);
-    // cards[2] = new card(39 ,2);
-    // cards[3] = new card(14 ,3);
-    // cards[4] = new card(10 ,4);
-
-    // cards[5] = new card(40 ,5);
-    // cards[6] = new card(27 ,6);
-    // cards[7] = new card(1 ,7);
-    // cards[8] = new card(2 ,8);
-
-
-    // // for testing hard-coding a flush
-    // cards[0] = new card(0 ,0);
-    // cards[1] = new card(1 ,1);
-    // cards[2] = new card(2 ,2);
-    // cards[3] = new card(3 ,3);
-    // cards[4] = new card(17 ,4);
-
-    // cards[5] = new card(5 ,5);
-    // cards[6] = new card(27 ,6);
-    // cards[7] = new card(40 ,7);
-    // cards[8] = new card(12 ,8);
-
-
-    // // // for testing hard-coding a three of a kind
-    // cards[0] = new card(0 , 0);
-    // cards[1] = new card(13 , 1);
-    // cards[2] = new card(39 , 2);
-    // cards[3] = new card(14 , 3);
-    // cards[4] = new card(10 , 4);
-
-    // cards[5] = new card(37 , 5);
-    // cards[6] = new card(30 , 6);
-    // cards[7] = new card(1 , 7);
-    // cards[8] = new card(2 , 8);
-
-
-    // // for testing hard-coding two pairs
-    // cards[0] = new card(0 , 0);
-    // cards[1] = new card(13 , 1);
-    // cards[2] = new card(50 , 2);
-    // cards[3] = new card(14 , 3);
-    // cards[4] = new card(10 , 4);
-
-    // cards[5] = new card(36 , 5);
-    // cards[6] = new card(30 , 6);
-    // cards[7] = new card(1 , 7);
-    // cards[8] = new card(2 , 8);
-
-    // // for testing hard-coding one pair
-    // cards[0] = new card(0 , 0);
-    // cards[1] = new card(17 , 1);
-    // cards[2] = new card(50 , 2);
-    // cards[3] = new card(14 , 3);
-    // cards[4] = new card(10 , 4);
-
-    // cards[5] = new card(36 , 5);
-    // cards[6] = new card(31 , 6);
-    // cards[7] = new card(1 , 7);
-    // cards[8] = new card(2 , 8);
-
-
-
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
     player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
@@ -615,12 +512,10 @@ player_hand.prototype.there_is_a_pair = function(){
     return false;
 }
 //method to determine its strength of high card hands against similar hands
-    //need reworking see comment in code.
 player_hand.prototype.there_is_high_card = function(){
     //the hand only has a high card, 8 represents a high card hand
     this.hand_strength.push(8);
     //run through the ranks of the cards in the players hand (from largest to smallest number)
-        //need to fix this because we only want the best 5 cards.
     for(var rank = this.ranks_arr.length - 1; rank >= 0 && this.hand_strength.length < 6; rank--){
         //if there is a card of the rank count it towards the strength of the hand
         if(this.ranks_arr[rank] > 0){
