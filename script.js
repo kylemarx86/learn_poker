@@ -131,16 +131,29 @@ function deal_cards(){
 
 
     // // for testing hard-coding two pairs
-    cards[0] = new card(0 , 0);
-    cards[1] = new card(13 , 1);
-    cards[2] = new card(50 , 2);
-    cards[3] = new card(14 , 3);
-    cards[4] = new card(10 , 4);
+    // cards[0] = new card(0 , 0);
+    // cards[1] = new card(13 , 1);
+    // cards[2] = new card(50 , 2);
+    // cards[3] = new card(14 , 3);
+    // cards[4] = new card(10 , 4);
 
-    cards[5] = new card(36 , 5);
-    cards[6] = new card(30 , 6);
-    cards[7] = new card(1 , 7);
-    cards[8] = new card(2 , 8);
+    // cards[5] = new card(36 , 5);
+    // cards[6] = new card(30 , 6);
+    // cards[7] = new card(1 , 7);
+    // cards[8] = new card(2 , 8);
+
+    // // for testing hard-coding one pair
+    // cards[0] = new card(0 , 0);
+    // cards[1] = new card(17 , 1);
+    // cards[2] = new card(50 , 2);
+    // cards[3] = new card(14 , 3);
+    // cards[4] = new card(10 , 4);
+
+    // cards[5] = new card(36 , 5);
+    // cards[6] = new card(31 , 6);
+    // cards[7] = new card(1 , 7);
+    // cards[8] = new card(2 , 8);
+
 
 
     // create players_hands
@@ -548,6 +561,35 @@ player_hand.prototype.there_is_a_three_of_a_kind = function(){
 }
 //incomplete
 player_hand.prototype.there_are_two_pairs = function(){
+    //temp variable to keep track of a first pair    
+    var first_pair_rank = null;
+    for(var rank1 = this.ranks_arr.length - 1; rank1 >= 0; rank1--){
+        if(this.ranks_arr[rank1] > 1){
+            // pairs_found++;
+            if(!first_pair_rank){
+                //a first pair is found
+                first_pair_rank = rank1;
+            }else{
+                //a second pair is found
+                //the hand is two pairs, 6 representing two pairs
+                this.hand_strength.push(6);
+                //store the higher pair first
+                this.hand_strength.push((this.ranks_arr.length - 1) - first_pair_rank);
+                //store the smaller pair
+                this.hand_strength.push((this.ranks_arr.length - 1) - rank1);
+                //find the final card to finish hand
+                for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
+                    if(this.ranks_arr[rank2] > 0 && rank2 !== first_pair_rank && rank2 !== rank1){
+                        //strength of the next card in the hand
+                        this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
+                        //since we have found the five cards to complete two pairs we can return true
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    //if none found
     return false;
 }
 //incomplete
