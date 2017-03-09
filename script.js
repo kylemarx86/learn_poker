@@ -366,7 +366,7 @@ player_hand.prototype.there_is_a_straight_flush = function(){
             straight_flush_card_arr[i][j] = 0;
         }
     }
-
+    //add a counter if the card falls in the correct placement in the straight flush array
     for(var i = 0; i < this.cards.length; i++){
         var suit = Math.floor(this.cards[i] / 13);
         //adding one to make room for the low ace
@@ -377,9 +377,10 @@ player_hand.prototype.there_is_a_straight_flush = function(){
             straight_flush_card_arr[suit][0] = 1;
         }
     }
-    
+    //run through the suits
     for(var suit = 0; suit < this.suits_arr.length; suit++){
-        //lowest possible high rank will be 5 (represented by a 4 in the array) as in a 5-high straight flush
+        // attempt to find five cards in a row within a suit
+            // lowest possible high rank will be 5 (represented by a 4 in the array) as in a 5-high straight flush
         for(var high_rank = straight_flush_card_arr[suit].length; high_rank >= 4; high_rank--){
             //within a suit, if there is at least one card in the ranks array for the high rank and for each of the previous four ranks, then we have a straight flush
             if(straight_flush_card_arr[suit][high_rank] > 0 
