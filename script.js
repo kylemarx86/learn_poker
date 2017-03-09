@@ -142,17 +142,17 @@ function deal_cards(){
     // cards[7] = new card(1 , 7);
     // cards[8] = new card(2 , 8);
 
-    // // for testing hard-coding one pair
-    // cards[0] = new card(0 , 0);
-    // cards[1] = new card(17 , 1);
-    // cards[2] = new card(50 , 2);
-    // cards[3] = new card(14 , 3);
-    // cards[4] = new card(10 , 4);
+    // for testing hard-coding one pair
+    cards[0] = new card(0 , 0);
+    cards[1] = new card(17 , 1);
+    cards[2] = new card(50 , 2);
+    cards[3] = new card(14 , 3);
+    cards[4] = new card(10 , 4);
 
-    // cards[5] = new card(36 , 5);
-    // cards[6] = new card(31 , 6);
-    // cards[7] = new card(1 , 7);
-    // cards[8] = new card(2 , 8);
+    cards[5] = new card(36 , 5);
+    cards[6] = new card(31 , 6);
+    cards[7] = new card(1 , 7);
+    cards[8] = new card(2 , 8);
 
 
 
@@ -559,7 +559,7 @@ player_hand.prototype.there_is_a_three_of_a_kind = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there are two pairs and determine the hands strength against similar hands
 player_hand.prototype.there_are_two_pairs = function(){
     //temp variable to keep track of a first pair    
     var first_pair_rank = null;
@@ -573,9 +573,9 @@ player_hand.prototype.there_are_two_pairs = function(){
                 //a second pair is found
                 //the hand is two pairs, 6 representing two pairs
                 this.hand_strength.push(6);
-                //store the higher pair first
+                //store the strength of the higher pair first
                 this.hand_strength.push((this.ranks_arr.length - 1) - first_pair_rank);
-                //store the smaller pair
+                //store the strength of the smaller pair
                 this.hand_strength.push((this.ranks_arr.length - 1) - rank1);
                 //find the final card to finish hand
                 for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0; rank2--){
@@ -592,8 +592,26 @@ player_hand.prototype.there_are_two_pairs = function(){
     //if none found
     return false;
 }
-//incomplete
+//method to test if there is a pair and determine its strength against similar hands
 player_hand.prototype.there_is_a_pair = function(){
+    for(var rank1 = this.ranks_arr.length - 1; rank1 >= 0; rank1--){
+        if(this.ranks_arr[rank1] > 1){
+            //the hand is a pairs, 7 representing two pairs
+            this.hand_strength.push(7);
+            //store the strength of the pair
+            this.hand_strength.push((this.ranks_arr.length - 1) - rank1);
+            //find the final cards to finish hand
+            for(var rank2 = this.ranks_arr.length - 1; rank2 >= 0 && this.hand_strength.length < 5; rank2--){
+                if(this.ranks_arr[rank2] > 0 && rank2 !== rank1){
+                    //strength of the next card in the hand
+                    this.hand_strength.push( (this.ranks_arr.length - 1) - rank2);
+                }
+            }
+            //since we have found the five cards to complete the pair we can return true
+            return true;
+        }
+    }
+    //if none found
     return false;
 }
 //method to determine its strength of high card hands against similar hands
