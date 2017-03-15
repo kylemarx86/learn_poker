@@ -8,14 +8,11 @@ var community_cards = null;
 
 
 //temp vars
-var player1_hand_arr = null;
-var player2_hand_arr = null;
-var player1_hand = null;
-var player2_hand = null;
 var cards = null;
 
 $(document).ready(function(){
-    num_of_players = 3;
+    // num_of_players = 3;
+    num_of_players = 4;
     
     apply_event_handlers();
     //create areas for players hands based on number of players/cards
@@ -58,7 +55,7 @@ function show_best_hands(){
     
     // *******************************************************************************************************************************************************************************
     //try reworking this line later.
-    // console.log(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
+    console.log(player_hand.compare_hand_strength(players_hands[0].get_strength_of_hand(),players_hands[1].get_strength_of_hand()));
 
 }
 
@@ -75,6 +72,9 @@ function deal_cards(){
         deck_arr[i] = i;
     }
 
+    // // for testing
+    // var test_cards = [4,14,16,42,51,2,38,43,44];
+
     //consider moving to a separate function
     for(var i = 0; i < number_of_cards; i++){
         //find index of card to take from remaining deck
@@ -84,9 +84,14 @@ function deal_cards(){
         //assign card value to card
         cards[i] = new card(card_val, i);
 
-        // console.log(cards[i].get_rank() + ' ' + cards[i].get_suit());
+
+        // //for testing    
+        // //assign card value to card
+        // cards[i] = new card(test_cards[i], i);
+
     }
 
+    
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
     var players_cards_arr = [];
@@ -587,17 +592,20 @@ player_hand.prototype.display_best_hand = function(){
 player_hand.prototype.get_strength_of_hand = function(){
     return this.hand_strength;
 }
-//could define recursively
-player_hand.prototype.compare_hand_strength = function(arr_1, arr_2){
-    if(arr_1.length > 0){
-        for(var i = 0; i < Math.min(arr_1.length, arr_2.length); i++){
-            if(arr_1[i] < arr_2[i]){
-                return 1;
-            }else if(arr_1[i] < arr_2[i]){
-                return 2;
-            }else{
-                this.compare_hand_strength(arr_1.shift(), arr_2.shift())
-            }
+//defined recursively
+player_hand.compare_hand_strength = function(arr_1, arr_2){
+    if(arr_1.length > 0 && arr_2.length > 0){
+        if(arr_1[0] < arr_2[0]){
+            return 1;
+        }else if(arr_1[0] > arr_2[0]){
+            return 2;
+        }else{
+            // console.log('sliced');
+            // console.log(arr_1.slice(1, arr_1.length));
+            // console.log(arr_2.slice(1, arr_2.length));
+            return player_hand.compare_hand_strength(arr_1.slice(1,arr_1.length),arr_2.slice(1,arr_1.length));
         }
+    }else{
+        return 0;
     }
 }
