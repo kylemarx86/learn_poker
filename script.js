@@ -1,10 +1,11 @@
 // var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
-var num_of_players = 3;
-var number_of_cards = 11;    //number of cards to deal out, determined by the number of players, hardcoded for now
+var num_of_players = null;
+var number_of_cards = null;    //number of cards to deal out, determined by the number of players, hardcoded for now
 // var dealt_cards = [];
 // var players_cards = null;
 var players_hands = null;
 var community_cards = null;
+
 
 //temp vars
 var player1_hand_arr = null;
@@ -14,21 +15,39 @@ var player2_hand = null;
 var cards = null;
 
 $(document).ready(function(){
-    num_of_players = 3;
-    number_of_cards = 5 + 2*num_of_players;
+    num_of_players = 2;
+    
     apply_event_handlers();
     //create areas for players hands based on number of players/cards
+    create_player_areas();
     deal_cards();
     render_cards();
     show_best_hands();      //move inside another function??
 });
 
+function create_player_areas(){
+    var $player_area = $('.players_cards');
+    for(var i = 0; i < num_of_players; i++){
+        var $player = $('<div>').addClass('player').addClass('player_'+(i+1));
+        var $best_hand = $('<div>').addClass('best_hand');
+        $player.append($best_hand);
+        $player_area.append($player);
+    }
+}
+
 function apply_event_handlers(){
     $('#deal').click(function(){
+        //empty game board
+        reset_game_board();
+        create_player_areas();
         deal_cards();
         render_cards();
         show_best_hands();
     });
+}
+function reset_game_board(){
+    $('.community_cards').empty();
+    $('.players_cards').empty();
 }
 
 function show_best_hands(){
@@ -36,17 +55,28 @@ function show_best_hands(){
     // for(var i = 0; i < num_of_players; i++){
     //     $('.player_'+ i + ' .best_hand').text(player1_hand)
     // }
-    $('.player_1 .best_hand').text(player1_hand.display_best_hand());
-    $('.player_2 .best_hand').text(player2_hand.display_best_hand());
-    $('.player_3 .best_hand').text(player3_hand.display_best_hand());
+
+    for(var i = 0; i < num_of_players; i++){
+        $('.player_' + (i+1) + ' .best_hand').text(players_hands[i].display_best_hand());
+    }
+    // players_hands[]
+    // $('.player_1 .best_hand').text(player1_hand.display_best_hand());
+    // $('.player_2 .best_hand').text(player2_hand.display_best_hand());
+    // $('.player_3 .best_hand').text(player3_hand.display_best_hand());
+    
     // $('.best_hand_avail').text(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
-    console.log(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
+    
+    
+    // *******************************************************************************************************************************************************************************
+    //try reworking this line later.
+    // console.log(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
 
 }
 
 //assigns cards to be dealt
 function deal_cards(){
     console.log('cards dealt');
+    number_of_cards = 5 + 2*num_of_players;
     // dealt_cards = [];
     cards = [];
     players_cards = [];
@@ -70,14 +100,20 @@ function deal_cards(){
 
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
-    player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
-    player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
-    player3_hand_arr = community_cards.concat(cards[9].get_card(), cards[10].get_card());
+    var players_cards_arr = [];
+    players_hands = [];
+    for(var i = 0; i < num_of_players; i++){
+        players_cards_arr.push(community_cards.concat(cards[community_cards.length + 2*i].get_card(), cards[community_cards.length + 2*i + 1].get_card()));
+        players_hands.push(new player_hand(players_cards_arr[i]));
+    }
+    // player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
+    // player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
+    // player3_hand_arr = community_cards.concat(cards[9].get_card(), cards[10].get_card());
 
     // console.log('player1_hand pre sort: ', player1_hand_arr);
-    player1_hand = new player_hand(player1_hand_arr);
-    player2_hand = new player_hand(player2_hand_arr);
-    player3_hand = new player_hand(player3_hand_arr);
+    // player1_hand = new player_hand(player1_hand_arr);
+    // player2_hand = new player_hand(player2_hand_arr);
+    // player3_hand = new player_hand(player3_hand_arr);
 
     // console.log('community_cards: ', community_cards);
     // console.log('player1_hand: ', player1_hand.cards);
@@ -171,8 +207,34 @@ card.prototype.convert_number_to_suit = function(){
             break;
     }
 }
+//create shell and add classes
+card.prototype.create_card_shell = function(){
+    var $card = $('<div>').addClass('card').addClass('card_' + this.dom_index);
+    var $top = $('<div>').addClass('top');
+    var $middle = $('<div>').addClass('middle');
+    var $bottom = $('<div>').addClass('bottom');
+    var $rank_top = $('<div>').addClass('rank');
+    var $suit_top = $('<div>').addClass('suit');
+    var $rank_bottom = $('<div>').addClass('rank');
+    var $suit_bottom = $('<div>').addClass('suit');
+    $top.append($rank_top, $suit_top);
+    $bottom.append($rank_bottom, $suit_bottom);
 
+    $card.append($top, $middle, $bottom);
+    return $card;
+}
 card.prototype.render_card = function(){
+    if(this.dom_index < community_cards.length){
+        $('.community_cards').append(this.create_card_shell());
+    }else{
+        //convert dom_index to player number
+        var player_num = Math.floor((this.dom_index - 5) / 2) + 1;
+        // console.log('player: ', player_num);
+        // var player_spot = 'player_' + player_num;
+        // console.log(player_spot);
+        $('.player_' + player_num).append(this.create_card_shell());
+    }
+
     this.add_ranks_to_corners();
     this.add_suits_to_corners();
     //create function to add stuff to middle of the card
