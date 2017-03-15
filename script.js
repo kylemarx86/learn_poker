@@ -15,7 +15,7 @@ var player2_hand = null;
 var cards = null;
 
 $(document).ready(function(){
-    num_of_players = 2;
+    num_of_players = 3;
     
     apply_event_handlers();
     //create areas for players hands based on number of players/cards
@@ -52,20 +52,9 @@ function reset_game_board(){
 
 function show_best_hands(){
     // create arrays for player hands
-    // for(var i = 0; i < num_of_players; i++){
-    //     $('.player_'+ i + ' .best_hand').text(player1_hand)
-    // }
-
     for(var i = 0; i < num_of_players; i++){
         $('.player_' + (i+1) + ' .best_hand').text(players_hands[i].display_best_hand());
     }
-    // players_hands[]
-    // $('.player_1 .best_hand').text(player1_hand.display_best_hand());
-    // $('.player_2 .best_hand').text(player2_hand.display_best_hand());
-    // $('.player_3 .best_hand').text(player3_hand.display_best_hand());
-    
-    // $('.best_hand_avail').text(player1_hand.compare_hand_strength(player1_hand.get_strength_of_hand(),player2_hand.get_strength_of_hand()));
-    
     
     // *******************************************************************************************************************************************************************************
     //try reworking this line later.
@@ -106,17 +95,6 @@ function deal_cards(){
         players_cards_arr.push(community_cards.concat(cards[community_cards.length + 2*i].get_card(), cards[community_cards.length + 2*i + 1].get_card()));
         players_hands.push(new player_hand(players_cards_arr[i]));
     }
-    // player1_hand_arr = community_cards.concat(cards[5].get_card(), cards[6].get_card());
-    // player2_hand_arr = community_cards.concat(cards[7].get_card(), cards[8].get_card());
-    // player3_hand_arr = community_cards.concat(cards[9].get_card(), cards[10].get_card());
-
-    // console.log('player1_hand pre sort: ', player1_hand_arr);
-    // player1_hand = new player_hand(player1_hand_arr);
-    // player2_hand = new player_hand(player2_hand_arr);
-    // player3_hand = new player_hand(player3_hand_arr);
-
-    // console.log('community_cards: ', community_cards);
-    // console.log('player1_hand: ', player1_hand.cards);
     //determine best available hand, best left to a players_hand object
     // determine_best_hand();    
 }
@@ -146,7 +124,7 @@ card.prototype.get_suit = function(){
     return this.suit;
 }
 //converts number of card in the deck into the rank of the card
-    // aces will be considered high not low
+    // aces will be considered high not low except in straights where it is to the player's benefit
 card.prototype.convert_number_to_rank = function(){
     switch(this.number_in_deck % 13){
         case 0:
@@ -229,12 +207,8 @@ card.prototype.render_card = function(){
     }else{
         //convert dom_index to player number
         var player_num = Math.floor((this.dom_index - 5) / 2) + 1;
-        // console.log('player: ', player_num);
-        // var player_spot = 'player_' + player_num;
-        // console.log(player_spot);
         $('.player_' + player_num).append(this.create_card_shell());
     }
-
     this.add_ranks_to_corners();
     this.add_suits_to_corners();
     //create function to add stuff to middle of the card
