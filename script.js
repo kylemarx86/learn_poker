@@ -8,8 +8,9 @@ var strenth_arr = [];       //an array of the strengths of each of the players h
 
 
 $(document).ready(function(){
+    num_of_players = 2;
     // num_of_players = 3;
-    num_of_players = 4;
+    // num_of_players = 4;
     
     apply_event_handlers();
     //create areas for players hands based on number of players/cards
@@ -77,25 +78,26 @@ function deal_cards(){
         deck_arr[i] = i;
     }
 
+
+    // //consider moving to a separate function
+    // for(var i = 0; i < number_of_cards; i++){
+    //     //find index of card to take from remaining deck
+    //     var arr_index = Math.floor(Math.random()*deck_arr.length);
+    //     //find value of the card from the deck
+    //     var card_val = deck_arr.splice(arr_index, 1)[0];
+    //     //assign card value to card
+    //     cards[i] = new card(card_val, i);
+    // }
+
+
     // // for testing
     // var test_cards = [4,14,16,42,51,2,38,43,44];
-
-    //consider moving to a separate function
-    for(var i = 0; i < number_of_cards; i++){
-        //find index of card to take from remaining deck
-        var arr_index = Math.floor(Math.random()*deck_arr.length);
-        //find value of the card from the deck
-        var card_val = deck_arr.splice(arr_index, 1)[0];
+    var test_cards = [0,20,32,34,37,27,28,30,36];
+    for(var i = 0; i < test_cards.length; i++){
         //assign card value to card
-        cards[i] = new card(card_val, i);
-
-
-        // //for testing    
-        // //assign card value to card
-        // cards[i] = new card(test_cards[i], i);
-
+        cards[i] = new card(test_cards[i], i);
     }
-
+    
     
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
@@ -460,7 +462,8 @@ player_hand.prototype.there_is_a_flush = function(){
             for(var index = this.cards.length - 1; index >= 0; index--){
                 //if the card falls within the numbers of the suit count it towards the strength of the flush
                 if(13*suit <= this.cards[index] && this.cards[index] < 13*(suit+1) ){
-                    this.hand_strength.push(this.cards[index] % 13);
+                    //strength of this card is its rank modulo 13 subtracted from 12 (the highest the modulus could be)
+                    this.hand_strength.push(12 - this.cards[index] % 13);
                 }
             }
             //we have found a flush, so return true
