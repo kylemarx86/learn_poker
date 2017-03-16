@@ -12,7 +12,7 @@ $(document).ready(function(){
     // num_of_players = 3;
     num_of_players = 4;
     
-    apply_event_handlers();
+    apply_basic_event_handlers();
     create_game_board();
 });
 
@@ -26,13 +26,26 @@ function create_player_areas(){
     }
 }
 
-function apply_event_handlers(){
+function apply_basic_event_handlers(){
     $('#deal').click(function(){
         //empty game board
         reset_game_board();
         create_game_board();
     });
+    
 }
+
+function apply_card_event_handlers(){
+    $('.card').click(card_selected($(this)));
+}
+
+function card_selected(card){
+    $('.card').click(function(){
+        $(this).toggleClass('selected');
+    });
+}
+
+
 
 //maybe rethink the name of this function
 function create_game_board(){
@@ -40,6 +53,7 @@ function create_game_board(){
     create_player_areas();
     deal_cards();
     render_cards();
+    apply_card_event_handlers();
     show_best_hands();
 }
 

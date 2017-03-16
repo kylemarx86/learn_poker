@@ -18,6 +18,11 @@ body{
     height: 175px;
     margin: 0 5px;
     box-shadow: 1px 1px 1px black;
+    
+}
+.selected{
+    /*box-shadow: 1px 1px 1px black, 0 0 3px 3px red;*/
+    box-shadow: 0 0 3px 3px red;
 }
 
 
