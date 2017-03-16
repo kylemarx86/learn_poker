@@ -19,7 +19,7 @@ $(document).ready(function(){
 function create_player_areas(){
     var $player_area = $('.players_cards');
     for(var i = 0; i < num_of_players; i++){
-        var $player = $('<div>').addClass('player').addClass('player_'+(i+1));
+        var $player = $('<div>').addClass('player').addClass('player_'+i);
         var $best_hand = $('<div>').addClass('best_hand');
         $player.append($best_hand);
         $player_area.append($player);
@@ -51,22 +51,16 @@ function reset_game_board(){
 function show_best_hands(){
     // create arrays for player hands
     for(var i = 0; i < num_of_players; i++){
-        $('.player_' + (i+1) + ' .best_hand').text(players_hands[i].display_best_hand());
+        $('.player_' + i + ' .best_hand').text(players_hands[i].display_best_hand());
     }
-    
-    // *******************************************************************************************************************************************************************************
-    //try reworking this line later.
-    // console.log(player_hand.compare_hand_strength(players_hands[0].get_strength_of_hand(),players_hands[1].get_strength_of_hand()));
-
     strenth_arr = [];
     for(var i = 0; i < num_of_players; i++){
         strenth_arr.push(players_hands[i].hand_strength);
     }
-    // console.log('index of best hand: ', player_hand.best_hand_available(strenth_arr));
     var winning_players = player_hand.best_hand_available(strenth_arr);
-    console.log('index of winning players: ', winning_players);
+    // console.log('index of winning players: ', winning_players);
     for(var i = 0; i < winning_players.length; i++){
-        $('.player_'+(winning_players[i]+1)).css('background-color','yellow');
+        $('.player_' + (winning_players[i])).addClass('winner');
     }
 }
 
@@ -223,7 +217,7 @@ card.prototype.render_card = function(){
         $('.community_cards').append(this.create_card_shell());
     }else{
         //convert dom_index to player number
-        var player_num = Math.floor((this.dom_index - 5) / 2) + 1;
+        var player_num = Math.floor((this.dom_index - 5) / 2);
         $('.player_' + player_num).append(this.create_card_shell());
     }
     this.add_ranks_to_corners();

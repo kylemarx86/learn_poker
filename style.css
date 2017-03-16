@@ -125,6 +125,10 @@ body{
     height: 50px;
 }
 
+.winner{
+    background-color: yellow;
+}
+
 
 .rank_A {
 
