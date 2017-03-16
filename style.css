@@ -26,31 +26,7 @@ body{
 }
 
 
-@media screen and (max-width: 1500px) {
-    .card{
-        width: 125px;
-        height: 175px;
-    }
-}
-@media screen and (max-width: 1000px) {
-    .card{
-        /**/
-        width: 125px;
-        height: 175px;
-    }
-}
-@media screen and (max-width: 700px) {
-    .card{
-        width: 50px;
-        height: 70px;
-    }
-}
-@media screen and (max-width: 480px) {
-    .card{
-        width: 50px;
-        height: 70px;
-    }
-}
+
 /*inner area for the picture/emblems is 50% the width of the card and 60% the height*/
 
 /*i should really have card rank as a separate parent class and then top and bottom as extra*/
@@ -184,4 +160,40 @@ body{
 /*@media screen and (min-height: 1200px) {*/
 
 /*}*/
+
+@media screen and (max-width: 1500px) {
+    .card{
+        width: 125px;
+        height: 175px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .card{
+        /**/
+        width: 125px;
+        height: 175px;
+    }
+    
+}
+@media screen and (max-width: 700px) {
+    .card{
+        width: 100px;
+        height: 140px;
+    }
+    .rank{
+        font-size: 1em;
+    }
+    .top .suit, .bottom .suit{
+        transform: scale(0.75) translateY(-50%);
+    }
+}
+@media screen and (max-width: 480px) {
+    .card{
+        width: 50px;
+        height: 70px;
+    }
+}
+
+
+
 

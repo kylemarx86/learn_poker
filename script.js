@@ -216,12 +216,12 @@ card.prototype.create_card_shell = function(){
     var $bottom = $('<div>').addClass('bottom');
     var $rank_top = $('<div>').addClass('rank');
     var $suit_top = $('<div>').addClass('suit');
-    var $suit_middle = $('<div>').addClass('suit');
+    // var $suit_middle = $('<div>').addClass('suit');
     var $rank_bottom = $('<div>').addClass('rank');
     var $suit_bottom = $('<div>').addClass('suit');
     $top.append($rank_top, $suit_top);
     $bottom.append($rank_bottom, $suit_bottom);
-    $middle.append($suit_middle);
+    // $middle.append($suit_middle);
 
     $card.append($top, $middle, $bottom);
     return $card;
@@ -237,8 +237,8 @@ card.prototype.render_card = function(){
     this.add_ranks_to_corners();
     this.add_suits_to_corners();
     //create function to add stuff to middle of the card
+    this.add_suits_to_middle();
 }
-
 card.prototype.add_ranks_to_corners = function(){
     $('.card_' + this.dom_index + ' .rank').text(this.rank);
     if(this.get_suit()==='hearts' || this.get_suit()==='diamonds'){
@@ -247,7 +247,6 @@ card.prototype.add_ranks_to_corners = function(){
         $('.card_' + this.dom_index + ' .rank').removeClass('red').addClass('black');
     }
 }
-
 card.prototype.add_suits_to_corners = function(card){
     var $div = $('.card_' + this.dom_index + ' .suit');
     
@@ -271,7 +270,40 @@ card.prototype.add_suits_to_corners = function(card){
 }
 
 
-//card1, card2, card3, card4, card5, card6, card7
+
+
+/////////////not completed yet
+card.prototype.add_suits_to_middle = function(){
+    var $div = $('.card_' + this.dom_index + ' .middle');
+    //make svg
+    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+    $svg = $div.find('svg');
+    $svg.attr({'width':'62.5', 'height':'131.25'});
+    // create group
+    var group = document.createElementNS("http://www.w3.org/2000/svg","g");
+    // create rect with background fill
+    var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+    $rect.setAttribute('style','fill: url("#' + this.suit + '")');
+    $rect.setAttribute('width', '49');
+    $rect.setAttribute('height', '49');
+    $rect.setAttribute('transform', 'scale(0.40)');
+    // add rect to group
+    group.appendChild($rect);
+    group.appendChild($rect);
+    group.appendChild($rect);
+    // add group to svg
+    $svg.append(group);
+}
+
+
+//create individual methods to add a number of suits to the middle 
+
+
+
+
+
+
+
 // hand_strength will be an array that will hold different pieces of information. 
     // the first piece of info wil be held in the first index and will relate to the type of hand the player has
     // hands will be given points as follows: 0 = straight flush, 1 = four of a kind, 2 = full house, 3 = flush, 4 = straight, 5 = three of a kind, 6 = two pairs, 7 = pair, 8 = high card
