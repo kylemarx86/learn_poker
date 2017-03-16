@@ -58,7 +58,12 @@ function show_best_hands(){
     for(var i = 0; i < num_of_players; i++){
         strenth_arr.push(players_hands[i].hand_strength);
     }
-    console.log('index of best hand: ', player_hand.best_hand_available(strenth_arr));
+    // console.log('index of best hand: ', player_hand.best_hand_available(strenth_arr));
+    var winning_players = player_hand.best_hand_available(strenth_arr);
+    console.log('index of winning players: ', winning_players);
+    for(var i = 0; i < winning_players.length; i++){
+        $('.player_'+(winning_players[i]+1)).css('background-color','yellow');
+    }
 }
 
 //assigns cards to be dealt
