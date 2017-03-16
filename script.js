@@ -5,7 +5,7 @@ var number_of_cards = null;    //number of cards to deal out, determined by the 
 // var players_cards = null;
 var players_hands = null;
 var community_cards = null;
-
+var strenth_arr = [];
 
 //temp vars
 var cards = null;
@@ -55,8 +55,13 @@ function show_best_hands(){
     
     // *******************************************************************************************************************************************************************************
     //try reworking this line later.
-    console.log(player_hand.compare_hand_strength(players_hands[0].get_strength_of_hand(),players_hands[1].get_strength_of_hand()));
+    // console.log(player_hand.compare_hand_strength(players_hands[0].get_strength_of_hand(),players_hands[1].get_strength_of_hand()));
 
+    strenth_arr = [];
+    for(var i = 0; i < num_of_players; i++){
+        strenth_arr.push(players_hands[i].hand_strength);
+    }
+    console.log('index of best hand: ', player_hand.best_hand_available(strenth_arr));
 }
 
 //assigns cards to be dealt
@@ -265,8 +270,8 @@ function player_hand(card_arr){
     this.ranks_arr = [];
     this.suits_arr = [];
     this.best_hand_name = this.determine_best_hand();
-    console.log(this.best_hand_name);
-    console.log(this.hand_strength);
+    // console.log(this.best_hand_name);
+    // console.log(this.hand_strength);
 
 
 }
@@ -593,6 +598,10 @@ player_hand.prototype.get_strength_of_hand = function(){
     return this.hand_strength;
 }
 //defined recursively
+// values for the return are 0, 1, and 2
+    // a value of 0 represents a tie
+    // a value of 1 represents 1 means the first hand is stronger
+    // a value of 1 represents 2 means the second hand is stronger
 player_hand.compare_hand_strength = function(arr_1, arr_2){
     if(arr_1.length > 0 && arr_2.length > 0){
         if(arr_1[0] < arr_2[0]){
@@ -600,12 +609,41 @@ player_hand.compare_hand_strength = function(arr_1, arr_2){
         }else if(arr_1[0] > arr_2[0]){
             return 2;
         }else{
-            // console.log('sliced');
-            // console.log(arr_1.slice(1, arr_1.length));
-            // console.log(arr_2.slice(1, arr_2.length));
             return player_hand.compare_hand_strength(arr_1.slice(1,arr_1.length),arr_2.slice(1,arr_1.length));
         }
     }else{
         return 0;
     }
+}
+
+// Used to compare multiple hands
+    //idea: start with the first hand and declare it winner then loop through the rest of the array to see if there is a stronger hand
+player_hand.best_hand_available = function(arr_of_hands){
+    var curr_winner = arr_of_hands[0];
+    var winners_arr = [0];  //meant to save the indices of the strongest hands
+
+    for(var i = 1; i < arr_of_hands.length; i++){
+        var temp = player_hand.compare_hand_strength(curr_winner, arr_of_hands[i]);
+        //Note: if first hand compared is stronger, we don't need to do anything. Just compare next hand
+        if(temp === 2){
+            //second hand compared is stronger
+            //declare new winner
+            curr_winner = arr_of_hands[i];
+            winners_arr = [i];
+        }else if(temp === 0){
+            //hands have same strength
+                // meaning hand at index i should be included in winners array
+            winners_arr.push(i)
+        }
+    }
+    return winners_arr;
+    
+    // still need to accomodate if there is only one hand to compare
+    
+    // if(arr_of_hands.length === 1){
+    //     //winner is first player
+    // }else{
+    //     //we need to compare
+    // }
+    
 }
