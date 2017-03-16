@@ -13,11 +13,7 @@ $(document).ready(function(){
     num_of_players = 4;
     
     apply_event_handlers();
-    //create areas for players hands based on number of players/cards
-    create_player_areas();
-    deal_cards();
-    render_cards();
-    show_best_hands();      //move inside another function??
+    create_game_board();
 });
 
 function create_player_areas(){
@@ -34,12 +30,19 @@ function apply_event_handlers(){
     $('#deal').click(function(){
         //empty game board
         reset_game_board();
-        create_player_areas();
-        deal_cards();
-        render_cards();
-        show_best_hands();
+        create_game_board();
     });
 }
+
+//maybe rethink the name of this function
+function create_game_board(){
+    //create areas for players hands based on number of players/cards
+    create_player_areas();
+    deal_cards();
+    render_cards();
+    show_best_hands();
+}
+
 function reset_game_board(){
     $('.community_cards').empty();
     $('.players_cards').empty();
@@ -90,8 +93,9 @@ function deal_cards(){
 
 
     // // for testing
-    // // var test_cards = [4,14,16,42,51,2,38,43,44];
+    // var test_cards = [4,14,16,42,51,2,38,43,44];
     // var test_cards = [0,20,32,34,37,27,28,30,36];
+    // var test_cards = [3,9,10,11,12,8,18,19,20];
     // for(var i = 0; i < test_cards.length; i++){
     //     //assign card value to card
     //     cards[i] = new card(test_cards[i], i);
