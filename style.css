@@ -52,13 +52,13 @@ body{
     height: 25px;
     bottom: 0;
 }
-.middle .suit{
+/*.middle .suit{
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    /*transform: scale(2.5);*/
-}
+    transform: scale(2.5);
+}*/
 .red{
     color: red;
 }
@@ -160,6 +160,37 @@ body{
         width: 50px;
         height: 70px;
     }
+    .rank{
+        /*font-size: .75em;*/
+        left: 21%;
+    }
+    .suit{
+        transform: scale(0.4);
+    }
+    .top .suit{
+        /*temporary solution*/
+        /*-webkit-transform: scale(0.75) translate(50%,-50%);*/
+        transform: scale(0.75) translate(63%,-20%);
+        -webkit-transform: scale(0.75) translate(63%,-20%);
+        -ms-transform: scale(0.75) translate(63%,-20%);
+    }
+    .bottom .suit{
+        display: none;
+    }
+    .middle{
+        width: 45%;
+        height: 50%;
+    }
+    .middle svg{
+        display: none;
+        /*position: absolute;
+        top: 50%;
+        left: 50%;*/
+        transform:  translate(-50%, -50%) scale(0.25);
+        -webkit-transform:translate(-50%, -50%)  scale(0.25) ;
+        -ms-transform: scale(0.25) translate(-50%, -50%);
+    }
+
 }
 
 

@@ -248,13 +248,13 @@ card.prototype.add_suits_to_corners = function(card){
     var $div = $('.card_' + this.dom_index + ' .suit');
     
     //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+    $div.html('<svg xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>');
     $svg = $div.find('svg');
     $svg.attr({'width':'25', 'height':'25'});
     // create group
-    var group = document.createElementNS("http://www.w3.org/2000/svg","g");
+    var group = document.createElementNS('http://www.w3.org/2000/svg',"g");
     // create rect with background fill
-    var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+    var $rect = document.createElementNS('http://www.w3.org/2000/svg',"rect");
     //add suit to rect
     $rect.setAttribute('style','fill: url("#' + this.suit + '")');
     $rect.setAttribute('width', '49');
@@ -273,7 +273,7 @@ card.prototype.add_suits_to_corners = function(card){
 card.prototype.add_suits_to_middle = function(){
     var $div = $('.card_' + this.dom_index + ' .middle');
     //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+    $div.html('<svg xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>');
     $svg = $div.find('svg');
     $svg.attr({'width':'62.5', 'height':'131.25'});
     // create group
