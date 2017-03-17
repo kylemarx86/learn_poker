@@ -216,12 +216,10 @@ card.prototype.create_card_shell = function(){
     var $bottom = $('<div>').addClass('bottom');
     var $rank_top = $('<div>').addClass('rank');
     var $suit_top = $('<div>').addClass('suit');
-    // var $suit_middle = $('<div>').addClass('suit');
     var $rank_bottom = $('<div>').addClass('rank');
     var $suit_bottom = $('<div>').addClass('suit');
     $top.append($rank_top, $suit_top);
     $bottom.append($rank_bottom, $suit_bottom);
-    // $middle.append($suit_middle);
 
     $card.append($top, $middle, $bottom);
     return $card;
@@ -236,7 +234,6 @@ card.prototype.render_card = function(){
     }
     this.add_ranks_to_corners();
     this.add_suits_to_corners();
-    //create function to add stuff to middle of the card
     this.add_suits_to_middle();
 }
 card.prototype.add_ranks_to_corners = function(){
