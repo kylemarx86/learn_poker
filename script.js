@@ -252,9 +252,9 @@ card.prototype.add_suits_to_corners = function(card){
     $svg = $div.find('svg');
     $svg.attr({'width':'25', 'height':'25'});
     // create group
-    var group = document.createElementNS('http://www.w3.org/2000/svg version="1.1"',"g");
+    var group = document.createElementNS('http://www.w3.org/2000/svg',"g");
     // create rect with background fill
-    var $rect = document.createElementNS('http://www.w3.org/2000/svg version="1.1"',"rect");
+    var $rect = document.createElementNS('http://www.w3.org/2000/svg',"rect");
     //add suit to rect
     $rect.setAttribute('style','fill: url("#' + this.suit + '")');
     $rect.setAttribute('width', '49');
