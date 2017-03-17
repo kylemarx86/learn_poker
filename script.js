@@ -350,7 +350,7 @@ card.prototype.add_2 = function(){
 
     $rect[1].setAttribute('x',0);
     $rect[1].setAttribute('y',0);
-    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-315)');
+    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-317)');
     
     return $group;
 }
@@ -372,7 +372,7 @@ card.prototype.add_3 = function(){
 
     $rect[1].setAttribute('x',0);
     $rect[1].setAttribute('y',0);
-    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-315)');
+    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-317)');
     
     $rect[2].setAttribute('x',52);
     $rect[2].setAttribute('y',137);
@@ -381,6 +381,7 @@ card.prototype.add_3 = function(){
 }
 card.prototype.add_4 = function(){
     var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
+        
     // create rects with background fill
     var $rect = [];
     for(var i = 0; i < 4; i++){
@@ -400,11 +401,11 @@ card.prototype.add_4 = function(){
     
     $rect[2].setAttribute('x',0);
     $rect[2].setAttribute('y',0);
-    $rect[2].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[2].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
 
     $rect[3].setAttribute('x',0);
     $rect[3].setAttribute('y',0);
-    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
     
     return $group;
 }
@@ -432,11 +433,11 @@ card.prototype.add_5 = function(){
 
     $rect[3].setAttribute('x',0);
     $rect[3].setAttribute('y',0);
-    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
 
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
     
     return $group;
 }
@@ -467,11 +468,11 @@ card.prototype.add_6 = function(){
     
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
 
     $rect[5].setAttribute('x',0);
     $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
     
     return $group;
 }
@@ -502,11 +503,11 @@ card.prototype.add_7 = function(){
     
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
 
     $rect[5].setAttribute('x',0);
     $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
 
     $rect[6].setAttribute('x',52);
     $rect[6].setAttribute('y',60);
@@ -540,18 +541,18 @@ card.prototype.add_8 = function(){
     
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
 
     $rect[5].setAttribute('x',0);
     $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
 
     $rect[6].setAttribute('x',52);
-    $rect[6].setAttribute('y',58);  //it was at 60
+    $rect[6].setAttribute('y',70);
     
     $rect[7].setAttribute('x',0);
     $rect[7].setAttribute('y',0);
-    $rect[7].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-266)');
+    $rect[7].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-252)');
 
     return $group;
 }
@@ -565,7 +566,6 @@ card.prototype.add_9 = function(){
         $rect[i].setAttribute('width', '49');
         $rect[i].setAttribute('height', '49');
         $rect[i].setAttribute('transform', 'scale(0.408)');
-        $rect[i].setAttribute('class','suit_'+i);       //temp while testing
         $group.appendChild($rect[i]);
     }
     
@@ -583,11 +583,11 @@ card.prototype.add_9 = function(){
     
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
     
     $rect[5].setAttribute('x',0);
     $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
    
     $rect[6].setAttribute('x',0);
     $rect[6].setAttribute('y',0);
@@ -612,7 +612,6 @@ card.prototype.add_10 = function(){
         $rect[i].setAttribute('width', '49');
         $rect[i].setAttribute('height', '49');
         $rect[i].setAttribute('transform', 'scale(0.408)');
-        $rect[i].setAttribute('class','suit_'+i);       //temp while testing
         $group.appendChild($rect[i]);
     }
     
@@ -630,11 +629,11 @@ card.prototype.add_10 = function(){
     
     $rect[4].setAttribute('x',0);
     $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-315)');
+    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
     
     $rect[5].setAttribute('x',0);
     $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-315)');
+    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
    
     $rect[6].setAttribute('x',0);
     $rect[6].setAttribute('y',0);
@@ -649,7 +648,7 @@ card.prototype.add_10 = function(){
 
     $rect[9].setAttribute('x',52);
     $rect[9].setAttribute('y',45);
-    $rect[9].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-151,-315)');
+    $rect[9].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-153,-315)');
 
     return $group;
 }
