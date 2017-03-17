@@ -168,9 +168,11 @@ body{
         transform: scale(0.4);
     }
     .top .suit{
-        transform: scale(0.75) translate(50%,-50%);
-        -webkit-transform: scale(0.75) translate(50%,-50%);
-        -ms-transform: scale(0.75) translate(50%,-50%);
+        /*temporary solution*/
+        /*-webkit-transform: scale(0.75) translate(50%,-50%);*/
+        transform: scale(0.75) translate(63%,-20%);
+        -webkit-transform: scale(0.75) translate(63%,-20%);
+        -ms-transform: scale(0.75) translate(63%,-20%);
     }
     .bottom .suit{
         display: none;
