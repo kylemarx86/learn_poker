@@ -81,7 +81,8 @@ body{
     position: absolute;
     border: 1px solid black;
     border-radius: 5px;
-    height: 75%;
+    /*height: 75%;*/
+    height: 125px;
     width: 50%;
     left: 50%;
     top: 50%;
@@ -89,6 +90,105 @@ body{
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+
+/*new stuff*/
+.middle .suit{
+  position: absolute;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+
+.suit.hearts{
+  background-image: url('resources/suits/hearts.png');
+  background-size: 100%;
+}
+.suit.spades{
+  background-image: url('resources/suits/spades.png');
+  background-size: 100%;
+}
+.suit.diamonds{
+  background-image: url('resources/suits/diamonds.png');
+  background-size: 100%;
+}
+.suit.clubs{
+  background-image: url('resources/suits/clubs.png');
+  background-size: 100%;
+}
+
+/*horizontal placement of suits for cards*/
+/*consider moving above or below the row ones*/
+.col_l{
+  left: 3%;
+}
+.col_m{
+  left: 50%;
+  transform: translateX(-50%);
+}
+.col_r{
+  right: 3%;
+}
+
+/*vertical placement of suits for cards based on a five row format: ace through 7*/
+.five_row .row_1{
+  top: 4.5%;
+}
+.five_row .row_2{
+  top: 23.25%;
+}
+.five_row .row_3{
+  top: 50%;
+  transform: translateY(-50%);
+}
+.five_row .row_4{
+  bottom: 23.25%;
+}
+.five_row .row_5{
+  bottom: 4.5%;
+  transform: rotate(180deg)
+}
+.five_row .row_2.col_m{
+    transform: translateX(-50%);
+}
+.five_row .col_m.row_3{
+  transform: translate(-50%,-50%);
+}
+.five_row .row_4.col_m{
+    transform: translateX(-50%) rotate(180deg);
+}
+.five_row .row_5.col_m{
+  transform: translateX(-50%) rotate(180deg);
+}
+
+
+/*vertical placement of suits for cards based on a seven row format: 9 and 10*/
+.seven_row .row_1{
+  top: 4.5%
+}
+.seven_row .row_2{
+  top: 17%;
+}
+.seven_row .row_3{
+  top: 29.5%
+}
+.seven_row .row_4{
+  top: 42%;
+}
+.seven_row .row_5{
+  bottom: 29.5%;
+  transform: rotate(180deg);
+}
+.seven_row .row_6{
+  bottom: 17%;
+  transform: translateX(-50%) rotate(180deg);
+}
+.seven_row .row_7{
+  bottom: 4.5%;
+  transform: rotate(180deg);
+}
+
+
 
 .players_cards{
     position: absolute;
@@ -115,15 +215,22 @@ body{
     background-color: yellow;
 }
 
-/*@media screen and (max-height: 450px) {*/
 
-/*}*/
-/*@media screen and (max-height: 820px) {*/
 
-/*}*/
-/*@media screen and (min-height: 1200px) {*/
 
-/*}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
