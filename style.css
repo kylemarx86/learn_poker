@@ -90,7 +90,15 @@ body{
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
-
+.middle .large{
+    visibility: visible;
+}
+.middle .small{
+    visibility: hidden;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 /*new stuff*/
 .middle .suit{
   position: absolute;
@@ -261,6 +269,7 @@ body{
         -webkit-transform: scale(0.75) translateY(-50%);
         -ms-transform: scale(0.75) translateY(-50%);
     }
+
 }
 @media screen and (max-width: 480px) {
     .card{
@@ -274,6 +283,7 @@ body{
     .suit{
         transform: scale(0.4);
     }
+    /*the classes below should take care of this transform hack*/
     .top .suit{
         /*temporary solution*/
         /*-webkit-transform: scale(0.75) translate(50%,-50%);*/
@@ -288,14 +298,11 @@ body{
         width: 45%;
         height: 50%;
     }
-    .middle svg{
-        display: none;
-        /*position: absolute;
-        top: 50%;
-        left: 50%;*/
-        transform:  translate(-50%, -50%) scale(0.25);
-        -webkit-transform:translate(-50%, -50%)  scale(0.25) ;
-        -ms-transform: scale(0.25) translate(-50%, -50%);
+    .middle .large{
+        visibility: hidden;
+    }
+    .middle .small{
+        visibility: visible;
     }
 
 }

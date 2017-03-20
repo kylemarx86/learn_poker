@@ -252,7 +252,9 @@ card.prototype.add_suits_to_card = function(){
 
 card.prototype.add_pips_to_middle = function(){
     //identify the middle section div
-    var $div = $('.card_' + this.dom_index + ' .middle'); 
+    var $div = $('.card_' + this.dom_index + ' .middle');
+    var $small = $('<div>').addClass('small').addClass('suit');
+    $div.append($small);
 
     switch(this.rank){
         case '2':
@@ -301,55 +303,58 @@ card.prototype.add_pips_to_middle = function(){
 
 //individual methods to add a number of suits to the middle 
 card.prototype.add_2 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 2; i++){
         $pip[i] = $('<div>').addClass('suit');
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_m');
     $pip[1].addClass('row_5').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_3 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 3; i++){
         $pip[i] = $('<div>').addClass('suit');
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_m');
     $pip[1].addClass('row_3').addClass('col_m');
     $pip[2].addClass('row_5').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_4 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 4; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
     $pip[1].addClass('row_1').addClass('col_r');
     $pip[2].addClass('row_5').addClass('col_l');
     $pip[3].addClass('row_5').addClass('col_r');
+    $main.append($div);
 }
 card.prototype.add_5 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 5; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -357,15 +362,16 @@ card.prototype.add_5 = function($main){
     $pip[2].addClass('row_5').addClass('col_l');
     $pip[3].addClass('row_5').addClass('col_r');
     $pip[4].addClass('row_3').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_6 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 6; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -374,15 +380,16 @@ card.prototype.add_6 = function($main){
     $pip[3].addClass('row_3').addClass('col_r');
     $pip[4].addClass('row_5').addClass('col_l');
     $pip[5].addClass('row_5').addClass('col_r');
+    $main.append($div);
 }
 card.prototype.add_7 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 7; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -392,15 +399,16 @@ card.prototype.add_7 = function($main){
     $pip[4].addClass('row_5').addClass('col_l');
     $pip[5].addClass('row_5').addClass('col_r');
     $pip[6].addClass('row_2').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_8 = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 8; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -411,15 +419,16 @@ card.prototype.add_8 = function($main){
     $pip[5].addClass('row_5').addClass('col_r');
     $pip[6].addClass('row_2').addClass('col_m');
     $pip[7].addClass('row_4').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_9 = function($main){
-    // add classification to incoming div
-    $main.addClass('seven_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('seven_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 9; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -431,15 +440,16 @@ card.prototype.add_9 = function($main){
     $pip[6].addClass('row_7').addClass('col_l');
     $pip[7].addClass('row_7').addClass('col_r');
     $pip[8].addClass('row_4').addClass('col_m');
+    $main.append($div);
 }
 card.prototype.add_10 = function($main){
-    // add classification to incoming div
-    $main.addClass('seven_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('seven_row');
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 10; i++){
         $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
-        $main.append($pip[i]);
+        $div.append($pip[i]);
     }
     
     $pip[0].addClass('row_1').addClass('col_l');
@@ -452,6 +462,7 @@ card.prototype.add_10 = function($main){
     $pip[7].addClass('row_7').addClass('col_r');
     $pip[8].addClass('row_2').addClass('col_m');
     $pip[9].addClass('row_6').addClass('col_m');
+    $main.append($div);
 }
 
 
