@@ -899,6 +899,7 @@ player_hand.best_hand_available = function(arr_of_hands){
     return winners_arr;
     
     // still need to accomodate if there is only one hand to compare
+    // or just limit the features to have a minimum of two hands
     
     // if(arr_of_hands.length === 1){
     //     //winner is first player
