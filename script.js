@@ -233,8 +233,8 @@ card.prototype.render_card = function(){
         $('.player_' + player_num).append(this.create_card_shell());
     }
     this.add_ranks_to_corners();
-    this.add_suits_to_corners();
-    this.add_suits_to_middle();
+    this.add_pips_to_middle();      
+    this.add_suits_to_card();   //adds classes to corners and middle to identify which suited pips to add
 }
 card.prototype.add_ranks_to_corners = function(){
     $('.card_' + this.dom_index + ' .rank').text(this.rank);
@@ -244,34 +244,13 @@ card.prototype.add_ranks_to_corners = function(){
         $('.card_' + this.dom_index + ' .rank').removeClass('red').addClass('black');
     }
 }
-card.prototype.add_suits_to_corners = function(card){
+card.prototype.add_suits_to_card = function(){
     var $div = $('.card_' + this.dom_index + ' .suit');
-    
-    //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>');
-    $svg = $div.find('svg');
-    $svg.attr({'width':'25', 'height':'25'});
-    // create group
-    var group = document.createElementNS('http://www.w3.org/2000/svg',"g");
-    // create rect with background fill
-    var $rect = document.createElementNS('http://www.w3.org/2000/svg',"rect");
-    //add suit to rect
-    $rect.setAttribute('style','fill: url("#' + this.suit + '")');
-    $rect.setAttribute('width', '49');
-    $rect.setAttribute('height', '49');
-    $rect.setAttribute('transform', 'scale(0.5)');
-    // add rect to group
-    group.appendChild($rect);
-    // add group to svg
-    $svg.append(group);
+    $div.addClass(this.suit);
 }
 
 
-
-
-/////////////not completed yet
-//reworking to get rid of svg
-card.prototype.add_suits_to_middle = function(){
+card.prototype.add_pips_to_middle = function(){
     //identify the middle section div
     var $div = $('.card_' + this.dom_index + ' .middle'); 
 
@@ -327,7 +306,7 @@ card.prototype.add_2 = function($main){
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 2; i++){
-        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $pip[i] = $('<div>').addClass('suit');
         $main.append($pip[i]);
     }
     
@@ -340,7 +319,7 @@ card.prototype.add_3 = function($main){
     // create array of divs with background image
     var $pip = [];
     for(var i = 0; i < 3; i++){
-        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $pip[i] = $('<div>').addClass('suit');
         $main.append($pip[i]);
     }
     
