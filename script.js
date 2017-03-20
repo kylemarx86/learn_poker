@@ -233,8 +233,8 @@ card.prototype.render_card = function(){
         $('.player_' + player_num).append(this.create_card_shell());
     }
     this.add_ranks_to_corners();
-    this.add_suits_to_corners();
-    this.add_suits_to_middle();
+    this.add_pips_to_middle();      
+    this.add_suits_to_card();   //adds classes to corners and middle to identify which suited pips to add
 }
 card.prototype.add_ranks_to_corners = function(){
     $('.card_' + this.dom_index + ' .rank').text(this.rank);
@@ -244,445 +244,275 @@ card.prototype.add_ranks_to_corners = function(){
         $('.card_' + this.dom_index + ' .rank').removeClass('red').addClass('black');
     }
 }
-card.prototype.add_suits_to_corners = function(card){
+card.prototype.add_suits_to_card = function(){
     var $div = $('.card_' + this.dom_index + ' .suit');
-    
-    //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-    $svg = $div.find('svg');
-    $svg.attr({'width':'25', 'height':'25'});
-    // create group
-    var group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rect with background fill
-    var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
-    //add suit to rect
-    $rect.setAttribute('style','fill: url("#' + this.suit + '")');
-    $rect.setAttribute('width', '49');
-    $rect.setAttribute('height', '49');
-    $rect.setAttribute('transform', 'scale(0.5)');
-    // add rect to group
-    group.appendChild($rect);
-    // add group to svg
-    $svg.append(group);
+    $div.addClass(this.suit);
 }
 
 
-
-
-/////////////not completed yet
-card.prototype.add_suits_to_middle = function(){
+card.prototype.add_pips_to_middle = function(){
+    //identify the middle section div
     var $div = $('.card_' + this.dom_index + ' .middle');
-    //make svg
-    $div.html('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-    $svg = $div.find('svg');
-    $svg.attr({'width':'62.5', 'height':'131.25'});
-    // create group
-    var $group; 
+    var $small = $('<div>').addClass('small').addClass('suit');
+    $div.append($small);
 
     switch(this.rank){
         case '2':
-            $group = this.add_2();
+            this.add_2($div);
             break;
         case '3':
-            $group = this.add_3();
+            this.add_3($div);
             break;
         case '4':
-            $group = this.add_4();
+            this.add_4($div);
             break;
         case '5':
-            $group = this.add_5();
+            this.add_5($div);
             break;
         case '6':
-            $group = this.add_6();
+            this.add_6($div);
             break;
         case '7':
-            $group = this.add_7();
+            this.add_7($div);
             break;
         case '8':
-            $group = this.add_8();
+            this.add_8($div);
             break;
         case '9':
-            $group = this.add_9();
+            this.add_9($div);
             break;
         case '10':
-            $group = this.add_10();
+            this.add_10($div);
             break;
-        case 'J':
-            $group = this.add_J();
-            break;
-        case 'Q':
-            $group = this.add_Q();
-            break;
-        case 'K':
-            $group = this.add_K();
-            break;
+        // case 'J':
+        //     this.add_J($div);
+        //     break;
+        // case 'Q':
+        //     this.add_Q($div);
+        //     break;
+        // case 'K':
+        //     this.add_K($div);
+        //     break;
         default:
-            $group = this.add_A();
+            this.add_A($div);
             break;
         
     }
-
-    
-    // add group to svg
-    $svg.append($group);
 }
 
 
 //individual methods to add a number of suits to the middle 
-card.prototype.add_2 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_2 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 2; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit');
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',52);
-    $rect[0].setAttribute('y',5);
-
-    $rect[1].setAttribute('x',0);
-    $rect[1].setAttribute('y',0);
-    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-317)');
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_m');
+    $pip[1].addClass('row_5').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_3 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_3 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 3; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit');
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',52);
-    $rect[0].setAttribute('y',5);
-
-    $rect[1].setAttribute('x',0);
-    $rect[1].setAttribute('y',0);
-    $rect[1].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-317)');
-    
-    $rect[2].setAttribute('x',52);
-    $rect[2].setAttribute('y',137);
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_m');
+    $pip[1].addClass('row_3').addClass('col_m');
+    $pip[2].addClass('row_5').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_4 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-        
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_4 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 4; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',0);
-    $rect[2].setAttribute('y',0);
-    $rect[2].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-
-    $rect[3].setAttribute('x',0);
-    $rect[3].setAttribute('y',0);
-    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_5').addClass('col_l');
+    $pip[3].addClass('row_5').addClass('col_r');
+    $main.append($div);
 }
-card.prototype.add_5 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_5 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 5; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',52);
-    $rect[2].setAttribute('y',137);
-
-    $rect[3].setAttribute('x',0);
-    $rect[3].setAttribute('y',0);
-    $rect[3].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_5').addClass('col_l');
+    $pip[3].addClass('row_5').addClass('col_r');
+    $pip[4].addClass('row_3').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_6 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_6 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 6; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',5);
-    $rect[2].setAttribute('y',137);
-    
-    $rect[3].setAttribute('x',100);
-    $rect[3].setAttribute('y',137);
-    
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-
-    $rect[5].setAttribute('x',0);
-    $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_3').addClass('col_l');
+    $pip[3].addClass('row_3').addClass('col_r');
+    $pip[4].addClass('row_5').addClass('col_l');
+    $pip[5].addClass('row_5').addClass('col_r');
+    $main.append($div);
 }
-card.prototype.add_7 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_7 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 7; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',5);
-    $rect[2].setAttribute('y',137);
-    
-    $rect[3].setAttribute('x',100);
-    $rect[3].setAttribute('y',137);
-    
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-
-    $rect[5].setAttribute('x',0);
-    $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-
-    $rect[6].setAttribute('x',52);
-    $rect[6].setAttribute('y',60);
-    
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_3').addClass('col_l');
+    $pip[3].addClass('row_3').addClass('col_r');
+    $pip[4].addClass('row_5').addClass('col_l');
+    $pip[5].addClass('row_5').addClass('col_r');
+    $pip[6].addClass('row_2').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_8 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_8 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 8; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',5);
-    $rect[2].setAttribute('y',137);
-    
-    $rect[3].setAttribute('x',100);
-    $rect[3].setAttribute('y',137);
-    
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-
-    $rect[5].setAttribute('x',0);
-    $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-
-    $rect[6].setAttribute('x',52);
-    $rect[6].setAttribute('y',70);
-    
-    $rect[7].setAttribute('x',0);
-    $rect[7].setAttribute('y',0);
-    $rect[7].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-101,-252)');
-
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_3').addClass('col_l');
+    $pip[3].addClass('row_3').addClass('col_r');
+    $pip[4].addClass('row_5').addClass('col_l');
+    $pip[5].addClass('row_5').addClass('col_r');
+    $pip[6].addClass('row_2').addClass('col_m');
+    $pip[7].addClass('row_4').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_9 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_9 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('seven_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 9; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',5);
-    $rect[2].setAttribute('y',90);
-    
-    $rect[3].setAttribute('x',100);
-    $rect[3].setAttribute('y',90);
-    
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-    
-    $rect[5].setAttribute('x',0);
-    $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-   
-    $rect[6].setAttribute('x',0);
-    $rect[6].setAttribute('y',0);
-    $rect[6].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-225)');
-
-    $rect[7].setAttribute('x',0);
-    $rect[7].setAttribute('y',0);
-    $rect[7].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-225)');
-
-    $rect[8].setAttribute('x',52);
-    $rect[8].setAttribute('y',137);
-
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_3').addClass('col_l');
+    $pip[3].addClass('row_3').addClass('col_r');
+    $pip[4].addClass('row_5').addClass('col_l');
+    $pip[5].addClass('row_5').addClass('col_r');
+    $pip[6].addClass('row_7').addClass('col_l');
+    $pip[7].addClass('row_7').addClass('col_r');
+    $pip[8].addClass('row_4').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_10 = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = [];
+card.prototype.add_10 = function($main){
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('seven_row');
+    // create array of divs with background image
+    var $pip = [];
     for(var i = 0; i < 10; i++){
-        $rect[i] = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        $rect[i].setAttribute('style','fill: url("#' + this.suit + '")');
-        $rect[i].setAttribute('width', '49');
-        $rect[i].setAttribute('height', '49');
-        $rect[i].setAttribute('transform', 'scale(0.408)');
-        $group.appendChild($rect[i]);
+        $pip[i] = $('<div>').addClass('suit').addClass(this.suit);
+        $div.append($pip[i]);
     }
     
-    $rect[0].setAttribute('x',5);
-    $rect[0].setAttribute('y',5);
-    
-    $rect[1].setAttribute('x',100);
-    $rect[1].setAttribute('y',5);
-    
-    $rect[2].setAttribute('x',5);
-    $rect[2].setAttribute('y',90);
-    
-    $rect[3].setAttribute('x',100);
-    $rect[3].setAttribute('y',90);
-    
-    $rect[4].setAttribute('x',0);
-    $rect[4].setAttribute('y',0);
-    $rect[4].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-317)');
-    
-    $rect[5].setAttribute('x',0);
-    $rect[5].setAttribute('y',0);
-    $rect[5].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-317)');
-   
-    $rect[6].setAttribute('x',0);
-    $rect[6].setAttribute('y',0);
-    $rect[6].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-54,-225)');
-
-    $rect[7].setAttribute('x',0);
-    $rect[7].setAttribute('y',0);
-    $rect[7].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-149,-225)');
-
-    $rect[8].setAttribute('x',52);
-    $rect[8].setAttribute('y',45);
-
-    $rect[9].setAttribute('x',52);
-    $rect[9].setAttribute('y',45);
-    $rect[9].setAttribute('transform','scale(0.408) rotate(180 0 0) translate(-153,-315)');
-
-    return $group;
+    $pip[0].addClass('row_1').addClass('col_l');
+    $pip[1].addClass('row_1').addClass('col_r');
+    $pip[2].addClass('row_3').addClass('col_l');
+    $pip[3].addClass('row_3').addClass('col_r');
+    $pip[4].addClass('row_5').addClass('col_l');
+    $pip[5].addClass('row_5').addClass('col_r');
+    $pip[6].addClass('row_7').addClass('col_l');
+    $pip[7].addClass('row_7').addClass('col_r');
+    $pip[8].addClass('row_2').addClass('col_m');
+    $pip[9].addClass('row_6').addClass('col_m');
+    $main.append($div);
 }
-card.prototype.add_J = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rect with background fill
-    var $rect = [];
-    return $group;
+
+
+// these temporarily do NOTHING
+card.prototype.add_J = function($main){}
+card.prototype.add_Q = function($main){}
+card.prototype.add_K = function($main){}
+
+card.prototype.add_A = function($main){
+    // add classification to incoming div
+    $main.addClass('five_row');
+    // create the inner div with background image
+    var $pip = $('<div>').addClass('suit').addClass(this.suit).addClass('row_3').addClass('col_m');
+    $main.append($pip);
 }
-card.prototype.add_Q = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rect with background fill
-    var $rect = [];
-    return $group;
-}
-card.prototype.add_K = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rect with background fill
-    var $rect = [];
-    return $group;
-}
-//may need reworking
-card.prototype.add_A = function(){
-    var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
-    // create rects with background fill
-    var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
-    $rect.setAttribute('style','fill: url("#' + this.suit + '")');
-    $rect.setAttribute('width', '49');
-    $rect.setAttribute('height', '49');
-    // $rect.setAttribute('transform', 'scale(0.408)');
-    $group.appendChild($rect);
+
+// card.prototype.add_J = function(){
+//     var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
+//     // create rect with background fill
+//     var $rect = [];
+//     return $group;
+// }
+// card.prototype.add_Q = function(){
+//     var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
+//     // create rect with background fill
+//     var $rect = [];
+//     return $group;
+// }
+// card.prototype.add_K = function(){
+//     var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
+//     // create rect with background fill
+//     var $rect = [];
+//     return $group;
+// }
+// //may need reworking
+// card.prototype.add_A = function(){
+//     var $group = document.createElementNS("http://www.w3.org/2000/svg","g");
+//     // create rects with background fill
+//     var $rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+//     $rect.setAttribute('style','fill: url("#' + this.suit + '")');
+//     $rect.setAttribute('width', '49');
+//     $rect.setAttribute('height', '49');
+//     // $rect.setAttribute('transform', 'scale(0.408)');
+//     $group.appendChild($rect);
         
-    $rect.setAttribute('x',7.5);
-    $rect.setAttribute('y',42);
+//     $rect.setAttribute('x',7.5);
+//     $rect.setAttribute('y',42);
 
-    return $group;
-}
+//     return $group;
+// }
 
 
 
@@ -1069,6 +899,7 @@ player_hand.best_hand_available = function(arr_of_hands){
     return winners_arr;
     
     // still need to accomodate if there is only one hand to compare
+    // or just limit the features to have a minimum of two hands
     
     // if(arr_of_hands.length === 1){
     //     //winner is first player
