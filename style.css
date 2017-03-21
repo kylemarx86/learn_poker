@@ -212,6 +212,9 @@ body{
     width: 50%;
     height: 50%;
     justify-content: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+    
 }
 
 .best_hand{
