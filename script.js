@@ -1,10 +1,10 @@
-// var rank__classes = ['rank_A', 'rank_2', 'rank_3', 'rank_4', 'rank_5', 'rank_6', 'rank_7', 'rank_8', 'rank_9', 'rank_10', 'rank_J', 'rank_Q', 'rank_K'];
 var num_of_players = null;
 var number_of_cards = null;    //number of cards to deal out, determined by the number of players, hardcoded for now
 var cards = [];     //an array of cards dealt out
 var community_cards = [];   //an array of cards dealt out. A subset of cards, that all players share
 var players_hands = [];     //array of objects each with a players hand
 var strenth_arr = [];       //an array of the strengths of each of the players hands
+var selected_cards_count = null;   //counter to keep track of how many cards have been selected by the user as part of a best hand
 
 
 $(document).ready(function(){
