@@ -14,7 +14,9 @@ $(document).ready(function(){
     
     apply_basic_event_handlers();
     create_game_board();
+    
 });
+
 
 function create_player_areas(){
     var $player_area = $('.players_cards');
@@ -32,8 +34,14 @@ function apply_basic_event_handlers(){
         reset_game_board();
         create_game_board();
     });
-    
+
+    $('#check').click(function(){
+        //compare the cards that are clicked to the ones that are part of the winning hand
+        
+    });
 }
+
+
 
 function apply_card_event_handlers(){
     $('.card').click(card_selected($(this)));
