@@ -115,6 +115,7 @@ function create_game_board(){
 function reset_game_board(){
     $('.community_cards').empty();
     $('.players_cards').empty();
+    $('.status').empty();
 }
 
 function show_best_hands(){
