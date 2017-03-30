@@ -4,8 +4,9 @@ var cards = [];     //an array of cards dealt out
 var community_cards = [];   //an array of cards dealt out. A subset of cards, that all players share
 var players_hands = [];     //array of objects each with a players hand
 var strenth_arr = [];       //an array of the strengths of each of the players hands
-var selected_cards_count = null;   //counter to keep track of how many cards have been selected by the user as part of a best hand
-
+var selected_cards = [];    //an array of cards the user has selected. //i can directly convert them to card objects//   The stored values are the indices associated with the cards in the DOM
+var selected_hand = [];
+var winning_players = [];
 
 $(document).ready(function(){
     // num_of_players = 2;
@@ -14,7 +15,6 @@ $(document).ready(function(){
     
     apply_basic_event_handlers();
     create_game_board();
-    
 });
 
 
@@ -37,10 +37,57 @@ function apply_basic_event_handlers(){
 
     $('#check').click(function(){
         //compare the cards that are clicked to the ones that are part of the winning hand
-        
+        convert_DOM_cards_to_hand()
     });
 }
 
+function convert_DOM_cards_to_hand(){
+    selected_cards = [];
+    for(var i = 0; i < number_of_cards; i++){
+        if($('.card_' + i).hasClass('selected')){
+            selected_cards.push(cards[i].get_card());
+        }
+    }
+
+    console.log(selected_cards);
+    
+    //check this hand against best hand
+    //create hand object
+    //hand has too few cards
+    if(selected_cards.length < 5){
+        $('.status').text("You have not chosen enough cards. Please select 5 cards.");
+    }else if(selected_cards.length > 5){
+        $('.status').text("You have chosen too many cards. Please select only 5 cards.");
+    }else{
+        selected_hand = new player_hand(selected_cards);
+        //check the strength of the selected hand against the strength of the best hand
+        // console.log(selected_hand);
+        var temp_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
+        //compare the selected hand to a winning hand
+        // winning_players[0] is a winning player, how do we find the strength of this hand 
+        // var index = winning_players[0];
+        // var winning_str = players_hands[index].get_strength_of_hand();
+        // selected_hand.get_strength_of_hand();
+        // compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
+        var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
+        // console.log('winner: ', player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() ));
+        if(winner === 0){
+            //tie, meaning you've picked a winner
+            temp_text += "You've picked a winning hand.";
+        }else{
+            //you did not pick a winner, there is a better hand out there
+            temp_text += "There's a better hand out there.";
+        }
+        
+        // console.log(winning_players);
+        $('.status').text(temp_text);
+        //give feed back on the outcome based on strengths
+    }
+}
+
+function is_selected_hand_the_best_hand(){
+
+}
 
 
 function apply_card_event_handlers(){
@@ -57,7 +104,7 @@ function card_selected(card){
 
 //maybe rethink the name of this function
 function create_game_board(){
-    //create areas for players hands based on number of players/cards
+    //create areas for ptulayers hands based on number of players/cards
     create_player_areas();
     deal_cards();
     render_cards();
@@ -79,7 +126,7 @@ function show_best_hands(){
     for(var i = 0; i < num_of_players; i++){
         strenth_arr.push(players_hands[i].hand_strength);
     }
-    var winning_players = player_hand.best_hand_available(strenth_arr);
+    winning_players = player_hand.best_hand_available(strenth_arr);
     // console.log('index of winning players: ', winning_players);
     for(var i = 0; i < winning_players.length; i++){
         $('.player_' + (winning_players[i])).addClass('winner');
@@ -865,7 +912,10 @@ player_hand.prototype.display_best_hand = function(){
 player_hand.prototype.get_strength_of_hand = function(){
     return this.hand_strength;
 }
-//defined recursively
+
+// compares strengths of hands
+// inputs are strength arrays
+// defined recursively
 // values for the return are 0, 1, and 2
     // a value of 0 represents a tie
     // a value of 1 represents 1 means the first hand is stronger
@@ -915,4 +965,36 @@ player_hand.best_hand_available = function(arr_of_hands){
     //     //we need to compare
     // }
     
+}
+
+player_hand.prototype.get_hand_name = function(){
+    switch(this.hand_strength[0]){
+        case 0:
+            return 'straight flush';
+            break;
+        case 1:
+            return 'four of a kind';
+            break;
+        case 2:
+            return 'full house';
+            break;
+        case 3:
+            return 'flush';
+            break;
+        case 4:
+            return 'straight';
+            break;
+        case 5:
+            return 'three of a kind';
+            break;
+        case 6:
+            return 'two pairs';
+            break;
+        case 7:
+            return 'one pair';
+            break;
+        default:
+            return 'high card';
+            break;
+    }
 }
