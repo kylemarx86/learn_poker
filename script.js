@@ -55,11 +55,21 @@ function create_game_board(){
 function create_player_areas(){
     var $player_area = $('.players_cards');
     for(var i = 0; i < num_of_players; i++){
-        var $player = $('<div>').addClass('player').addClass('player_'+i);
-        var $best_hand = $('<div>').addClass('best_hand');
-        $player.append($best_hand);
+        var $player = $('<div>').addClass('player').addClass(`player_${i}`);
+        $player.append(create_player_chip(i));
+        // only for diagnostics
+        // var $best_hand = $('<div>').addClass('best_hand');
+        // $player.append($best_hand);
         $player_area.append($player);
     }
+}
+function create_player_chip(index){
+    var $outer = $('<div>').addClass('chip');
+    var $inner = $('<div>').addClass('inner');
+    var $span = $('<span>').text(`player ${index+1}`);
+    $inner.append($span);
+    $outer.append($inner);
+    return $outer;
 }
 
 //create_game_board: 2nd method called

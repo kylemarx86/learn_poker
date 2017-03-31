@@ -21,15 +21,15 @@ body{
     /*box-shadow: 1px black;*/
 }
 .chip:after {
-  content: '';
-  position: absolute;
-  top: -13px;
-  left: -13px;
-  right: -13px;
-  bottom: -13px;
-  background: black;
-  border-radius: 100%;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: -13px;
+    right: -13px;
+    bottom: -13px;
+    background: black;
+    border-radius: 100%;
+    z-index: -1;
 }
 .chip .inner{
     position: absolute;
@@ -42,18 +42,30 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
 }
 .chip:hover{
     background-color: blue;
 }
-.chip .inner span{
-    font-family: Arial, Helvetica, sans-serif;
+#deal, #check{
     font-size: 1.25em;
-    font-weight: bold;
+}
+.chip span{
+    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.player .chip span{
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
