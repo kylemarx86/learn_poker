@@ -35,7 +35,7 @@ function apply_basic_event_handlers(){
 function reset_game_board(){
     $('.community_cards').empty();
     $('.players_cards').empty();
-    $('.status').empty();
+    $('.feedback').empty();
 }
 
 //maybe rethink the name of this function
