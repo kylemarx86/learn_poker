@@ -75,17 +75,8 @@ body{
     box-shadow: 0 0 3px 3px yellow;
 }
 
-/*#deal, #check{
-    margin: 10px;
-    width: 10%;
-    height: 5%;
-}*/
-
 
 /*inner area for the picture/emblems is 50% the width of the card and 60% the height*/
-
-/*i should really have card rank as a separate parent class and then top and bottom as extra*/
-/*better yet, create top, bottom, and middle of card. place rank and suit as subclasses within top and bottom*/
 .top, .bottom{
     position: absolute;
     height: 50px;
