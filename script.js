@@ -167,32 +167,31 @@ function convert_DOM_cards_to_hand(){
         }
     }
 
-    // console.log(selected_cards);
-    
     //check this hand against best hand
+    //and give feedback
     if(selected_cards.length < 5){
         //hand has too few cards
-        $('.status').text("You have not chosen enough cards. Please select 5 cards.");
+        $('.feedback').text("You have not chosen enough cards. Please select 5 cards.");
     }else if(selected_cards.length > 5){
         //hand has too many cards
-        $('.status').text("You have chosen too many cards. Please select only 5 cards.");
+        $('.feedback').text("You have chosen too many cards. Please select only 5 cards.");
     }else{
         //create hand object
         selected_hand = new player_hand(selected_cards);
         //check the strength of the selected hand against the strength of the best hand
-        var temp_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
+        var feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
         // compare the selected hand to a winning hand
         // note: compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
         var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
         if(winner === 0){
             //tie, meaning you've picked a winner
-            temp_text += "You've picked a winning hand.";
+            feedback_text += "You've picked a winning hand.";
         }else{
             //you did not pick a winner, there is a better hand out there
-            temp_text += "There's a better hand out there.";
+            feedback_text += "There's a better hand out there.";
         }
         //give feed back on the outcome based on strengths
-        $('.status').text(temp_text);
+        $('.feedback').text(feedback_text);
     }
 }
 

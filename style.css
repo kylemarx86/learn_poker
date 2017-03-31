@@ -68,6 +68,11 @@ body{
     align-items: center;
 }
 
+.feedback{
+    font-size: 1.25em;
+    color: white;
+}
+
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
 /*media size small */
 .card{
