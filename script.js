@@ -17,17 +17,6 @@ $(document).ready(function(){
     create_game_board();
 });
 
-
-function create_player_areas(){
-    var $player_area = $('.players_cards');
-    for(var i = 0; i < num_of_players; i++){
-        var $player = $('<div>').addClass('player').addClass('player_'+i);
-        var $best_hand = $('<div>').addClass('best_hand');
-        $player.append($best_hand);
-        $player_area.append($player);
-    }
-}
-
 function apply_basic_event_handlers(){
     $('#deal').click(function(){
         //empty game board
@@ -43,66 +32,11 @@ function apply_basic_event_handlers(){
     });
 }
 
-function convert_DOM_cards_to_hand(){
-    selected_cards = [];
-    for(var i = 0; i < number_of_cards; i++){
-        if($('.card_' + i).hasClass('selected')){
-            selected_cards.push(cards[i].get_card());
-        }
-    }
-
-    console.log(selected_cards);
-    
-    //check this hand against best hand
-    //create hand object
-    //hand has too few cards
-    if(selected_cards.length < 5){
-        $('.status').text("You have not chosen enough cards. Please select 5 cards.");
-    }else if(selected_cards.length > 5){
-        $('.status').text("You have chosen too many cards. Please select only 5 cards.");
-    }else{
-        selected_hand = new player_hand(selected_cards);
-        //check the strength of the selected hand against the strength of the best hand
-        // console.log(selected_hand);
-        var temp_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
-        //compare the selected hand to a winning hand
-        // winning_players[0] is a winning player, how do we find the strength of this hand 
-        // var index = winning_players[0];
-        // var winning_str = players_hands[index].get_strength_of_hand();
-        // selected_hand.get_strength_of_hand();
-        // compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
-        var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
-        // console.log('winner: ', player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() ));
-        if(winner === 0){
-            //tie, meaning you've picked a winner
-            temp_text += "You've picked a winning hand.";
-        }else{
-            //you did not pick a winner, there is a better hand out there
-            temp_text += "There's a better hand out there.";
-        }
-        
-        // console.log(winning_players);
-        $('.status').text(temp_text);
-        //give feed back on the outcome based on strengths
-    }
+function reset_game_board(){
+    $('.community_cards').empty();
+    $('.players_cards').empty();
+    $('.status').empty();
 }
-
-function is_selected_hand_the_best_hand(){
-
-}
-
-
-function apply_card_event_handlers(){
-    $('.card').click(card_selected($(this)));
-}
-
-function card_selected(card){
-    $('.card').click(function(){
-        $(this).toggleClass('selected');
-    });
-}
-
-
 
 //maybe rethink the name of this function
 function create_game_board(){
@@ -112,35 +46,23 @@ function create_game_board(){
     render_cards();
     apply_card_event_handlers();
     determine_winners();
-
     // show_best_hands();
 }
 
-function reset_game_board(){
-    $('.community_cards').empty();
-    $('.players_cards').empty();
-    $('.status').empty();
-}
-// only for diagnostics
-function show_best_hands(){
-    // create arrays for player hands
+
+//create_game_board: 1st method called
+// add extra chips to this area for to check as winner
+function create_player_areas(){
+    var $player_area = $('.players_cards');
     for(var i = 0; i < num_of_players; i++){
-        $('.player_' + i + ' .best_hand').text(players_hands[i].display_best_hand());
-    }
-    // console.log('index of winning players: ', winning_players);
-    for(var i = 0; i < winning_players.length; i++){
-        $('.player_' + (winning_players[i])).addClass('winner');
+        var $player = $('<div>').addClass('player').addClass('player_'+i);
+        var $best_hand = $('<div>').addClass('best_hand');
+        $player.append($best_hand);
+        $player_area.append($player);
     }
 }
 
-function determine_winners(){
-    strenth_arr = [];
-    for(var i = 0; i < num_of_players; i++){
-        strenth_arr.push(players_hands[i].hand_strength);
-    }
-    winning_players = player_hand.best_hand_available(strenth_arr);
-}
-
+//create_game_board: 2nd method called
 //assigns cards to be dealt
 function deal_cards(){
     console.log('cards dealt');
@@ -162,7 +84,6 @@ function deal_cards(){
         cards[i] = new card(card_val, i);
     }
 
-
     // // for testing
     // var test_cards = [4,14,16,42,51,2,38,43,44];
     // var test_cards = [0,20,32,34,37,27,28,30,36];
@@ -171,7 +92,6 @@ function deal_cards(){
     //     //assign card value to card
     //     cards[i] = new card(test_cards[i], i);
     // }
-    
     
     // create players_hands
     community_cards = [cards[0].get_card(), cards[1].get_card(), cards[2].get_card(), cards[3].get_card(), cards[4].get_card()];
@@ -185,6 +105,7 @@ function deal_cards(){
     // determine_best_hand();    
 }
 
+//create_game_board: 3rd method called
 //renders cards to the screen
 // calls the render_card method of the card class
 function render_cards(){
@@ -192,6 +113,97 @@ function render_cards(){
         cards[i].render_card();
     }
 }
+
+//create_game_board: 4th method called
+function apply_card_event_handlers(){
+    $('.card').click(card_selected($(this)));
+}
+function card_selected(card){
+    $('.card').click(function(){
+        $(this).toggleClass('selected');
+    });
+}
+//create_game_board: 5th method called
+function determine_winners(){
+    strenth_arr = [];
+    for(var i = 0; i < num_of_players; i++){
+        strenth_arr.push(players_hands[i].hand_strength);
+    }
+    winning_players = player_hand.best_hand_available(strenth_arr);
+}
+//create_game_board: 6th method called
+// only for diagnostics
+function show_best_hands(){
+    // create arrays for player hands
+    for(var i = 0; i < num_of_players; i++){
+        $('.player_' + i + ' .best_hand').text(players_hands[i].display_best_hand());
+    }
+    // console.log('index of winning players: ', winning_players);
+    for(var i = 0; i < winning_players.length; i++){
+        $('.player_' + (winning_players[i])).addClass('winner');
+    }
+}
+
+
+
+
+
+
+function convert_DOM_cards_to_hand(){
+    selected_cards = [];
+    for(var i = 0; i < number_of_cards; i++){
+        if($('.card_' + i).hasClass('selected')){
+            selected_cards.push(cards[i].get_card());
+        }
+    }
+
+    // console.log(selected_cards);
+    
+    //check this hand against best hand
+    if(selected_cards.length < 5){
+        //hand has too few cards
+        $('.status').text("You have not chosen enough cards. Please select 5 cards.");
+    }else if(selected_cards.length > 5){
+        //hand has too many cards
+        $('.status').text("You have chosen too many cards. Please select only 5 cards.");
+    }else{
+        //create hand object
+        selected_hand = new player_hand(selected_cards);
+        //check the strength of the selected hand against the strength of the best hand
+        var temp_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
+        // compare the selected hand to a winning hand
+        // note: compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
+        var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
+        if(winner === 0){
+            //tie, meaning you've picked a winner
+            temp_text += "You've picked a winning hand.";
+        }else{
+            //you did not pick a winner, there is a better hand out there
+            temp_text += "There's a better hand out there.";
+        }
+        //give feed back on the outcome based on strengths
+        $('.status').text(temp_text);
+    }
+}
+
+
+
+
+//not sure if i should use a method with this name
+function is_selected_hand_the_best_hand(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 //card object
 function card(number_in_deck, dom_index){
