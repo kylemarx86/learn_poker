@@ -37,7 +37,9 @@ function apply_basic_event_handlers(){
 
     $('#check').click(function(){
         //compare the cards that are clicked to the ones that are part of the winning hand
-        convert_DOM_cards_to_hand()
+        convert_DOM_cards_to_hand();
+        //give feedback
+
     });
 }
 
@@ -104,12 +106,14 @@ function card_selected(card){
 
 //maybe rethink the name of this function
 function create_game_board(){
-    //create areas for ptulayers hands based on number of players/cards
+    //create areas for players hands based on number of players/cards
     create_player_areas();
     deal_cards();
     render_cards();
     apply_card_event_handlers();
-    show_best_hands();
+    determine_winners();
+
+    // show_best_hands();
 }
 
 function reset_game_board(){
@@ -117,21 +121,24 @@ function reset_game_board(){
     $('.players_cards').empty();
     $('.status').empty();
 }
-
+// only for diagnostics
 function show_best_hands(){
     // create arrays for player hands
     for(var i = 0; i < num_of_players; i++){
         $('.player_' + i + ' .best_hand').text(players_hands[i].display_best_hand());
     }
+    // console.log('index of winning players: ', winning_players);
+    for(var i = 0; i < winning_players.length; i++){
+        $('.player_' + (winning_players[i])).addClass('winner');
+    }
+}
+
+function determine_winners(){
     strenth_arr = [];
     for(var i = 0; i < num_of_players; i++){
         strenth_arr.push(players_hands[i].hand_strength);
     }
     winning_players = player_hand.best_hand_available(strenth_arr);
-    // console.log('index of winning players: ', winning_players);
-    for(var i = 0; i < winning_players.length; i++){
-        $('.player_' + (winning_players[i])).addClass('winner');
-    }
 }
 
 //assigns cards to be dealt
