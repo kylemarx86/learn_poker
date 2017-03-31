@@ -249,15 +249,21 @@ body{
     left: 0;
     display: flex;
     flex-wrap: wrap;
+    
 }
 .player{
-    width: 50%;
-    height: 50%;
+    /*width: 50%;
+    height: 50%;*/
+    width: calc(50% - 10px);
+    height: calc(50% - 10px);
+
+    margin: 5px;
     display: flex;
-    /*justify-content: center;*/
     align-items: center;
     border: 1px solid black;
     box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
 }
 
 .best_hand{
