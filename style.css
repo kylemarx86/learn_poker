@@ -6,6 +6,10 @@ body{
     background-color: darkgreen;
 }
 
+.community_cards{
+    padding: 10px;
+}
+
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
 /*media size small */
 .card{
@@ -22,7 +26,7 @@ body{
 }
 .selected{
     /*box-shadow: 1px 1px 1px black, 0 0 3px 3px red;*/
-    box-shadow: 0 0 3px 3px red;
+    box-shadow: 0 0 3px 3px yellow;
 }
 
 #deal, #check{
