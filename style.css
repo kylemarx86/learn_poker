@@ -17,8 +17,8 @@ body{
     border-radius: 100%;
     background-color: red;
     border: 12px dotted white;
-    margin: 20px;
-    /*box-shadow: 1px black;*/
+    margin: 5px;
+    box-shadow: 2px 2px 1px black;
 }
 .chip::after {
     content: '';
