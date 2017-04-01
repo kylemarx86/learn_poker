@@ -17,19 +17,16 @@ body{
     border-radius: 100%;
     background-color: red;
     border: 12px dotted white;
-    margin: 20px;
-    /*box-shadow: 1px black;*/
+    margin: 5px;
+    box-shadow: 2px 2px 1px black;
 }
-.chip:after {
-  content: '';
-  position: absolute;
-  top: -13px;
-  left: -13px;
-  right: -13px;
-  bottom: -13px;
-  background: black;
-  border-radius: 100%;
-  z-index: -1;
+.chip::after {
+    content: '';
+    position: absolute;
+    
+    background: black;
+    border-radius: 100%;
+    z-index: -1;
 }
 .chip .inner{
     position: absolute;
@@ -42,18 +39,35 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
 }
 .chip:hover{
     background-color: blue;
 }
-.chip .inner span{
-    font-family: Arial, Helvetica, sans-serif;
+#deal, #check{
     font-size: 1.25em;
-    font-weight: bold;
+}
+.chip span{
+    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.player .chip span{
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback{
+    font-size: 1.25em;
+    color: white;
 }
 
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
@@ -66,7 +80,7 @@ body{
     border-radius: 5px;
     width: 125px;
     height: 175px;
-    margin: 0 5px;
+    margin: 0 2px;
     box-shadow: 1px 1px 1px black;
 }
 .selected{
@@ -235,15 +249,21 @@ body{
     left: 0;
     display: flex;
     flex-wrap: wrap;
+    
 }
 .player{
-    width: 50%;
-    height: 50%;
+    /*width: 50%;
+    height: 50%;*/
+    width: calc(50% - 10px);
+    height: calc(50% - 10px);
+
+    margin: 5px;
     display: flex;
-    /*justify-content: center;*/
     align-items: center;
     border: 1px solid black;
     box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
 }
 
 .best_hand{
@@ -264,12 +284,25 @@ body{
 
 
 
-
+@media screen and (min-width: 1500px){
+    .chip.chip::after{
+        top: -13px;
+        left: -13px;
+        right: -13px;
+        bottom: -13px;
+    }
+}
 
 @media screen and (max-width: 1500px) {
     .card{
         width: 125px;
         height: 175px;
+    }
+    .chip.chip::after{
+        top: -13px;
+        left: -13px;
+        right: -13px;
+        bottom: -13px;
     }
 }
 /*@media screen and (max-width: 1000px) {
@@ -278,7 +311,24 @@ body{
         height: 175px;
     }
 }*/
-@media screen and (max-width: 700px), (max-height: 925px)   {
+@media screen and (max-width: 890px) {
+    .player .chip{
+        width: 75px;
+        height: 75px;
+        border-width: 13px;
+        /*border-s*/
+    }
+    .player .chip::after{
+        top: -14px;
+        left: -14px;
+        right: -14px;
+        bottom: -14px;
+    }
+    .player .chip .inner{
+        font-size: .75em;
+    }
+}
+@media screen and (max-width: 830px), (max-height: 925px)   {
     .card{
         width: 100px;
         height: 140px;
@@ -292,7 +342,37 @@ body{
         -ms-transform: scale(0.75) translateY(-50%);
     }
 }
-@media screen and (max-width: 560px), (max-height: 785px) {
+@media screen and (max-width: 730px), (max-height: 560px) {
+    .card{
+        width: 100px;
+        height: 140px;
+    }
+    .player .chip{
+        width: 50px;
+        height: 50px;
+    }
+    .player .chip .inner{
+        font-size: .65em;
+    }
+}
+@media screen and (max-width: 685px) {
+    /*change these values*/
+    .card{
+        width: 80px;
+        height: 120px;
+    }   
+    /*both values need changing*/
+    .middle{
+        width: 40%;
+        height: 80%;
+    }
+    .middle .suit{
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media screen and (max-width: 580px), (max-height: 785px) {
     .card{
         width: 50px;
         height: 70px;
@@ -317,9 +397,11 @@ body{
     .middle .small{
         visibility: visible;
     }
-
+    .middle .small.suit{
+        width: 20px;
+        height: 20px;
+    }
+    .player .chip .inner{
+        font-size: .65em;
+    }
 }
-
-
-
-
