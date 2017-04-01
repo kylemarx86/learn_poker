@@ -556,11 +556,12 @@ card.prototype.add_Q = function($main){}
 card.prototype.add_K = function($main){}
 
 card.prototype.add_A = function($main){
-    // add classification to incoming div
-    $main.addClass('five_row');
+    //create new container for pips
+    var $div = $('<div>').addClass('large').addClass('five_row');
     // create the inner div with background image
     var $pip = $('<div>').addClass('suit').addClass(this.suit).addClass('row_3').addClass('col_m');
-    $main.append($pip);
+    $div.append($pip);
+    $main.append($div);
 }
 
 // card.prototype.add_J = function(){
