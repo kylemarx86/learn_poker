@@ -342,7 +342,7 @@ body{
         -ms-transform: scale(0.75) translateY(-50%);
     }
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 730px), (max-height: 560px) {
     .card{
         width: 100px;
         height: 140px;
