@@ -9,6 +9,12 @@ body{
 .community_cards{
     padding: 10px;
 }
+.feedback{
+    font-size: 1.25em;
+    color: white;
+}
+
+/*styling for chip*/
 .chip{
     display: inline-block;
     width: 100px;
@@ -58,17 +64,19 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.player .chip span{
+.player .chip .inner{
     font-size: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+.player .chip .inner .player_text{
+    display: inline-block;
+}
+.player .chip .inner .player_num{
+    display: inline-block;
 }
 
-.feedback{
-    font-size: 1.25em;
-    color: white;
-}
 
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
 /*media size small */
@@ -258,6 +266,7 @@ body{
     height: calc(50% - 10px);
 
     margin: 5px;
+    position: relative;
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -359,7 +368,7 @@ body{
     /*change these values*/
     .card{
         width: 80px;
-        height: 120px;
+        height: 112px;
     }   
     /*both values need changing*/
     .middle{
@@ -402,6 +411,31 @@ body{
         height: 20px;
     }
     .player .chip .inner{
-        font-size: .65em;
+        font-size: 2em;
+    }
+    .player .chip .inner .player_text{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .card{
+        width: 45px;
+        height: 63px;
+    }
+    .player .chip{
+        width: 18px;
+        height: 18px;
+        border-width: 9px;
+    }
+    .player .chip::after {
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+    }
+    .player .chip span{
+        font-size: 2em;
+        font-weight: bold;
     }
 }

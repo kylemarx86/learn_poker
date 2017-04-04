@@ -46,7 +46,7 @@ function create_game_board(){
     render_cards();
     apply_card_event_handlers();
     determine_winners();
-    // show_best_hands();
+    // show_best_hands();   //for diagnostics
 }
 
 
@@ -66,7 +66,10 @@ function create_player_areas(){
 function create_player_chip(index){
     var $outer = $('<div>').addClass('chip');
     var $inner = $('<div>').addClass('inner');
-    var $span = $('<span>').text(`player ${index+1}`);
+    var $span = $('<div>');
+    var $player = $('<div>').addClass('player_text').html('player&nbsp;');
+    var $number = $('<div>').addClass('player_num').text(index+1);
+    $span.append($player, $number);
     $inner.append($span);
     $outer.append($inner);
     return $outer;
