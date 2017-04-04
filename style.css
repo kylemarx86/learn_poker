@@ -363,6 +363,8 @@ body{
     }
 }
 
+/*old*/
+/*media query i need to change for screen orientation*/
 @media screen and (max-width: 580px), (max-height: 785px) {
     .card{
         width: 50px;
