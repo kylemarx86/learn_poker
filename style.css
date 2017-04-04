@@ -7,11 +7,20 @@ body{
 }
 
 .community_cards{
-    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.buttons{
+    display: inline-block;
 }
 .feedback{
+    display: inline-block;
     font-size: 1.25em;
     color: white;
+    width: 100%;
+    box-sizing: border-box;
+
 }
 
 /*styling for chip*/
