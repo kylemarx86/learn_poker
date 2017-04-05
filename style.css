@@ -2,16 +2,23 @@ body{
     margin: 0;
     width: 100%;
     height: 100%;
-
     background-color: darkgreen;
 }
 
 .community_cards{
-    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.buttons{
+    display: inline-block;
 }
 .feedback{
+    display: inline-block;
     font-size: 1.25em;
     color: white;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /*styling for chip*/
@@ -28,8 +35,7 @@ body{
 }
 .chip::after {
     content: '';
-    position: absolute;
-    
+    position: absolute;   
     background: black;
     border-radius: 100%;
     z-index: -1;
@@ -66,9 +72,6 @@ body{
 }
 .player .chip .inner{
     font-size: 1em;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
 }
 .player .chip .inner .player_text{
     display: inline-block;
@@ -274,22 +277,10 @@ body{
     border-radius: 5px;
     box-shadow: 1px 1px 1px black;
 }
-
-.best_hand{
-    /*width: 100%;*/
-    /*height: 50px;*/
-}
-
+/*only for testing*/
 .winner{
     background-color: yellow;
 }
-
-
-
-
-
-
-
 
 
 
@@ -314,18 +305,11 @@ body{
         bottom: -13px;
     }
 }
-/*@media screen and (max-width: 1000px) {
-    .card{
-        width: 125px;
-        height: 175px;
-    }
-}*/
 @media screen and (max-width: 890px) {
     .player .chip{
         width: 75px;
         height: 75px;
         border-width: 13px;
-        /*border-s*/
     }
     .player .chip::after{
         top: -14px;
@@ -365,12 +349,10 @@ body{
     }
 }
 @media screen and (max-width: 685px) {
-    /*change these values*/
     .card{
         width: 80px;
         height: 112px;
     }   
-    /*both values need changing*/
     .middle{
         width: 40%;
         height: 80%;
@@ -381,6 +363,8 @@ body{
     }
 }
 
+/*old*/
+/*media query i need to change for screen orientation*/
 @media screen and (max-width: 580px), (max-height: 785px) {
     .card{
         width: 50px;
@@ -392,7 +376,6 @@ body{
     .suit{
         transform: scale(0.4);
     }
-    /*the classes below should take care of this transform hack*/
     .top .suit, .bottom .suit{
         display: none;
     }
