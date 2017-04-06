@@ -20,6 +20,23 @@ body{
     width: 100%;
     box-sizing: border-box;
 }
+/*controls area*/
+#player_slider{
+    margin: 5px;
+    width: 25%;
+    background: #009900;
+}
+#player_slider .ui-slider-handle{
+    background: #11ff00;
+}
+
+#player_slider label{
+    position: absolute;
+    width: 20px;
+    margin-left: -10px;
+    text-align: center;
+    margin-top: 20px;
+}
 
 /*styling for chip*/
 .chip{

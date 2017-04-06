@@ -20,6 +20,7 @@ define(function(require){
         num_of_players = 4;
         
         apply_basic_event_handlers();
+        set_up_slider();
         create_game_board();
     });
 
@@ -47,6 +48,7 @@ define(function(require){
     //maybe rethink the name of this function
     function create_game_board(){
         //create areas for players hands based on number of players/cards
+        
         create_player_areas();
         deal_cards();
         render_cards();
@@ -55,6 +57,33 @@ define(function(require){
         // show_best_hands();   //for diagnostics
     }
 
+    //set up slider
+    function set_up_slider(){
+        $( "#player_slider" ).slider({
+            range: "max",
+            min: 2,
+            max: 4,
+            value: 4,
+            slide: function( event, ui ) {
+                $("#amount").val( ui.value );
+            }
+        })
+        .each(function() {
+            // Get the options for this slider
+            var opt = $(this).data().uiSlider.options;
+
+            // Get the number of possible values
+            var vals = opt.max - opt.min;
+            
+            // Space out values
+            for (var i = 0; i <= vals; i++) {
+                // var el = $('<label>' + (i + opt.min) + '</label>').css('left',(i / vals * 100) + '%');
+                var el = $(`<label>${i + opt.min}</label>`).css('left',`${i / vals * 100}%`);
+                $( "#player_slider" ).append(el);
+            }
+        });
+        $("#amount").val( $("#player_slider").slider("value"));
+    }
 
     //create_game_board: 1st method called
     // add extra chips to this area for to check as winner
