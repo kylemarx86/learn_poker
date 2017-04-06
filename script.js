@@ -47,14 +47,18 @@ define(function(require){
 
     //maybe rethink the name of this function
     function create_game_board(){
+        update_number_of_players();
         //create areas for players hands based on number of players/cards
-        
         create_player_areas();
         deal_cards();
         render_cards();
         apply_card_event_handlers();
         determine_winners();
         // show_best_hands();   //for diagnostics
+    }
+
+    function update_number_of_players(){
+        num_of_players = $('#player_slider').slider("option", "value");
     }
 
     //set up slider
