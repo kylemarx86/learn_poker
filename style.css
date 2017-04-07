@@ -30,10 +30,14 @@ html, body{
     z-index: 10;
     top: 0;
     left: 0;
-    background-color: gray;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    background: gray; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(gray, black); /* Standard syntax */
 }
 #sidenav.menu_open .menu{
     width: 50%;
