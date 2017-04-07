@@ -30,12 +30,14 @@ define(function(require){
             reset_game_board();
             create_game_board();
         });
-
         $('#check').click(function(){
             //compare the cards that are clicked to the ones that are part of the winning hand
-            convert_DOM_cards_to_hand();
+            var hand = convert_selected_cards_to_hand();
             //give feedback
-
+            give_feedback_on_selected_hand(hand);
+        });
+        $('#clear').click(function(){
+            deselect_all_cards();
         });
         //to open and close the sidenav
         $('#options').click(function(e){
@@ -50,10 +52,7 @@ define(function(require){
         });
 
     }
-    function open_sidenav(){
-        $('#sidenav').addClass('open');
-    }
-
+    //clear fields that need emptying before new fields take their place
     function reset_game_board(){
         $('.community_cards').empty();
         $('.players_cards').empty();
@@ -63,7 +62,6 @@ define(function(require){
     //maybe rethink the name of this function
     function create_game_board(){
         update_number_of_players();
-        //create areas for players hands based on number of players/cards
         create_player_areas();
         deal_cards();
         render_cards();
@@ -105,7 +103,7 @@ define(function(require){
     }
 
     //create_game_board: 1st method called
-    // add extra chips to this area for to check as winner
+    // creates areas for players hands based on number of players/cards
     function create_player_areas(){
         var $player_area = $('.players_cards');
         for(var i = 0; i < num_of_players; i++){
@@ -117,6 +115,8 @@ define(function(require){
             $player_area.append($player);
         }
     }
+    //creates chip display in the player's area
+    //parameter index is to keep track of which player this belongs to
     function create_player_chip(index){
         var $outer = $('<div>').addClass('chip');
         var $inner = $('<div>').addClass('inner');
@@ -151,9 +151,12 @@ define(function(require){
         }
 
         // // for testing
-        // var test_cards = [4,14,16,42,51,2,38,43,44];
-        // var test_cards = [0,20,32,34,37,27,28,30,36];
-        // var test_cards = [3,9,10,11,12,8,18,19,20];
+        // var test_cards = [4,14,16,42,51, 2,38,43,44];    //two pairs
+        // var test_cards = [0,20,32,34,37, 27,28,30,36];   //flush
+        // var test_cards = [3,9,10,11,12, 8,18,19,20];         //ace high straight flush
+        // var test_cards = [0,1,2,32,12, 3,18,19,20];         //ace low straight flush
+        // var test_cards = [0,14,2,32,12, 3,18,19,20];         //ace low straight
+
         // for(var i = 0; i < test_cards.length; i++){
         //     //assign card value to card
         //     cards[i] = new card(test_cards[i], i);
@@ -210,45 +213,45 @@ define(function(require){
         }
     }
 
-
-
-
-
-
-    function convert_DOM_cards_to_hand(){
+    function convert_selected_cards_to_hand(){
         selected_cards = [];
         for(var i = 0; i < number_of_cards; i++){
             if($('.card_' + i).hasClass('selected')){
                 selected_cards.push(cards[i].get_card());
             }
         }
-
-        //check this hand against best hand
-        //and give feedback
+        return selected_cards;
+    }
+    //checks this hand against best hand, if possible, and gives feedback
+    function give_feedback_on_selected_hand(selected_cards){
+        var feedback_text = null;
         if(selected_cards.length < 5){
             //hand has too few cards
-            $('.feedback').text("You have not chosen enough cards. Please select 5 cards.");
+            feedback_text = "You have not chosen enough cards. Please select 5 cards.";
         }else if(selected_cards.length > 5){
             //hand has too many cards
-            $('.feedback').text("You have chosen too many cards. Please select only 5 cards.");
+            feedback_text = "You have chosen too many cards. Please select only 5 cards.";
         }else{
             //create hand object
             selected_hand = new player_hand(selected_cards);
             //check the strength of the selected hand against the strength of the best hand
-            var feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
+            feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. `;
             // compare the selected hand to a winning hand
             // note: compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
-            var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
+            var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand());
             if(winner === 0){
                 //tie, meaning you've picked a winner
                 feedback_text += "You've picked a winning hand.";
             }else{
                 //you did not pick a winner, there is a better hand out there
-                feedback_text += "There's a better hand out there.";
+                    //if the hand is of the same type as the winning hand, include extra text
+                feedback_text += `There's a better hand ${selected_hand.get_strength_of_hand()[0] === players_hands[winning_players[0]].get_strength_of_hand()[0] ? 'of this type ' :''}out there.`;
             }
-            //give feed back on the outcome based on strengths
-            $('.feedback').text(feedback_text);
         }
+        $('.feedback').text(feedback_text);
     }
 
+    function deselect_all_cards(){
+        $('.selected').removeClass('selected');
+    }
 });

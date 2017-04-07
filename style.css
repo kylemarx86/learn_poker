@@ -37,7 +37,6 @@ html, body{
 }
 #sidenav.menu_open .menu{
     width: 50%;
-    opacity: 100%;
 }
 #sidenav .background{
         height: 100%;
