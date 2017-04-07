@@ -30,12 +30,14 @@ define(function(require){
             reset_game_board();
             create_game_board();
         });
-
         $('#check').click(function(){
             //compare the cards that are clicked to the ones that are part of the winning hand
             convert_DOM_cards_to_hand();
             //give feedback
 
+        });
+        $('#clear').click(function(){
+            deselect_all_cards();
         });
         //to open and close the sidenav
         $('#options').click(function(e){
@@ -50,6 +52,13 @@ define(function(require){
         });
 
     }
+
+
+    function deselect_all_cards(){
+        $('.selected').removeClass('selected');
+    }
+
+    //mark for removal
     function open_sidenav(){
         $('#sidenav').addClass('open');
     }
