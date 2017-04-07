@@ -52,12 +52,7 @@ define(function(require){
         });
 
     }
-
-    //mark for removal
-    function open_sidenav(){
-        $('#sidenav').addClass('open');
-    }
-
+    //clear fields that need emptying before new fields take their place
     function reset_game_board(){
         $('.community_cards').empty();
         $('.players_cards').empty();
@@ -67,7 +62,6 @@ define(function(require){
     //maybe rethink the name of this function
     function create_game_board(){
         update_number_of_players();
-        //create areas for players hands based on number of players/cards
         create_player_areas();
         deal_cards();
         render_cards();
@@ -109,7 +103,7 @@ define(function(require){
     }
 
     //create_game_board: 1st method called
-    // add extra chips to this area for to check as winner
+    // creates areas for players hands based on number of players/cards
     function create_player_areas(){
         var $player_area = $('.players_cards');
         for(var i = 0; i < num_of_players; i++){
@@ -121,6 +115,8 @@ define(function(require){
             $player_area.append($player);
         }
     }
+    //creates chip display in the player's area
+    //parameter index is to keep track of which player this belongs to
     function create_player_chip(index){
         var $outer = $('<div>').addClass('chip');
         var $inner = $('<div>').addClass('inner');
@@ -155,9 +151,12 @@ define(function(require){
         }
 
         // // for testing
-        // var test_cards = [4,14,16,42,51,2,38,43,44];
-        // var test_cards = [0,20,32,34,37,27,28,30,36];
-        // var test_cards = [3,9,10,11,12,8,18,19,20];
+        // var test_cards = [4,14,16,42,51, 2,38,43,44];    //two pairs
+        // var test_cards = [0,20,32,34,37, 27,28,30,36];   //flush
+        // var test_cards = [3,9,10,11,12, 8,18,19,20];         //ace high straight flush
+        // var test_cards = [0,1,2,32,12, 3,18,19,20];         //ace low straight flush
+        // var test_cards = [0,14,2,32,12, 3,18,19,20];         //ace low straight
+
         // for(var i = 0; i < test_cards.length; i++){
         //     //assign card value to card
         //     cards[i] = new card(test_cards[i], i);
