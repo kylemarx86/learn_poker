@@ -32,8 +32,9 @@ define(function(require){
         });
         $('#check').click(function(){
             //compare the cards that are clicked to the ones that are part of the winning hand
-            convert_DOM_cards_to_hand();
+            var hand = convert_selected_cards_to_hand();
             //give feedback
+            give_feedback_on_selected_hand(hand);
         });
         $('#clear').click(function(){
             deselect_all_cards();
@@ -213,40 +214,42 @@ define(function(require){
         }
     }
 
-    function convert_DOM_cards_to_hand(){
+    function convert_selected_cards_to_hand(){
         selected_cards = [];
         for(var i = 0; i < number_of_cards; i++){
             if($('.card_' + i).hasClass('selected')){
                 selected_cards.push(cards[i].get_card());
             }
         }
-
-        //check this hand against best hand
-        //and give feedback
+        return selected_cards;
+    }
+    //checks this hand against best hand, if possible, and gives feedback
+    function give_feedback_on_selected_hand(selected_cards){
+        var feedback_text = null;
         if(selected_cards.length < 5){
             //hand has too few cards
-            $('.feedback').text("You have not chosen enough cards. Please select 5 cards.");
+            feedback_text = "You have not chosen enough cards. Please select 5 cards.";
         }else if(selected_cards.length > 5){
             //hand has too many cards
-            $('.feedback').text("You have chosen too many cards. Please select only 5 cards.");
+            feedback_text = "You have chosen too many cards. Please select only 5 cards.";
         }else{
             //create hand object
             selected_hand = new player_hand(selected_cards);
             //check the strength of the selected hand against the strength of the best hand
-            var feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. ` ;
+            feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. `;
             // compare the selected hand to a winning hand
             // note: compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
-            var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand() );
+            var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand());
             if(winner === 0){
                 //tie, meaning you've picked a winner
                 feedback_text += "You've picked a winning hand.";
             }else{
                 //you did not pick a winner, there is a better hand out there
-                feedback_text += "There's a better hand out there.";
+                    //if the hand is of the same type as the winning hand, include extra text
+                feedback_text += `There's a better hand ${selected_hand.get_strength_of_hand()[0] === players_hands[winning_players[0]].get_strength_of_hand()[0] ? 'of this type ' :''}out there.`;
             }
-            //give feed back on the outcome based on strengths
-            $('.feedback').text(feedback_text);
         }
+        $('.feedback').text(feedback_text);
     }
 
     function deselect_all_cards(){
