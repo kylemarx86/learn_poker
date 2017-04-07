@@ -34,7 +34,6 @@ define(function(require){
             //compare the cards that are clicked to the ones that are part of the winning hand
             convert_DOM_cards_to_hand();
             //give feedback
-
         });
         $('#clear').click(function(){
             deselect_all_cards();
@@ -51,11 +50,6 @@ define(function(require){
             $('#sidenav').removeClass('menu_open');
         });
 
-    }
-
-
-    function deselect_all_cards(){
-        $('.selected').removeClass('selected');
     }
 
     //mark for removal
@@ -219,11 +213,6 @@ define(function(require){
         }
     }
 
-
-
-
-
-
     function convert_DOM_cards_to_hand(){
         selected_cards = [];
         for(var i = 0; i < number_of_cards; i++){
@@ -260,4 +249,7 @@ define(function(require){
         }
     }
 
+    function deselect_all_cards(){
+        $('.selected').removeClass('selected');
+    }
 });
