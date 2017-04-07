@@ -37,6 +37,21 @@ define(function(require){
             //give feedback
 
         });
+        //to open and close the sidenav
+        $('#options').click(function(e){
+            e.stopPropagation();
+            $('#sidenav').toggleClass('menu_open');
+        });
+        $('#sidenav .menu').click(function(e){
+            e.stopPropagation();
+        });
+        $('body,html').click(function(e){
+            $('#sidenav').removeClass('menu_open');
+        });
+
+    }
+    function open_sidenav(){
+        $('#sidenav').addClass('open');
     }
 
     function reset_game_board(){
