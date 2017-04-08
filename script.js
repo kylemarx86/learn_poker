@@ -47,10 +47,12 @@ define(function(require){
         $('#sidenav .menu').click(function(e){
             e.stopPropagation();
         });
-        $('body,html').click(function(e){
+        $('#sidenav .background').click(function(e){
             $('#sidenav').removeClass('menu_open');
         });
-
+        // $('body, html').click(function(e){
+        //     $('#sidenav').removeClass('menu_open');
+        // });
     }
     //clear fields that need emptying before new fields take their place
     function reset_game_board(){
@@ -88,10 +90,8 @@ define(function(require){
         .each(function() {
             // Get the options for this slider
             var opt = $(this).data().uiSlider.options;
-
             // Get the number of possible values
             var vals = opt.max - opt.min;
-            
             // Space out values
             for (var i = 0; i <= vals; i++) {
                 // var el = $('<label>' + (i + opt.min) + '</label>').css('left',(i / vals * 100) + '%');
@@ -184,15 +184,18 @@ define(function(require){
     }
 
     //create_game_board: 4th method called
+    // applies event handlers to cards
     function apply_card_event_handlers(){
         $('.card').click(card_selected($(this)));
     }
+    // allows cards to be selected through click events
     function card_selected(card){
         $('.card').click(function(){
             $(this).toggleClass('selected');
         });
     }
     //create_game_board: 5th method called
+    // determines the winner(s) by calling the best_hand_available static method of the player_hand class and stores this/these in the winning_players array
     function determine_winners(){
         strenth_arr = [];
         for(var i = 0; i < num_of_players; i++){
@@ -201,6 +204,8 @@ define(function(require){
         winning_players = player_hand.best_hand_available(strenth_arr);
     }
     //create_game_board: 6th method called
+    // displays the best hand available to a player with text in their area
+    // signals the winning player(s) by highlighting the area of said player(s)
     // only for diagnostics
     function show_best_hands(){
         // create arrays for player hands
@@ -212,7 +217,8 @@ define(function(require){
             $('.player_' + (winning_players[i])).addClass('winner');
         }
     }
-
+    //Check clicked: 1st method called
+    // gathers the cards that have been selected on the DOM and creates a hand array (selected_cards) out of the corresponding card objects they came from
     function convert_selected_cards_to_hand(){
         selected_cards = [];
         for(var i = 0; i < number_of_cards; i++){
@@ -222,6 +228,7 @@ define(function(require){
         }
         return selected_cards;
     }
+    //Check clicked: 2nd method called
     //checks this hand against best hand, if possible, and gives feedback
     function give_feedback_on_selected_hand(selected_cards){
         var feedback_text = null;
