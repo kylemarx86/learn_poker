@@ -2,6 +2,8 @@ html, body{
     margin: 0;
     width: 100%;
     height: 100%;
+}
+body{
     background-color: #19673E;
 }
 
@@ -92,7 +94,7 @@ html, body{
     box-shadow: 2px 2px 1px black;
     /*z-index: 0;*/
 }
-.chip:after {
+.chip::after {
     content: '';
     position: absolute;   
     background: black;
@@ -341,13 +343,13 @@ html, body{
 
 
 @media screen and (min-width: 1500px){
-    /*.chip:after{
+    /*.chip::after{
         top: -13px;
         left: -13px;
         right: -13px;
         bottom: -13px;
     }*/
-    .chip:after{
+    .chip::after{
         top: -13px;
         left: -13px;
         right: -13px;
@@ -360,7 +362,7 @@ html, body{
         width: 125px;
         height: 175px;
     }
-    .chip:after{
+    .chip::after{
         top: -13px;
         left: -13px;
         right: -13px;
@@ -373,7 +375,7 @@ html, body{
         height: 75px;
         border-width: 13px;
     }
-    .player .chip:after{
+    .player .chip::after{
         top: -14px;
         left: -14px;
         right: -14px;
@@ -473,7 +475,7 @@ html, body{
         height: 18px;
         border-width: 9px;
     }
-    .player .chip:after {
+    .player .chip::after {
         top: -10px;
         left: -10px;
         right: -10px;
@@ -497,7 +499,7 @@ html, body{
     .buttons .chip .inner{
         font-size: .65em;
     }
-    /*.buttons .chip:after{
+    /*.buttons .chip::after{
         top: -14px;
         left: -14px;
         right: -14px;
