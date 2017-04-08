@@ -47,10 +47,12 @@ define(function(require){
         $('#sidenav .menu').click(function(e){
             e.stopPropagation();
         });
-        $('body,html').click(function(e){
+        $('#sidenav .background').click(function(e){
             $('#sidenav').removeClass('menu_open');
         });
-
+        // $('body, html').click(function(e){
+        //     $('#sidenav').removeClass('menu_open');
+        // });
     }
     //clear fields that need emptying before new fields take their place
     function reset_game_board(){
