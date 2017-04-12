@@ -63,6 +63,8 @@ body{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
     margin: 5px;
     width: 75%;
     background: #009900;
@@ -112,6 +114,8 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,7 +130,9 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 .player .chip .inner{
     font-size: 1em;
@@ -217,6 +223,8 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 .middle .suit{
   position: absolute;
@@ -250,6 +258,8 @@ body{
 .col_m{
   left: 50%;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
 }
 .col_r{
   right: 3%;
@@ -262,31 +272,44 @@ body{
   top: 23.25%;
 }
 .five_row .row_3{
-  top: 50%;
-  transform: translateY(-50%);
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
 }
 .five_row .row_4{
-  bottom: 23.25%;
+    bottom: 23.25%;
 }
 .five_row .row_5{
-  bottom: 4.5%;
-  transform: rotate(180deg)
+    bottom: 4.5%;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
 }
 .five_row .row_2.col_m{
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+
 }
 .five_row .col_m.row_3{
-  transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 .five_row .row_4.col_m{
     transform: translateX(-50%) rotate(180deg);
+    -webkit-transform: translateX(-50%) rotate(180deg);
+    -ms-transform: translateX(-50%) rotate(180deg);
 }
 .five_row .row_5.col_m{
-  transform: translateX(-50%) rotate(180deg);
+    transform: translateX(-50%) rotate(180deg);
+    -webkit-transform: translateX(-50%) rotate(180deg);
+    -ms-transform: translateX(-50%) rotate(180deg);
 }
 /*vertical placement of suits for cards based on a seven row format: 9 and 10*/
 .seven_row .row_1{
-  top: 4.5%
+    top: 4.5%
 }
 .seven_row .row_2{
   top: 17%;
@@ -300,14 +323,20 @@ body{
 .seven_row .row_5{
   bottom: 29.5%;
   transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
 }
 .seven_row .row_6{
   bottom: 17%;
   transform: translateX(-50%) rotate(180deg);
+  -webkit-transform: translateX(-50%) rotate(180deg);
+  -ms-transform: translateX(-50%) rotate(180deg);
 }
 .seven_row .row_7{
   bottom: 4.5%;
   transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
 }
 
 .players_cards{
@@ -339,8 +368,6 @@ body{
 .winner{
     background-color: yellow;
 }
-
-
 
 @media screen and (min-width: 1500px){
     .chip::after{
@@ -433,6 +460,8 @@ body{
     }
     .suit{
         transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        -ms-transform: scale(0.4);
     }
     .top .suit, .bottom .suit{
         display: none;
