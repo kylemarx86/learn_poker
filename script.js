@@ -38,6 +38,7 @@ define(function(require){
         });
         $('#clear').click(function(){
             deselect_all_cards();
+            clear_feedback();
         });
         //to open and close the sidenav
         $('#options').click(function(e){
@@ -260,5 +261,8 @@ define(function(require){
 
     function deselect_all_cards(){
         $('.selected').removeClass('selected');
+    }
+    function clear_feedback(){
+        $('.feedback').empty();
     }
 });
