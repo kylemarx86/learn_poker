@@ -38,6 +38,7 @@ define(function(require){
         });
         $('#clear').click(function(){
             deselect_all_cards();
+            clear_feedback();
         });
         //to open and close the sidenav
         $('#options').click(function(e){
@@ -47,7 +48,7 @@ define(function(require){
         $('#sidenav .menu').click(function(e){
             e.stopPropagation();
         });
-        $('#sidenav .background').click(function(e){
+        $('#sidenav .background').click(function(){
             $('#sidenav').removeClass('menu_open');
         });
         // $('body, html').click(function(e){
@@ -260,5 +261,8 @@ define(function(require){
 
     function deselect_all_cards(){
         $('.selected').removeClass('selected');
+    }
+    function clear_feedback(){
+        $('.feedback').empty();
     }
 });
