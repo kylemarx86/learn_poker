@@ -14,8 +14,6 @@ define(function(){
         this.best_hand_name = this.determine_best_hand();
         // console.log(this.best_hand_name);
         // console.log(this.hand_strength);
-
-
     }
     //i could add in a way to sort the cards with associated indices so that I could reference back where the cards are on the DOM. Would require me to store more info earlier.
     player_hand.prototype.sort_cards = function(cards){
@@ -338,7 +336,7 @@ define(function(){
         return this.best_hand_name;
     }
     //incomplete
-    player_hand.prototype.get_strength_of_hand = function(){
+    player_hand.prototype.get_hand_strength = function(){
         return this.hand_strength;
     }
 
@@ -348,7 +346,7 @@ define(function(){
     // values for the return are 0, 1, and 2
         // a value of 0 represents a tie
         // a value of 1 represents 1 means the first hand is stronger
-        // a value of 1 represents 2 means the second hand is stronger
+        // a value of 2 represents 2 means the second hand is stronger
     player_hand.compare_hand_strength = function(arr_1, arr_2){
         if(arr_1.length > 0 && arr_2.length > 0){
             if(arr_1[0] < arr_2[0]){
@@ -393,7 +391,6 @@ define(function(){
         // }else{
         //     //we need to compare
         // }
-        
     }
 
     player_hand.prototype.get_hand_name = function(){
