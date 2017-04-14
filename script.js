@@ -51,9 +51,6 @@ define(function(require){
         $('#sidenav .background').click(function(){
             $('#sidenav').removeClass('menu_open');
         });
-        // $('body, html').click(function(e){
-        //     $('#sidenav').removeClass('menu_open');
-        // });
     }
     //clear fields that need emptying before new fields take their place
     function reset_game_board(){
