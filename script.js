@@ -48,7 +48,7 @@ define(function(require){
         $('#sidenav .menu').click(function(e){
             e.stopPropagation();
         });
-        $('#sidenav .background').click(function(e){
+        $('#sidenav .background').click(function(){
             $('#sidenav').removeClass('menu_open');
         });
         // $('body, html').click(function(e){
