@@ -4,8 +4,15 @@ var app = express();
 
 // app.use(express.static('home.html'));
 
+// app.get('/', (req, res) => {
+//     res.send('home.html')
+// });
+app.set('view engine', 'hbs');
+app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/resources'));
+
 app.get('/', (req, res) => {
-    res.send('home.html')
+    res.render('home.hbs');
 });
 
 // app.get('/', (req, res) => {
