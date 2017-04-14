@@ -25,7 +25,7 @@ define(function(require){
     });
 
     function apply_basic_event_handlers(){
-        $('#deal').click(function(){
+        $('.deal').click(function(){
             //empty game board
             reset_game_board();
             create_game_board();
@@ -48,7 +48,7 @@ define(function(require){
         $('#sidenav .menu').click(function(e){
             e.stopPropagation();
         });
-        $('#sidenav .background').click(function(){
+        $('#sidenav .background, #sidenav .deal').click(function(){
             $('#sidenav').removeClass('menu_open');
         });
     }
