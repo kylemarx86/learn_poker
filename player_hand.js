@@ -328,7 +328,8 @@ define(function(){
         for(var rank = this.ranks_arr.length - 1; rank >= 0 && this.hand_strength.length < 6; rank--){
             //if there is a card of the rank count it towards the strength of the hand
             if(this.ranks_arr[rank] > 0){
-                this.hand_strength.push(rank);
+                //note: highest index of the ranks_arr is 12
+                this.hand_strength.push((this.ranks_arr.length -1) - rank);
             }
         }
     }
