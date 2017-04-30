@@ -6,3 +6,5 @@ Basic layout of cards and diagnostic tools to ensure that hand strengths can be 
 
 Version 1.5:
 Node implementation.
+Responsive display.
+Options side menu to set number of players.
