@@ -9,3 +9,5 @@ Working hand checker and feedback.
 
 Version 1.5:
 Node implementation.
+Responsive display.
+Options side menu to set number of players.
