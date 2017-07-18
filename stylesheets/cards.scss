@@ -13,19 +13,12 @@
 }
 
 .selected{
-    /*box-shadow: 1px 1px 1px black, 0 0 3px 3px red;*/
     box-shadow: 0 0 3px 3px yellow;
 }
 
 
 /*inner area for the picture/emblems is 50% the width of the card and 60% the height*/
-.top, .bottom{
-    position: absolute;
-    height: 50px;
-    width: 25px;
-}
 .rank{
-    /*display: inline-block;*/
     position: absolute;
     top: 0;
     left: 50%;
@@ -39,12 +32,33 @@
     width: 25px;
     height: 25px;
     bottom: 0;
+    &.hearts{
+        background-image: url('../resources/suits/hearts.png');
+        background-size: 100%;
+    }
+    &.spades{
+        background-image: url('../resources/suits/spades.png');
+        background-size: 100%;
+    }
+    &.diamonds{
+        background-image: url('../resources/suits/diamonds.png');
+        background-size: 100%;
+    }
+    &.clubs{
+        background-image: url('../resources/suits/clubs.png');
+        background-size: 100%;
+    }
 }
 .red{
     color: #d40000;
 }
 .black{
     color: black;
+}
+.top, .bottom{
+    position: absolute;
+    height: 50px;
+    width: 25px;
 }
 .top{
     top: 2%;
@@ -68,42 +82,25 @@
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}
-.middle .large{
-    visibility: visible;
-}
-.middle .small{
-    visibility: hidden;
-    left: 50%;
-    top: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-.middle .suit{
-  position: absolute;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
+    .large{
+        visibility: visible;
+    }
+    .small{
+        visibility: hidden;
+        left: 50%;
+        top: 50%;
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    .suit{
+    position: absolute;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    }
 }
 
-
-.suit.hearts{
-  background-image: url('../resources/suits/hearts.png');
-  background-size: 100%;
-}
-.suit.spades{
-  background-image: url('../resources/suits/spades.png');
-  background-size: 100%;
-}
-.suit.diamonds{
-  background-image: url('../resources/suits/diamonds.png');
-  background-size: 100%;
-}
-.suit.clubs{
-  background-image: url('../resources/suits/clubs.png');
-  background-size: 100%;
-}
 
 /*horizontal placement of suits for cards*/
 .col_l{
@@ -118,76 +115,82 @@
 .col_r{
   right: 3%;
 }
-/*vertical placement of suits for cards based on a five row format: ace through 7*/
-.five_row .row_1{
-  top: 4.5%;
-}
-.five_row .row_2{
-  top: 23.25%;
-}
-.five_row .row_3{
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-.five_row .row_4{
-    bottom: 23.25%;
-}
-.five_row .row_5{
-    bottom: 4.5%;
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-.five_row .row_2.col_m{
-    -ms-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-.five_row .col_m.row_3{
-    -ms-transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-}
-.five_row .row_4.col_m{
-    -ms-transform: translateX(-50%) rotate(180deg);
-    -webkit-transform: translateX(-50%) rotate(180deg);
-    transform: translateX(-50%) rotate(180deg);
-}
-.five_row .row_5.col_m{
-    -ms-transform: translateX(-50%) rotate(180deg);
-    -webkit-transform: translateX(-50%) rotate(180deg);
-    transform: translateX(-50%) rotate(180deg);
+/*vertical placement of suits for cards based on a five row format: ace through 8*/
+.five_row {
+    .row_1{
+        top: 4.5%;
+    }
+    .row_2{
+        top: 23.25%;
+    }
+    .row_3{
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .row_4{
+        bottom: 23.25%;
+    }
+    .row_5{
+        bottom: 4.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .col_m{
+        &.row_2{
+            -ms-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        &.row_3{
+            -ms-transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+        &.row_4{
+            -ms-transform: translateX(-50%) rotate(180deg);
+            -webkit-transform: translateX(-50%) rotate(180deg);
+            transform: translateX(-50%) rotate(180deg);
+        }
+        &.row_5{
+            -ms-transform: translateX(-50%) rotate(180deg);
+            -webkit-transform: translateX(-50%) rotate(180deg);
+            transform: translateX(-50%) rotate(180deg);
+        }
+    }
 }
 /*vertical placement of suits for cards based on a seven row format: 9 and 10*/
-.seven_row .row_1{
-    top: 4.5%
-}
-.seven_row .row_2{
-  top: 17%;
-}
-.seven_row .row_3{
-  top: 29.5%
-}
-.seven_row .row_4{
-  top: 42%;
-}
-.seven_row .row_5{
-  bottom: 29.5%;
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-.seven_row .row_6{
-  bottom: 17%;
-  -ms-transform: translateX(-50%) rotate(180deg);
-  -webkit-transform: translateX(-50%) rotate(180deg);
-  transform: translateX(-50%) rotate(180deg);
-}
-.seven_row .row_7{
-  bottom: 4.5%;
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
+.seven_row{
+    .row_1{
+        top: 4.5%
+    }
+    .row_2{
+        top: 17%;
+    }
+    .row_3{
+        top: 29.5%
+    }
+    .row_4{
+        top: 42%;
+    }
+    .row_5{
+        bottom: 29.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .row_6{
+        bottom: 17%;
+        -ms-transform: translateX(-50%) rotate(180deg);
+        -webkit-transform: translateX(-50%) rotate(180deg);
+        transform: translateX(-50%) rotate(180deg);
+    }
+    .row_7{
+        bottom: 4.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
 }
