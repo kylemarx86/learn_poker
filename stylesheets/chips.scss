@@ -6,9 +6,11 @@
     position: relative;
     border-radius: 100%;
     background-color: red;
-    border: 12px dotted white;
+    // border: 12px dotted white;
+    border: 9px dashed white;
     margin: 5px;
     box-shadow: 4px 4px 1px #3b0000;
+    box-sizing: border-box;
     &::after{
         content: '';
         position: absolute;   

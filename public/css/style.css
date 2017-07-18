@@ -6,9 +6,10 @@
   position: relative;
   border-radius: 100%;
   background-color: red;
-  border: 12px dotted white;
+  border: 9px dashed white;
   margin: 5px;
-  box-shadow: 4px 4px 1px #3b0000; }
+  box-shadow: 4px 4px 1px #3b0000;
+  box-sizing: border-box; }
   .chip::after {
     content: '';
     position: absolute;
@@ -341,31 +342,35 @@ body {
 
 @media screen and (min-width: 1500px) {
   .chip::after {
-    top: -13px;
-    left: -13px;
-    right: -13px;
-    bottom: -13px; } }
+    top: -11px;
+    left: -11px;
+    right: -11px;
+    bottom: -11px; } }
 @media screen and (max-width: 1500px) {
   .card {
     width: 125px;
     height: 175px; }
 
   .chip::after {
-    top: -13px;
-    left: -13px;
-    right: -13px;
-    bottom: -13px; } }
+    top: -11px;
+    left: -11px;
+    right: -11px;
+    bottom: -11px; } }
 @media screen and (max-width: 890px) {
   .player .chip {
     width: 75px;
     height: 75px;
-    border-width: 13px; }
+    border-width: 6px;
+    box-shadow: 3px 3px 1px #3b0000; }
 
   .player .chip::after {
-    top: -14px;
-    left: -14px;
-    right: -14px;
-    bottom: -14px; }
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px; }
+
+  .player .chip:hover {
+    box-shadow: 3px 3px 1px #00003b; }
 
   .player .chip .inner {
     font-size: .75em; } }
@@ -389,6 +394,12 @@ body {
   .player .chip {
     width: 50px;
     height: 50px; }
+
+  .player .chip::after {
+    top: -7px;
+    left: -7px;
+    right: -7px;
+    bottom: -7px; }
 
   .player .chip .inner {
     font-size: .65em; } }
