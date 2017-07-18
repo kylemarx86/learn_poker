@@ -6,7 +6,6 @@
     position: relative;
     border-radius: 100%;
     background-color: red;
-    // border: 12px dotted white;
     border: 9px dashed white;
     margin: 5px;
     box-shadow: 4px 4px 1px #3b0000;
@@ -61,4 +60,58 @@
             }
         }
     }
+}
+
+// media queries affecting chips
+@media screen and (min-width: 1500px){
+    .chip::after{
+        top: -11px;
+        left: -11px;
+        right: -11px;
+        bottom: -11px;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .chip::after{
+        top: -11px;
+        left: -11px;
+        right: -11px;
+        bottom: -11px;
+    }
+}
+@media screen and (max-width: 890px) {
+    .player .chip{
+        width: 75px;
+        height: 75px;
+        border-width: 6px;
+        box-shadow: 3px 3px 1px #3b0000;
+        &::after{
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+        }
+        &:hover{
+            box-shadow: 3px 3px 1px #00003b;
+        }
+        .inner{
+            font-size: .75em;
+        }
+    }
+}
+@media screen and (max-width: 730px), (max-height: 560px) {
+    .player .chip{
+        width: 50px;
+        height: 50px;
+        &::after{
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+        }
+        .inner{
+            font-size: .65em;
+        }
+    }
+    
 }

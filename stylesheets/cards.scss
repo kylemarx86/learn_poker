@@ -194,3 +194,46 @@
         transform: rotate(180deg);
     }
 }
+
+// media queries affecting cards
+@media screen and (max-width: 1500px) {
+    .card{
+        width: 125px;
+        height: 175px;
+    }
+}
+
+@media screen and (max-width: 830px), (max-height: 925px)   {
+    .card{
+        width: 100px;
+        height: 140px;
+    }
+    .rank{
+        font-size: 1em;
+    }
+    .top .suit, .bottom .suit{
+        -ms-transform: scale(0.75) translateY(-50%);
+        -webkit-transform: scale(0.75) translateY(-50%);
+        transform: scale(0.75) translateY(-50%);
+    }
+}
+@media screen and (max-width: 730px), (max-height: 560px) {
+    .card{
+        width: 100px;
+        height: 140px;
+    }
+}
+@media screen and (max-width: 685px) {
+    .card{
+        width: 80px;
+        height: 112px;
+    }   
+    .middle{
+        width: 40%;
+        height: 80%;
+    }
+    .middle .suit{
+        width: 12px;
+        height: 12px;
+    }
+}
