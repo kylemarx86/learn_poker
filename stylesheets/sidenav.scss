@@ -1,0 +1,71 @@
+/*sidenav*/
+#sidenav .menu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    background: gray; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(gray, black); /* Standard syntax */
+}
+#sidenav.menu_open .menu{
+    width: 50%;
+}
+#sidenav .background{
+    height: 100%;
+    width: 100%;
+    background-color: #111111;
+    opacity: 0.75;
+    z-index: 9;
+    display: none;
+    top: 0;
+    position: absolute;
+}
+#sidenav.sidenav.menu_open .background{
+    display: inline-block;
+}
+
+/*controls area*/
+#player_slider{
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin: 5px 0;
+    width: 75%;
+    background: #009900;
+}
+#player_slider .ui-slider-handle{
+    background: #11ff00;
+}
+#player_slider label{
+    position: absolute;
+    width: 20px;
+    margin-left: -10px;
+    text-align: center;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+}
+/*buttons in sidenav*/
+#sidenav .buttons{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+}
+#sidenav .buttons .button{
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}

@@ -1,0 +1,64 @@
+/*styling for chip*/
+.chip{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    background-color: red;
+    border: 12px dotted white;
+    margin: 5px;
+    /*box-shadow: 2px 2px 1px black;*/
+    box-shadow: 4px 4px 1px #3b0000;
+    /*z-index: 0;*/
+}
+
+.chip::after {
+    content: '';
+    position: absolute;   
+    background: black;
+    border-radius: 100%;
+    z-index: -1;
+}
+.chip .inner{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.chip:hover{
+    background-color: blue;
+    box-shadow: 4px 4px 1px #00003b;
+}
+.chip span{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.player .chip .inner{
+    font-size: 1em;
+}
+.player .chip .inner .player_text{
+    display: inline-block;
+}
+.player .chip .inner .player_num{
+    display: inline-block;
+}
