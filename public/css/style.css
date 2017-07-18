@@ -8,9 +8,7 @@
   background-color: red;
   border: 12px dotted white;
   margin: 5px;
-  /*box-shadow: 2px 2px 1px black;*/
-  box-shadow: 4px 4px 1px #3b0000;
-  /*z-index: 0;*/ }
+  box-shadow: 4px 4px 1px #3b0000; }
   .chip::after {
     content: '';
     position: absolute;
