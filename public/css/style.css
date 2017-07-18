@@ -89,6 +89,29 @@
       bottom: -7px; }
     .player .chip .inner {
       font-size: .65em; } }
+/*specific media queries*/
+/*portrait - iPad Pro*/
+/*landscape - iPad Pro*/
+/*portrait - iPad*/
+/*landscape - iPad*/
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+  .buttons .chip {
+    width: 75px;
+    height: 75px;
+    border-width: 5px;
+    font-size: 0.8em; }
+    .buttons .chip::after {
+      top: -7px;
+      left: -7px;
+      right: -7px;
+      bottom: -7px; }
+
+  .player .chip .inner {
+    font-size: 2em; }
+    .player .chip .inner .player_text {
+      display: none; } }
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 /*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
 /*media size small */
 .card {
@@ -253,10 +276,6 @@
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg); }
 
-@media screen and (max-width: 1500px) {
-  .card {
-    width: 125px;
-    height: 175px; } }
 @media screen and (max-width: 830px), (max-height: 925px) {
   .card {
     width: 100px;
@@ -269,10 +288,6 @@
     -ms-transform: scale(0.75) translateY(-50%);
     -webkit-transform: scale(0.75) translateY(-50%);
     transform: scale(0.75) translateY(-50%); } }
-@media screen and (max-width: 730px), (max-height: 560px) {
-  .card {
-    width: 100px;
-    height: 140px; } }
 @media screen and (max-width: 685px) {
   .card {
     width: 80px;
@@ -285,6 +300,39 @@
   .middle .suit {
     width: 12px;
     height: 12px; } }
+/*specific media queries*/
+/*portrait - iPad Pro*/
+/*landscape - iPad Pro*/
+/*portrait - iPad*/
+/*landscape - iPad*/
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+  .card {
+    width: 50px;
+    height: 70px; }
+
+  .rank {
+    left: 21%; }
+
+  .suit {
+    -ms-transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4); }
+
+  .top .suit, .bottom .suit {
+    display: none; }
+
+  .middle {
+    width: 45%;
+    height: 50%; }
+    .middle .large {
+      visibility: hidden; }
+    .middle .small {
+      visibility: visible; }
+      .middle .small.suit {
+        width: 20px;
+        height: 20px; } }
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 /*sidenav*/
 #sidenav .menu {
   height: 100%;
