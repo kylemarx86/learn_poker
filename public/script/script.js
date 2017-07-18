@@ -243,14 +243,14 @@ define(function(require){
             feedback_text = `The hand you have selected is a ${selected_hand.get_hand_name()}. `;
             // compare the selected hand to a winning hand
             // note: compare hand strength returns a 0 if it is a tie, otherwise 1 or 2 for first or second of two hands, respectively
-            var winner = player_hand.compare_hand_strength(selected_hand.get_strength_of_hand(), players_hands[winning_players[0]].get_strength_of_hand());
+            var winner = player_hand.compare_hand_strength(selected_hand.get_hand_strength(), players_hands[winning_players[0]].get_hand_strength());
             if(winner === 0){
                 //tie, meaning you've picked a winner
-                feedback_text += "You've picked a winning hand.";
+                feedback_text += `You've picked ${winning_players.length > 1 ? 'a' : 'the'} winning hand.`;
             }else{
                 //you did not pick a winner, there is a better hand out there
                     //if the hand is of the same type as the winning hand, include extra text
-                feedback_text += `There's a better hand ${selected_hand.get_strength_of_hand()[0] === players_hands[winning_players[0]].get_strength_of_hand()[0] ? 'of this type ' :''}out there.`;
+                feedback_text += `There's a better hand ${selected_hand.get_hand_strength()[0] === players_hands[winning_players[0]].get_hand_strength()[0] ? 'of this type ' :''}out there.`;
             }
         }
         $('.feedback').text(feedback_text);
