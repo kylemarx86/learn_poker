@@ -232,20 +232,20 @@
         height: 12px;
     }
 }
-// @media screen and (max-height: 650px) {
-//     .card{
-//         width: 80px;
-//         height: 112px;
-//     }   
-//     // .middle{
-//     //     width: 40%;
-//     //     height: 80%;
-//     // }
-//     // .middle .suit{
-//     //     width: 12px;
-//     //     height: 12px;
-//     // }
-// }
+@media screen and (max-height: 650px) {
+    .card{
+        width: 80px;
+        height: 112px;
+    }   
+    .middle{
+        width: 40%;
+        height: 80%;
+    }
+    .middle .suit{
+        width: 12px;
+        height: 12px;
+    }
+}
 
 
 /*specific media queries*/
