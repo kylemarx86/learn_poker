@@ -140,6 +140,13 @@
   height: 175px;
   margin: 0 2px;
   box-shadow: 1px 1px 1px black; }
+  .card::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url(../resources/cream-paper.png);
+    opacity: 0.15; }
 
 .selected {
   box-shadow: 0 0 3px 3px yellow; }
