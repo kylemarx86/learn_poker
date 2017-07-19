@@ -15,6 +15,16 @@
         border-right: 3px solid #383333;
         box-shadow: 2px 2px 15px 0 black;
         font-family: Damion;
+        h1, h2{
+            text-shadow: 2px 2px 1px #252525;
+        }
+        h1{
+            font-size: 3em;
+            text-align: center;
+        }
+        h2{
+            margin-left: 5%;
+        }
     }
     &.menu_open{
 
