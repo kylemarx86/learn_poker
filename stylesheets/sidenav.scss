@@ -1,0 +1,89 @@
+// sidenav
+#sidenav{
+    .menu{
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        background-color: #5d5757;
+        background-image: url('../resources/dark-leather.png');
+        box-sizing: border-box;
+        // border-right: 3px solid #383333;
+        // box-shadow: 2px 2px 15px 0 black;
+        font-family: Damion;
+        h1, h2{
+            text-shadow: 2px 2px 1px #252525;
+        }
+        h1{
+            font-size: 3em;
+            text-align: center;
+        }
+        h2{
+            margin-left: 5%;
+        }
+    }
+    &.menu_open{
+
+        .menu{
+            width: 50%;
+            border-right: 3px solid #383333;
+            box-shadow: 2px 2px 15px 0 black;
+        }
+        .background{
+            display: inline-block;
+        }
+    }
+    .background{
+        height: 100%;
+        width: 100%;
+        background-color: #111111;
+        opacity: 0.75;
+        z-index: 9;
+        display: none;
+        top: 0;
+        position: absolute;
+    }
+    // buttons in sidenav
+    .buttons{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        .button{
+            position: absolute;
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+    }
+}
+
+// controls area
+#player_slider{
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin: 5px 0;
+    width: 75%;
+    background: #009900;
+    .ui-slider-handle{
+        background: #11ff00;
+    }
+    label{
+        position: absolute;
+        width: 20px;
+        margin-left: -10px;
+        text-align: center;
+        margin-top: 20px;
+        color: black;
+        font-weight: bold;
+    }
+}

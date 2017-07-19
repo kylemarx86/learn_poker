@@ -1,0 +1,331 @@
+/*height to width ratio of playing card is 3.5 inches to 2.5 inches which is equivalent to 7 to 5*/
+/*media size small */
+.card{
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 125px;
+    height: 175px;
+    margin: 0 2px;
+    box-shadow: 1px 1px 1px black;
+    &::after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url(../resources/cream-paper.png);
+        opacity: 0.15;
+    }
+}
+
+
+.selected{
+    box-shadow: 0 0 3px 3px yellow;
+}
+
+
+/*inner area for the picture/emblems is 50% the width of the card and 60% the height*/
+.rank{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 1.5em;
+}
+.suit{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    bottom: 0;
+    &.hearts{
+        background-image: url('../resources/suits/hearts.png');
+        background-size: 100%;
+    }
+    &.spades{
+        background-image: url('../resources/suits/spades.png');
+        background-size: 100%;
+    }
+    &.diamonds{
+        background-image: url('../resources/suits/diamonds.png');
+        background-size: 100%;
+    }
+    &.clubs{
+        background-image: url('../resources/suits/clubs.png');
+        background-size: 100%;
+    }
+}
+.red{
+    color: #d40000;
+}
+.black{
+    color: black;
+}
+.top, .bottom{
+    position: absolute;
+    height: 50px;
+    width: 25px;
+}
+.top{
+    top: 2%;
+    left: 2%;
+}
+.bottom{
+    bottom: 2%;
+    right: 2%;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.middle{
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 125px;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    .large{
+        visibility: visible;
+    }
+    .small{
+        visibility: hidden;
+        left: 50%;
+        top: 50%;
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    .suit{
+    position: absolute;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    }
+}
+
+
+/*horizontal placement of suits for cards*/
+.col_l{
+  left: 3%;
+}
+.col_m{
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.col_r{
+  right: 3%;
+}
+/*vertical placement of suits for cards based on a five row format: ace through 8*/
+.five_row {
+    .row_1{
+        top: 4.5%;
+    }
+    .row_2{
+        top: 23.25%;
+    }
+    .row_3{
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .row_4{
+        bottom: 23.25%;
+    }
+    .row_5{
+        bottom: 4.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .col_m{
+        &.row_2{
+            -ms-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        &.row_3{
+            -ms-transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+        &.row_4{
+            -ms-transform: translateX(-50%) rotate(180deg);
+            -webkit-transform: translateX(-50%) rotate(180deg);
+            transform: translateX(-50%) rotate(180deg);
+        }
+        &.row_5{
+            -ms-transform: translateX(-50%) rotate(180deg);
+            -webkit-transform: translateX(-50%) rotate(180deg);
+            transform: translateX(-50%) rotate(180deg);
+        }
+    }
+}
+/*vertical placement of suits for cards based on a seven row format: 9 and 10*/
+.seven_row{
+    .row_1{
+        top: 4.5%
+    }
+    .row_2{
+        top: 17%;
+    }
+    .row_3{
+        top: 29.5%
+    }
+    .row_4{
+        top: 42%;
+    }
+    .row_5{
+        bottom: 29.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .row_6{
+        bottom: 17%;
+        -ms-transform: translateX(-50%) rotate(180deg);
+        -webkit-transform: translateX(-50%) rotate(180deg);
+        transform: translateX(-50%) rotate(180deg);
+    }
+    .row_7{
+        bottom: 4.5%;
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-width: 830px), (max-height: 925px)   {
+    .card{
+        width: 100px;
+        height: 140px;
+    }
+    .rank{
+        font-size: 1em;
+    }
+    .top .suit, .bottom .suit{
+        -ms-transform: scale(0.75) translateY(-50%);
+        -webkit-transform: scale(0.75) translateY(-50%);
+        transform: scale(0.75) translateY(-50%);
+    }
+}
+@media screen and (max-width: 685px) {
+    .card{
+        width: 80px;
+        height: 112px;
+    }
+    .middle{
+        width: 40%;
+        height: 80%;
+    }
+    .middle .suit{
+        width: 12px;
+        height: 12px;
+    }
+}
+// @media screen and (max-height: 650px) {
+//     .card{
+//         width: 80px;
+//         height: 112px;
+//     }   
+//     // .middle{
+//     //     width: 40%;
+//     //     height: 80%;
+//     // }
+//     // .middle .suit{
+//     //     width: 12px;
+//     //     height: 12px;
+//     // }
+// }
+
+
+/*specific media queries*/
+/*portrait - iPad Pro*/
+@media screen and (orientation: portrait) and (width: 1024px) and (height: 1366px){
+
+}
+/*landscape - iPad Pro*/
+@media screen and (width: 1366px) and (height: 1024px) {
+
+}
+/*portrait - iPad*/
+@media screen and (width: 980px) and (height: 1306px) {
+
+}
+/*landscape - iPad*/
+@media screen and (width: 1306px) and (height: 980px) {
+
+}
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+    .card{
+        width: 50px;
+        height: 70px;
+    }
+    .rank{
+        left: 21%;
+    }
+    .suit{
+        -ms-transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+    }
+    .top .suit, .bottom .suit{
+        display: none;
+    }
+    .middle{
+        width: 45%;
+        height: 50%;
+        .large{
+            visibility: hidden;
+        }
+        .small{
+            visibility: visible;
+            &.suit{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (max-height: 555px){
+    .card{
+        width: 50px;
+        height: 70px;
+    }
+    .rank{
+        left: 21%;
+    }
+    .suit{
+        -ms-transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+    }
+    .top .suit, .bottom .suit{
+        display: none;
+    }
+    .middle{
+        width: 45%;
+        height: 50%;
+        .large{
+            visibility: hidden;
+        }
+        .small{
+            visibility: visible;
+            &.suit{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
