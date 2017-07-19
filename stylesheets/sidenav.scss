@@ -13,6 +13,8 @@
     background-image: url('../resources/dark-leather.png');
     border-right: 3px solid #383333;
     box-shadow: 2px 2px 15px 0 black;
+    font-family: Damion;
+
 }
 #sidenav.menu_open .menu{
     width: 50%;
@@ -27,7 +29,7 @@
     top: 0;
     position: absolute;
 }
-#sidenav.sidenav.menu_open .background{
+#sidenav.menu_open .background{
     display: inline-block;
 }
 
