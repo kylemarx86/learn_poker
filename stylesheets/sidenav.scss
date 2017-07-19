@@ -48,9 +48,8 @@
     }
     // buttons in sidenav
     .buttons{
-        position: absolute;
-        top: 50%;
-        left: 0;
+        position: relative;
+        margin-top: 10%;
         width: 100%;
         .button{
             position: absolute;
@@ -84,4 +83,22 @@
         color: black;
         font-weight: bold;
     }
+}
+
+
+/*portrait -  iPhone 5*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 600px) {
+    
+}
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 601px) and (max-height: 1743px) {
+
+}
+/*landscape - iPhone 5*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (max-height: 350px){
+   
+}
+/*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (min-height: 351px) and (max-height: 555px){
+
 }

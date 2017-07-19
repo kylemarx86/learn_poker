@@ -509,9 +509,8 @@
   top: 0;
   position: absolute; }
 #sidenav .buttons {
-  position: absolute;
-  top: 50%;
-  left: 0;
+  position: relative;
+  margin-top: 10%;
   width: 100%; }
   #sidenav .buttons .button {
     position: absolute;
@@ -540,6 +539,10 @@
     color: black;
     font-weight: bold; }
 
+/*portrait -  iPhone 5*/
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+/*landscape - iPhone 5*/
+/*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 html, body {
   margin: 0;
   width: 100%;
@@ -614,7 +617,5 @@ body {
 /*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 /*landscape - iPhone 5*/
 /*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-/*media query i need to change for screen orientation*/
-/*old*/
 
 /*# sourceMappingURL=style.css.map */
