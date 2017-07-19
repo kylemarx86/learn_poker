@@ -266,7 +266,7 @@
 
 }
 /*portrait -  iPhone 5*/
-@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 600px) {
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 600px) {
     .card{
         width: 40px;
         height: 56px;
@@ -299,7 +299,7 @@
     }
 }
 /*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 600px) and (max-height: 1743px) {
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 601px) and (max-height: 1743px) {
     .card{
         width: 50px;
         height: 70px;
@@ -331,7 +331,7 @@
     }
 }
 /*landscape - iPhone 5*/
-@media screen and (max-width: 980px) and (max-height: 50px){
+@media screen and (orientation: landscape) and (max-width: 980px) and (max-height: 350px){
     .card{
         width: 45px;
         height: 60px;
@@ -363,7 +363,7 @@
     }
 }
 /*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (max-width: 980px) and (max-height: 555px){
+@media screen and (orientation: landscape) and (max-width: 980px) and (min-height: 351px) and (max-height: 555px){
     .card{
         width: 50px;
         height: 70px;
