@@ -94,8 +94,25 @@
 /*landscape - iPad Pro*/
 /*portrait - iPad*/
 /*landscape - iPad*/
-/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+/*portrait -  iPhone 5*/
+@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 600px) {
+  .buttons .chip {
+    width: 60px;
+    height: 60px;
+    border-width: 5px;
+    font-size: 0.8em; }
+    .buttons .chip::after {
+      top: -7px;
+      left: -7px;
+      right: -7px;
+      bottom: -7px; }
+
+  .player .chip .inner {
+    font-size: 2em; }
+    .player .chip .inner .player_text {
+      display: none; } }
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (min-height: 600px) and (max-height: 1743px) {
   .buttons .chip {
     width: 75px;
     height: 75px;
@@ -328,8 +345,36 @@
 /*landscape - iPad Pro*/
 /*portrait - iPad*/
 /*landscape - iPad*/
-/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+/*portrait -  iPhone 5*/
+@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 600px) {
+  .card {
+    width: 40px;
+    height: 56px; }
+
+  .rank {
+    left: 21%;
+    font-size: 0.8em; }
+
+  .suit {
+    -ms-transform: scale(0.3);
+    -webkit-transform: scale(0.3);
+    transform: scale(0.3); }
+
+  .top .suit, .bottom .suit {
+    display: none; }
+
+  .middle {
+    width: 45%;
+    height: 50%; }
+    .middle .large {
+      visibility: hidden; }
+    .middle .small {
+      visibility: visible; }
+      .middle .small.suit {
+        width: 20px;
+        height: 20px; } }
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 600px) and (max-height: 1743px) {
   .card {
     width: 50px;
     height: 70px; }
@@ -506,6 +551,16 @@ body {
 .winner {
   background-color: yellow; }
 
+/*specific media queries*/
+/*portrait - iPad Pro*/
+/*landscape - iPad Pro*/
+/*portrait - iPad*/
+/*landscape - iPad*/
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+  .title {
+    font-size: 2em; } }
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 /*media query i need to change for screen orientation*/
 /*old*/
 
