@@ -95,7 +95,7 @@
 /*portrait - iPad*/
 /*landscape - iPad*/
 /*portrait -  iPhone 5*/
-@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 600px) {
+@media screen and (max-width: 980px) and (max-height: 600px) {
   .buttons .chip {
     width: 60px;
     height: 60px;
@@ -112,7 +112,7 @@
     .player .chip .inner .player_text {
       display: none; } }
 /*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (max-width: 980px) and (min-height: 600px) and (max-height: 1743px) {
+@media screen and (max-width: 980px) and (min-height: 601px) and (max-height: 1743px) {
   .buttons .chip {
     width: 75px;
     height: 75px;
@@ -128,8 +128,26 @@
     font-size: 2em; }
     .player .chip .inner .player_text {
       display: none; } }
+/*landscape - iPhone 5*/
+@media screen and (max-width: 980px) and (max-height: 500px) {
+  .buttons .chip {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+    font-size: 0.65em;
+    box-shadow: 3px 3px 1px #3b0000; }
+    .buttons .chip::after {
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px; }
+
+  .player .chip .inner {
+    font-size: 2em; }
+    .player .chip .inner .player_text {
+      display: none; } }
 /*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (max-width: 980px) and (max-height: 555px) {
+@media screen and (max-width: 980px) and (min-height: 501px) and (max-height: 555px) {
   .buttons .chip {
     width: 75px;
     height: 75px;
@@ -400,7 +418,34 @@
       .middle .small.suit {
         width: 20px;
         height: 20px; } }
-/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+/*landscape - iPhone 5*/
+@media screen and (max-width: 980px) and (max-height: 50px) {
+  .card {
+    width: 45px;
+    height: 60px; }
+
+  .rank {
+    left: 21%; }
+
+  .suit {
+    -ms-transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4); }
+
+  .top .suit, .bottom .suit {
+    display: none; }
+
+  .middle {
+    width: 45%;
+    height: 50%; }
+    .middle .large {
+      visibility: hidden; }
+    .middle .small {
+      visibility: visible; }
+      .middle .small.suit {
+        width: 20px;
+        height: 20px; } }
+/*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 @media screen and (max-width: 980px) and (max-height: 555px) {
   .card {
     width: 50px;
@@ -561,6 +606,9 @@ body {
   .title {
     font-size: 2em; } }
 /*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (max-height: 555px) {
+  .title {
+    font-size: 1em; } }
 /*media query i need to change for screen orientation*/
 /*old*/
 
