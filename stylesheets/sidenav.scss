@@ -12,8 +12,9 @@
         padding-top: 60px;
         background-color: #5d5757;
         background-image: url('../resources/dark-leather.png');
-        border-right: 3px solid #383333;
-        box-shadow: 2px 2px 15px 0 black;
+        box-sizing: border-box;
+        // border-right: 3px solid #383333;
+        // box-shadow: 2px 2px 15px 0 black;
         font-family: Damion;
         h1, h2{
             text-shadow: 2px 2px 1px #252525;
@@ -30,6 +31,8 @@
 
         .menu{
             width: 50%;
+            border-right: 3px solid #383333;
+            box-shadow: 2px 2px 15px 0 black;
         }
         .background{
             display: inline-block;
