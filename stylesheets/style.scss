@@ -12,6 +12,13 @@ body{
     background-image: url('../resources/felt.png');
 }
 
+.title{
+    font-family: 'Sigmar One', cursive;
+    font-size: 3em;
+    color: #ec0000;
+    text-shadow: 2px 2px 1px #252525;
+    text-align: center;
+}
 .community_cards{
     margin: 10px;
     display: inline-block;
