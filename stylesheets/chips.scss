@@ -10,6 +10,7 @@
     margin: 5px;
     box-shadow: 4px 4px 1px #3b0000;
     box-sizing: border-box;
+    cursor: pointer;
     &::after{
         content: '';
         position: absolute;   

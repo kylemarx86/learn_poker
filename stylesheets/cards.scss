@@ -10,6 +10,7 @@
     height: 175px;
     margin: 0 2px;
     box-shadow: 1px 1px 1px black;
+    cursor: pointer;
     &::after{
         content: '';
         position: absolute;
