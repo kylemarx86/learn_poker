@@ -1,14 +1,19 @@
 // sidenav
 #sidenav{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
     .menu{
         height: 100%;
-        width: 0;
-        position: fixed;
+        width: 50%;
+        position: absolute;
         z-index: 10;
         top: 0;
-        left: 0;
-        overflow-x: hidden;
-        transition: 0.5s;
+        left: -100%;
+        transition: all 0.5s ease-in;
         background-color: #5d5757;
         background-image: url('../resources/dark-leather.png');
         box-sizing: border-box;
@@ -25,8 +30,10 @@
         }
     }
     &.menu_open{
+        display: inline-block;
+        visibility: visible;
         .menu{
-            width: 50%;
+            left: 0;
             border-right: 3px solid #383333;
             box-shadow: 2px 2px 15px 0 black;
         }
