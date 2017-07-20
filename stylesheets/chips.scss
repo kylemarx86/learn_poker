@@ -1,0 +1,220 @@
+/*styling for chip*/
+.chip{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    background-color: red;
+    border: 9px dashed white;
+    margin: 5px;
+    box-shadow: 4px 4px 1px #3b0000;
+    box-sizing: border-box;
+    &::after{
+        content: '';
+        position: absolute;   
+        background: black;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    &:hover{
+        background-color: blue;
+        box-shadow: 4px 4px 1px #00003b;
+    }
+    .inner{
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 100%;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid black;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    span{
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+.player{
+    .chip{
+        .inner{
+            font-size: 1em;
+            .player_num, .player_text{
+                display: inline-block;
+            }
+        }
+    }
+}
+
+// media queries affecting chips
+@media screen and (min-width: 1500px){
+    .chip::after{
+        top: -11px;
+        left: -11px;
+        right: -11px;
+        bottom: -11px;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .chip::after{
+        top: -11px;
+        left: -11px;
+        right: -11px;
+        bottom: -11px;
+    }
+}
+@media screen and (max-width: 890px) {
+    .player .chip{
+        width: 75px;
+        height: 75px;
+        border-width: 6px;
+        box-shadow: 3px 3px 1px #3b0000;
+        &::after{
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+        }
+        &:hover{
+            box-shadow: 3px 3px 1px #00003b;
+        }
+        .inner{
+            font-size: .75em;
+        }
+    }
+}
+@media screen and (max-width: 730px), (max-height: 560px) {
+    .player .chip{
+        width: 50px;
+        height: 50px;
+        &::after{
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+        }
+        .inner{
+            font-size: .65em;
+        }
+    }
+    
+}
+
+/*specific media queries*/
+/*portrait - iPad Pro*/
+@media screen and (orientation: portrait) and (width: 1024px) and (height: 1366px){
+
+}
+/*landscape - iPad Pro*/
+@media screen and (width: 1366px) and (height: 1024px) {
+
+}
+/*portrait - iPad*/
+@media screen and (width: 980px) and (height: 1306px) {
+
+}
+/*landscape - iPad*/
+@media screen and (width: 1306px) and (height: 980px) {
+
+}
+/*portrait -  iPhone 5*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 600px) {
+    .buttons .chip{
+        width: 60px;
+        height: 60px;
+        border-width: 5px;
+        font-size: 0.75em;
+        &::after{
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+        }
+    }
+    .player .chip .inner{
+        font-size: 2em;
+        .player_text{
+            display: none;
+        }
+    }
+}
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 601px) and (max-height: 1743px) {
+    .buttons .chip{
+        width: 75px;
+        height: 75px;
+        border-width: 5px;
+        font-size: 0.8em;
+        &::after{
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+        }
+    }
+    .player .chip .inner{
+        font-size: 2em;
+        .player_text{
+            display: none;
+        }
+    }
+}
+/*landscape - iPhone 5*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (max-height: 350px){
+    .buttons .chip{
+        width: 50px;
+        height: 50px;
+        border-width: 5px;
+        font-size: 0.65em;
+        box-shadow: 3px 3px 1px #3b0000;
+        &::after{
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+        }
+    }
+    .player .chip .inner{
+        font-size: 2em;
+        .player_text{
+            display: none;
+        }
+    }
+}
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (min-height: 351px) and (max-height: 555px){
+    .buttons .chip{
+        width: 75px;
+        height: 75px;
+        border-width: 5px;
+        font-size: 0.8em;
+        &::after{
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+        }
+    }
+    .player .chip .inner{
+        font-size: 2em;
+        .player_text{
+            display: none;
+        }
+    }
+}

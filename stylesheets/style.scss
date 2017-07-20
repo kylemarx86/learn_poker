@@ -1,0 +1,108 @@
+@import 'chips';
+@import 'cards';
+@import 'sidenav';
+
+html, body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+body{
+    background-color: #007739;
+    background-image: url('../resources/felt.png');
+}
+
+.title{
+    font-family: 'Sigmar One', cursive;
+    font-size: 3em;
+    color: #ec0000;
+    text-shadow: 2px 2px 1px #252525;
+    text-align: center;
+}
+.community_cards{
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.buttons{
+    display: inline-block;
+}
+.feedback{
+    display: inline-block;
+    font-size: 1.25em;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.players_cards{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;    
+}
+.player{
+    width: calc(50% - 10px);
+    height: calc(50% - 10px);
+    margin: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+}
+/*only for testing*/
+.winner{
+    background-color: yellow;
+}
+
+
+
+// media queries affecting main style page
+@media screen and (min-width: 1500px){
+
+}
+@media screen and (max-width: 1500px) {
+
+}
+@media screen and (max-width: 890px) {
+
+}
+@media screen and (max-width: 730px), (max-height: 560px) {
+
+}
+
+/*specific media queries*/
+/*portrait - iPad Pro*/
+@media screen and (orientation: portrait) and (width: 1024px) and (height: 1366px){
+
+}
+/*landscape - iPad Pro*/
+@media screen and (width: 1366px) and (height: 1024px) {
+
+}
+/*portrait - iPad*/
+@media screen and (width: 980px) and (height: 1306px) {
+
+}
+/*landscape - iPad*/
+@media screen and (width: 1306px) and (height: 980px) {
+
+}
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+    .title{
+        font-size: 2em;
+    }
+}
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (max-width: 980px) and (max-height: 555px){
+    .title{
+        font-size: 1em;
+    }
+}
