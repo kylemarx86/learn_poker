@@ -232,20 +232,20 @@
         height: 12px;
     }
 }
-// @media screen and (max-height: 650px) {
-//     .card{
-//         width: 80px;
-//         height: 112px;
-//     }   
-//     // .middle{
-//     //     width: 40%;
-//     //     height: 80%;
-//     // }
-//     // .middle .suit{
-//     //     width: 12px;
-//     //     height: 12px;
-//     // }
-// }
+@media screen and (max-height: 650px) {
+    .card{
+        width: 80px;
+        height: 112px;
+    }   
+    .middle{
+        width: 40%;
+        height: 80%;
+    }
+    .middle .suit{
+        width: 12px;
+        height: 12px;
+    }
+}
 
 
 /*specific media queries*/
@@ -265,8 +265,41 @@
 @media screen and (width: 1306px) and (height: 980px) {
 
 }
-/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 556px) and (max-height: 1743px) {
+/*portrait -  iPhone 5*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 600px) {
+    .card{
+        width: 40px;
+        height: 56px;
+    }
+    .rank{
+        left: 21%;
+        font-size: 0.8em;
+    }
+    .suit{
+        -ms-transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        transform: scale(0.3);
+    }
+    .top .suit, .bottom .suit{
+        display: none;
+    }
+    .middle{
+        width: 45%;
+        height: 50%;
+        .large{
+            visibility: hidden;
+        }
+        .small{
+            visibility: visible;
+            &.suit{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+/*portrait -  iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (min-height: 601px) and (max-height: 1743px) {
     .card{
         width: 50px;
         height: 70px;
@@ -297,8 +330,40 @@
         }
     }
 }
-/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
-@media screen and (max-width: 980px) and (max-height: 555px){
+/*landscape - iPhone 5*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (max-height: 350px){
+    .card{
+        width: 45px;
+        height: 60px;
+    }
+    .rank{
+        left: 21%;
+    }
+    .suit{
+        -ms-transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+    }
+    .top .suit, .bottom .suit{
+        display: none;
+    }
+    .middle{
+        width: 45%;
+        height: 50%;
+        .large{
+            visibility: hidden;
+        }
+        .small{
+            visibility: visible;
+            &.suit{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+/*landscape - iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
+@media screen and (orientation: landscape) and (max-width: 980px) and (min-height: 351px) and (max-height: 555px){
     .card{
         width: 50px;
         height: 70px;
