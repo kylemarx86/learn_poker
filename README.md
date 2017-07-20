@@ -17,12 +17,12 @@ Upon each deal 2 cards will be given to each of the active players and 5 will be
 - Basic layout of cards and diagnostic tools to ensure that hand strengths can be identified.
 
 #### Version 1.0:
-- Complete gameplay with feedback.
+- Working hand checker with feedback.
 
 #### Version 1.5:
 - Node implementation.
 - Responsive display.
-- Options side menu to set number of players.
+- Side menu with option to set number of players.
 
 #### Version 1.6:
 - SASS implementation.
