@@ -1,6 +1,6 @@
-define(['player_hand'], function(){
-    "use strict";
+var card = require('./card2.js');
 
+module.exports.player_hand = function() {
     // hand_strength will be an array that will hold different pieces of information. 
         // the first piece of info wil be held in the first index and will relate to the type of hand the player has
         // hands will be given points as follows: 0 = straight flush, 1 = four of a kind, 2 = full house, 3 = flush, 4 = straight, 5 = three of a kind, 6 = two pairs, 7 = pair, 8 = high card
@@ -425,5 +425,5 @@ define(['player_hand'], function(){
         }
     }
 
-    return player_hand;
-});
+    // return player_hand;
+}

@@ -1,4 +1,4 @@
-define(['card'], function(){
+define(function(){
     "use strict";
     // var card = function() {
     function card(number_in_deck, dom_index){

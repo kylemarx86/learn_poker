@@ -1,4 +1,4 @@
-define(['player_hand'], function(){
+define(function(){
     "use strict";
 
     // hand_strength will be an array that will hold different pieces of information. 

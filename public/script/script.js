@@ -1,8 +1,37 @@
 define(function(require){
     // "use strict";
 
-    var card = require('card');
-    var player_hand = require('player_hand');
+    // var card = require('card');
+    // var player_hand = require('player_hand');
+    // const card = require('./public/script/card');
+// const express = require('express');
+    const card = require('./card');      //works
+    // const card = require('/utils/card6.js');
+    // const card = require('./card4.js');
+    // const card = require('/card');      
+    // const card = require('/../../public/script/card');
+    // const card = require('./utils/card2');
+
+    // var card = require('./utils/card2.js');
+    // var card = require('/utils/card2.js');
+    // var card = require('./utils/card2');
+    // var card = require('/utils/card2');
+
+    // var card = require('../../utils/card2.js');
+    // var card = require('../../utils/card2');
+    // var card = require('../utils/card2');
+    // var card = require('../utils/card2.js');
+
+    // var card = require('../../utils/card3.js');
+    // var card = require('../utils/card3.js');
+    // var card = require('../../utils/card3');
+    // var card = require('./utils/card3.js');
+    // var card = require('./utils/card3');
+
+    // var card = require('../../utils/card2');
+    const player_hand = require('./player_hand');
+
+// import Card from './utils/card2';
 
     var num_of_players = null;
     var number_of_cards = null;    //number of cards to deal out, determined by the number of players, hardcoded for now
