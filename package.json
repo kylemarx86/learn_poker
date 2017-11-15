@@ -4,7 +4,7 @@
   "description": "An educational device to learn to play poker learning to identify possible hands.",
   "main": "script.js",
   "scripts": {
-    "test": "mocha **/*.test.js",
+    "test": "mocha public/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "repository": {
@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/kylemarx86/learn_poker#readme",
   "devDependencies": {
+    "amd-loader": "^0.0.8",
     "expect": "^1.20.2",
+    "jquery": "^3.2.1",
+    "jsdom": "11.3.0",
+    "jsdom-global": "3.0.2",
     "mocha": "^3.5.3",
-    "rewire": "^2.5.2",
-    "amd-loader": "^0.0.8"
+    "rewire": "^2.5.2"
   },
   "dependencies": {
     "express": "^4.15.2",
