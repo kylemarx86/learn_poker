@@ -7,19 +7,11 @@ define(function(require){
 
     var game_instance = null; 
 
-    var num_of_players = null;
-    var number_of_cards = null;    //number of cards to deal out, determined by the number of players, hardcoded for now
-    // var cards = [];             //an array of cards dealt out        // move to game
-    // var community_cards = [];   //an array of cards dealt out. A subset of cards, that all players share
-    // var players_hands = [];     //array of objects each with a players hand
-    // var strenth_arr = [];       //an array of the strengths of each of the players hands
-    // var selected_cards = [];    //an array of cards the user has selected. //i can directly convert them to card objects//   The stored values are the indices associated with the cards in the DOM
-    // var selected_hand = [];
-    // var winning_players = [];
+    var num_players = null;
 
     $(document).ready(function(){
-        num_of_players = 4;
-        game_instance = new game(num_of_players);
+        num_players = 4;
+        game_instance = new game(num_players);
         
         apply_basic_event_handlers();
         set_up_slider();
@@ -78,7 +70,7 @@ define(function(require){
     }
 
     function update_number_of_players(){
-        num_of_players = $('#player_slider').slider("option", "value");
+        num_players = $('#player_slider').slider("option", "value");
     }
 
     //set up slider
@@ -111,7 +103,7 @@ define(function(require){
     // creates areas for players hands based on number of players/cards
     function create_player_areas(){
         var $player_area = $('.players_cards');
-        for(var i = 0; i < num_of_players; i++){
+        for(var i = 0; i < num_players; i++){
             var $player = $('<div>').addClass('player').addClass(`player_${i}`);
             $player.append(create_player_chip(i));
             // only for diagnostics
@@ -162,7 +154,7 @@ define(function(require){
     // only for diagnostics
     function show_best_hands(){
         // create arrays for player hands
-        for(var i = 0; i < num_of_players; i++){
+        for(var i = 0; i < num_players; i++){
             $('.player_' + i + ' .best_hand').text(players_hands[i].display_best_hand());
         }
         // console.log('index of winning players: ', winning_players);
