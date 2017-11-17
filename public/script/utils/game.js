@@ -16,15 +16,20 @@ define(['./card', './player_hand'] , function(card, player_hand){
     }
 
     game.prototype.deal_cards = function(){
-        var num_cards = 5 + 2 * this.num_players;
+        // empty array of cards in play
         this.cards = [];
+        // pick cards from deck
+        this.pick_cards();        
+        // create players_hands
+        this.create_hands();
+    }
+    game.prototype.pick_cards = function(){
+        var num_cards = 5 + 2 * this.num_players;
         //create array representing full deck of cards
         var deck_arr = [];
         for(var i = 0; i < 52; i++){
             deck_arr[i] = i;
         }
-
-        //consider moving to a separate function
         for(var i = 0; i < num_cards; i++){
             //find index of card to take from remaining deck
             var arr_index = Math.floor(Math.random()*deck_arr.length);
@@ -33,8 +38,9 @@ define(['./card', './player_hand'] , function(card, player_hand){
             //assign card value to card
             this.cards[i] = new card(card_val, i);
         }
+    }
 
-        // create players_hands
+    game.prototype.create_hands = function(){
         this.community_cards = [this.cards[0].get_card(), this.cards[1].get_card(), this.cards[2].get_card(), this.cards[3].get_card(), this.cards[4].get_card()];
         var players_cards_arr = [];
         this.players_hands = [];
