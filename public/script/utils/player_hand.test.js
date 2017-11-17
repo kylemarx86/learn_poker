@@ -1,7 +1,6 @@
 const expect = require('expect');
 const rewire = require('rewire');
 
-var card = rewire('./card');
 var player_hand = rewire('./player_hand');
 
 describe('player_hand', () => {

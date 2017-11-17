@@ -1,6 +1,6 @@
 define(function(){
     "use strict";
-    // var card = function() {
+    
     function card(number_in_deck, dom_index){
         this.number_in_deck = number_in_deck;
         this.dom_index = dom_index;
@@ -120,7 +120,6 @@ define(function(){
         $div.addClass(this.suit);
     }
 
-
     card.prototype.add_pips_to_middle = function(){
         //identify the middle section div
         var $div = $('.card_' + this.dom_index + ' .middle');
@@ -162,7 +161,6 @@ define(function(){
             
         }
     }
-
 
     //individual methods to add a number of suits to the middle 
     card.prototype.add_2 = function($main){
@@ -327,7 +325,6 @@ define(function(){
         $pip[9].addClass('row_6').addClass('col_m');
         $main.append($div);
     }
-
 
     // these temporarily do NOTHING
     card.prototype.add_J = function($main){}

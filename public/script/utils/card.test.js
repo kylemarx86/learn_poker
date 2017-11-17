@@ -4,10 +4,6 @@ require("amd-loader");
 var amd = require("./amd");
 
 var card = rewire('./card');
-// var card = rewire('./card');
-
-
-// // const hands = require('./public/script/player_hand');
 
 describe('card', () => {
     var ind_card = {
