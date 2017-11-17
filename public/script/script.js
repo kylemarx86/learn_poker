@@ -1,12 +1,9 @@
 define(function(require){
     "use strict";
 
-    const card = require('./utils/card');
-    const player_hand = require('./utils/player_hand');
     const game = require('./utils/game');
 
     var game_instance = null; 
-
     var num_players = null;
 
     $(document).ready(function(){
