@@ -1,8 +1,8 @@
-define(function(){
+define(['./card', './player_hand'] , function(card, player_hand){
     "use strict";
-    
-    const card = require('./utils/card');
-    const player_hand = require('./utils/player_hand');
+
+    // const card = require('./utils/card');
+    // const player_hand = require('./utils/player_hand');
 
     function game(num_players){
         this.num_players = num_players;
