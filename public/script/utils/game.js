@@ -38,6 +38,18 @@ define(['./card', './player_hand'] , function(card, player_hand){
             //assign card value to card
             this.cards[i] = new card(card_val, i);
         }
+
+        // // for testing
+        // var test_cards = [4,14,16,42,51, 2,38,43,44];    //two pairs
+        // var test_cards = [0,20,32,34,37, 27,28,30,36];   //flush
+        // var test_cards = [3,9,10,11,12, 8,18,19,20];         //ace high straight flush
+        // var test_cards = [0,1,2,32,12, 3,18,19,20];         //ace low straight flush
+        // var test_cards = [0,14,2,32,12, 3,18,19,20];         //ace low straight
+
+        // for(var i = 0; i < test_cards.length; i++){
+        //     //assign card value to card
+        //     this.cards[i] = new card(test_cards[i], i);
+        // }
     }
 
     game.prototype.create_hands = function(){
