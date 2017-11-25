@@ -135,7 +135,6 @@ describe('player_hand', () => {
                 });
             });
         });
-
     });
 
     describe('FOUR OF A KIND', () => {
@@ -200,10 +199,142 @@ describe('player_hand', () => {
                 });
             });
         });
+    });
 
+    describe('FULL HOUSE', () => {
+        var hand_type = 'full house';
+        describe('expect to find', () => {
+            describe(hand_type, () => {
+                it(`should find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(full_house);
+                    expect(hand.display_best_hand()).toBe(hand_type);
+                });
+            });
+        });
+
+        describe('expect NOT to find', () => {
+            describe('Check straight flush', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(straight_flush_5_h);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight flush');
+                });
+            });
+            describe('Check four of a kind house', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(four_of_a_kind);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
+                });
+            });
+            describe('Check flush', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(flush);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
+                });
+            });
+
+            describe('Check straight', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(straight_5_h);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
+                });
+            });
+            describe('Check three of a kind', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(three_of_a_kind);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('three of a kind');
+                });
+            });
+            describe('Check two pairs', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(two_pairs);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('two pairs');
+                });
+            });
+            describe('Check pair', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(pair);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('pair');
+                });
+            });
+            describe('Check high card', () => {
+                it(`should NOT find a ${hand_type} to be best hand`, () => {
+                    var hand = new player_hand(high_card);
+                    expect(hand.display_best_hand()).toNotBe(hand_type).toBe('high card');
+                });
+            });
+        });
     });
 
 
 
+
+    // describe('HAND_TYPE', () => {
+    //     var hand_type = 'hand type';
+    //     describe('expect to find', () => {
+    //         describe(hand_type, () => {
+    //             it(`should find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(hand_type);
+    //                 expect(hand.display_best_hand()).toBe(hand_type);
+    //             });
+    //         });
+    //     });
+
+    //     describe('expect NOT to find', () => {
+    //         describe('Check straight flush', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(straight_flush_5_h);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight flush');
+    //             });
+    //         });
+    //         describe('Check four of a kind house', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(full_house);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
+    //             });
+    //         });
+    //         describe('Check full house', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(full_house);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('full house');
+    //             });
+    //         });
+    //         describe('Check flush', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(flush);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
+    //             });
+    //         });
+    //         describe('Check straight', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(straight_5_h);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
+    //             });
+    //         });
+    //         describe('Check three of a kind', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(three_of_a_kind);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('three of a kind');
+    //             });
+    //         });
+    //         describe('Check two pairs', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(two_pairs);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('two pairs');
+    //             });
+    //         });
+    //         describe('Check pair', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(pair);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('pair');
+    //             });
+    //         });
+    //         describe('Check high card', () => {
+    //             it(`should NOT find a ${hand_type} to be best hand`, () => {
+    //                 var hand = new player_hand(high_card);
+    //                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('high card');
+    //             });
+    //         });
+    //     });
+    // });
 
 });
