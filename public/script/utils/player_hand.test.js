@@ -11,17 +11,17 @@ describe('player_hand', () => {
         });
     });
     describe('COMPARE HAND STRENGTH', () => {
-        it('should have player 1 winning', () => {
+        it('should return 1 when player 1 has stronger hand', () => {
             var hand1 = new player_hand(test_hands.straight_flush);
             var hand2 = new player_hand(test_hands.four_of_a_kind);
             expect(player_hand.compare_hand_strength(hand1.get_hand_strength(), hand2.get_hand_strength())).toBe(1);
         });
-        it('should have player 2 winning', () => {
+        it('should return 2 when player 2 has stronger hand', () => {
             var hand1 = new player_hand(test_hands.flush);
             var hand2 = new player_hand(test_hands.four_of_a_kind);
             expect(player_hand.compare_hand_strength(hand1.get_hand_strength(), hand2.get_hand_strength())).toBe(2);
         });
-        it('should have neither player winning (should return 0)', () => {
+        it('should return 0 when the hands have equal strength', () => {
             var hand1 = new player_hand(test_hands.flush);
             var hand2 = new player_hand(test_hands.flush);
             expect(player_hand.compare_hand_strength(hand1.get_hand_strength(), hand2.get_hand_strength())).toBe(0);
