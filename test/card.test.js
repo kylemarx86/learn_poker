@@ -1,9 +1,9 @@
 const expect = require('expect');
 const rewire = require('rewire');
 require("amd-loader");
-var amd = require("./amd");
+var amd = require('./../public/script/utils/amd');
 
-var card = rewire('./card');
+const card = require('./../public/script/utils/card');
 
 describe('card', () => {
     var ind_card = {

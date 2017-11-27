@@ -7,8 +7,8 @@ const sinon = require('sinon');
 // require("amd-loader");
 // var amd = require("./amd");
 
-var game = require('./game');
-var card = require('./card');
+const game = require('./../public/script/utils/game');
+const card = require('./../public/script/utils/card');
 // var card = rewire('./card');
 
 describe('game', () => {
