@@ -1,6 +1,8 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
 describe('TWO PAIRS', () => {
     var hand_type = 'two pairs';

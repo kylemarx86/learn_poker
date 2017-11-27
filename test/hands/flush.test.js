@@ -1,28 +1,28 @@
 const expect = require('expect');
-const rewire = require('rewire');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-var player_hand = require('./../player_hand');
-var hands = require('./test_hands');
-
-describe('STRAIGHT FLUSH', () => {
-    var hand_type = 'straight flush';
+describe('FLUSH', () => {
+    var hand_type = 'flush';
     describe('expect to find', () => {
-        describe('5-high / Ace-low (hearts)', () => {
+        describe(hand_type, () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight_flush_5_h);
-                expect(hand.display_best_hand()).toBe(hand_type);
-            });
-        });
-        describe('Ace-high (clubs)', () => {
-            it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight_flush_A_h);
+                var hand = new player_hand(hands.flush);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
     });
 
     describe('expect NOT to find', () => {
-        describe('Check four of a kind', () => {
+        describe('Check straight flush', () => {
+            it(`should NOT find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.straight_flush);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight flush');
+            });
+        });
+        describe('Check four of a kind house', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.four_of_a_kind);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
@@ -34,16 +34,9 @@ describe('STRAIGHT FLUSH', () => {
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('full house');
             });
         });
-        describe('Check flush', () => {
-            it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.flush);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
-            });
-        });
-
         describe('Check straight', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight_5_h);
+                var hand = new player_hand(hands.straight);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
             });
         });

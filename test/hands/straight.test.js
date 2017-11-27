@@ -1,13 +1,21 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-describe('THREE OF A KIND', () => {
-    var hand_type = 'three of a kind';
+describe('STRAIGHT', () => {
+    var hand_type = 'straight';
     describe('expect to find', () => {
-        describe(hand_type, () => {
+        describe('5-high / Ace-low', () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.three_of_a_kind);
+                var hand = new player_hand(hands.straight_5_h);
+                expect(hand.display_best_hand()).toBe(hand_type);
+            });
+        });
+        describe('Ace-high', () => {
+            it(`should find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.straight_A_h);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
@@ -38,10 +46,10 @@ describe('THREE OF A KIND', () => {
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
             });
         });
-        describe('Check straight', () => {
+        describe('Check three of a kind', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
+                var hand = new player_hand(hands.three_of_a_kind);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('three of a kind');
             });
         });
         describe('Check two pairs', () => {

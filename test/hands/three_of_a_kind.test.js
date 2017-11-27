@@ -1,13 +1,15 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-describe('HIGH CARD', () => {
-    var hand_type = 'high card';
+describe('THREE OF A KIND', () => {
+    var hand_type = 'three of a kind';
     describe('expect to find', () => {
         describe(hand_type, () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.high_card);
+                var hand = new player_hand(hands.three_of_a_kind);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
@@ -44,12 +46,6 @@ describe('HIGH CARD', () => {
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
             });
         });
-        describe('Check three of a kind', () => {
-            it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.three_of_a_kind);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('three of a kind');
-            });
-        });
         describe('Check two pairs', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.two_pairs);
@@ -60,6 +56,12 @@ describe('HIGH CARD', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.pair);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('pair');
+            });
+        });
+        describe('Check high card', () => {
+            it(`should NOT find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.high_card);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('high card');
             });
         });
     });

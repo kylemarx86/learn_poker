@@ -1,13 +1,15 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-describe('FULL HOUSE', () => {
-    var hand_type = 'full house';
+describe('PAIR', () => {
+    var hand_type = 'pair';
     describe('expect to find', () => {
         describe(hand_type, () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.full_house);
+                var hand = new player_hand(hands.pair);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
@@ -24,6 +26,12 @@ describe('FULL HOUSE', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.four_of_a_kind);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
+            });
+        });
+        describe('Check full house', () => {
+            it(`should NOT find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.full_house);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('full house');
             });
         });
         describe('Check flush', () => {
@@ -48,12 +56,6 @@ describe('FULL HOUSE', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.two_pairs);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('two pairs');
-            });
-        });
-        describe('Check pair', () => {
-            it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.pair);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('pair');
             });
         });
         describe('Check high card', () => {

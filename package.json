@@ -5,6 +5,12 @@
   "main": "script.js",
   "scripts": {
     "test": "mocha public/**/*.test.js",
+
+    "test-player_hand": "mocha public/**/player_hand.test.js",
+
+    "test-all": "mocha ./test/**/*.test.js",
+    "test-hands": "mocha ./test/**/hands/*.test.js",
+
     "test-watch": "nodemon --exec \"npm test\""
   },
   "repository": {
@@ -24,7 +30,8 @@
     "jsdom": "11.3.0",
     "jsdom-global": "3.0.2",
     "mocha": "^3.5.3",
-    "rewire": "^2.5.2"
+    "rewire": "^2.5.2",
+    "sinon": "^4.1.2"
   },
   "dependencies": {
     "express": "^4.15.2",

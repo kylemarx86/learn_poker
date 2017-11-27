@@ -1,26 +1,28 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-describe('PAIR', () => {
-    var hand_type = 'pair';
+describe('STRAIGHT FLUSH', () => {
+    var hand_type = 'straight flush';
     describe('expect to find', () => {
-        describe(hand_type, () => {
+        describe('5-high / Ace-low (hearts)', () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.pair);
+                var hand = new player_hand(hands.straight_flush_5_h);
+                expect(hand.display_best_hand()).toBe(hand_type);
+            });
+        });
+        describe('Ace-high (clubs)', () => {
+            it(`should find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.straight_flush_A_h);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
     });
 
     describe('expect NOT to find', () => {
-        describe('Check straight flush', () => {
-            it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight_flush);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight flush');
-            });
-        });
-        describe('Check four of a kind house', () => {
+        describe('Check four of a kind', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.four_of_a_kind);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
@@ -38,9 +40,10 @@ describe('PAIR', () => {
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
             });
         });
+
         describe('Check straight', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.straight);
+                var hand = new player_hand(hands.straight_5_h);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('straight');
             });
         });
@@ -54,6 +57,12 @@ describe('PAIR', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
                 var hand = new player_hand(hands.two_pairs);
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('two pairs');
+            });
+        });
+        describe('Check pair', () => {
+            it(`should NOT find a ${hand_type} to be best hand`, () => {
+                var hand = new player_hand(hands.pair);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('pair');
             });
         });
         describe('Check high card', () => {

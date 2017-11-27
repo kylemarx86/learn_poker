@@ -1,7 +1,10 @@
 const expect = require('expect');
 const rewire = require('rewire');
+require("amd-loader");
+var amd = require("./amd");
+
 const player_hand = require('./player_hand');
-const test_hands = require('./tests/test_hands');
+const test_hands = require('./test_hands');
 
 describe('player_hand', () => {
     describe('hand creation', () => {

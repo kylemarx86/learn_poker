@@ -1,13 +1,15 @@
 const expect = require('expect');
-const player_hand = require('./../player_hand');
-const hands = require('./test_hands');
+require("amd-loader");
+var amd = require('./../../public/script/utils/amd');
+const player_hand = require('./../../public/script/utils/player_hand');
+const hands = require('./../../public/script/utils/test_hands');
 
-describe('FLUSH', () => {
-    var hand_type = 'flush';
+describe('FULL HOUSE', () => {
+    var hand_type = 'full house';
     describe('expect to find', () => {
         describe(hand_type, () => {
             it(`should find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.flush);
+                var hand = new player_hand(hands.full_house);
                 expect(hand.display_best_hand()).toBe(hand_type);
             });
         });
@@ -26,10 +28,10 @@ describe('FLUSH', () => {
                 expect(hand.display_best_hand()).toNotBe(hand_type).toBe('four of a kind');
             });
         });
-        describe('Check full house', () => {
+        describe('Check flush', () => {
             it(`should NOT find a ${hand_type} to be best hand`, () => {
-                var hand = new player_hand(hands.full_house);
-                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('full house');
+                var hand = new player_hand(hands.flush);
+                expect(hand.display_best_hand()).toNotBe(hand_type).toBe('flush');
             });
         });
         describe('Check straight', () => {
