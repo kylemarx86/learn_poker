@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha public/**/*.test.js",
 
-    "test-player_hand": "mocha public/**/player_hand.test.js",
+    "test-card": "mocha ./test/**/card.test.js",
+    "test-player_hand": "mocha ./test/**/player_hand.test.js",
 
     "test-all": "mocha ./test/**/*.test.js",
     "test-hands": "mocha ./test/**/hands/*.test.js",

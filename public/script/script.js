@@ -166,7 +166,7 @@ define(function(require){
         var cards = game_instance.get_cards();
         for(var i = 0; i < cards.length; i++){
             if($('.card_' + i).hasClass('selected')){
-                selected_cards.push(cards[i].get_card());
+                selected_cards.push(cards[i].get_card_number());
             }
         }
         return selected_cards;

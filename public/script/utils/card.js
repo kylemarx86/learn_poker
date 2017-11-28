@@ -7,7 +7,7 @@ define(function(){
         this.rank = this.convert_number_to_rank();
         this.suit = this.convert_number_to_suit();
     }
-    card.prototype.get_card = function(){
+    card.prototype.get_card_number = function(){
         return this.number_in_deck;
     }
     card.prototype.get_rank = function(){

@@ -53,11 +53,11 @@ define(['./card', './player_hand'] , function(card, player_hand){
     }
 
     game.prototype.create_hands = function(){
-        this.community_cards = [this.cards[0].get_card(), this.cards[1].get_card(), this.cards[2].get_card(), this.cards[3].get_card(), this.cards[4].get_card()];
+        this.community_cards = [this.cards[0].get_card_number(), this.cards[1].get_card_number(), this.cards[2].get_card_number(), this.cards[3].get_card_number(), this.cards[4].get_card_number()];
         var players_cards_arr = [];
         this.players_hands = [];
         for(var i = 0; i < this.num_players; i++){
-            players_cards_arr.push(this.community_cards.concat(this.cards[this.community_cards.length + 2*i].get_card(), this.cards[this.community_cards.length + 2*i + 1].get_card()));
+            players_cards_arr.push(this.community_cards.concat(this.cards[this.community_cards.length + 2*i].get_card_number(), this.cards[this.community_cards.length + 2*i + 1].get_card_number()));
             this.players_hands.push(new player_hand(players_cards_arr[i]));
         }
     }
