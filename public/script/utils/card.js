@@ -1,12 +1,13 @@
 define(function(){
     "use strict";
+    
     function card(number_in_deck, dom_index){
         this.number_in_deck = number_in_deck;
         this.dom_index = dom_index;
         this.rank = this.convert_number_to_rank();
         this.suit = this.convert_number_to_suit();
     }
-    card.prototype.get_card = function(){
+    card.prototype.get_card_number = function(){
         return this.number_in_deck;
     }
     card.prototype.get_rank = function(){
@@ -119,7 +120,6 @@ define(function(){
         $div.addClass(this.suit);
     }
 
-
     card.prototype.add_pips_to_middle = function(){
         //identify the middle section div
         var $div = $('.card_' + this.dom_index + ' .middle');
@@ -161,7 +161,6 @@ define(function(){
             
         }
     }
-
 
     //individual methods to add a number of suits to the middle 
     card.prototype.add_2 = function($main){
@@ -327,7 +326,6 @@ define(function(){
         $main.append($div);
     }
 
-
     // these temporarily do NOTHING
     card.prototype.add_J = function($main){}
     card.prototype.add_Q = function($main){}
@@ -341,6 +339,6 @@ define(function(){
         $div.append($pip);
         $main.append($div);
     }
-
+    
     return card;
 });
