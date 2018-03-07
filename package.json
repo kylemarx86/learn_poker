@@ -4,14 +4,10 @@
   "description": "An educational device to learn to play poker learning to identify possible hands.",
   "main": "script.js",
   "scripts": {
-    "test": "mocha public/**/*.test.js",
-
+    "test": "mocha ./test/**/*.test.js",
     "test-card": "mocha ./test/**/card.test.js",
     "test-player_hand": "mocha ./test/**/player_hand.test.js",
-
-    "test-all": "mocha ./test/**/*.test.js",
     "test-hands": "mocha ./test/**/hands/*.test.js",
-
     "test-watch": "nodemon --exec \"npm test\""
   },
   "repository": {
