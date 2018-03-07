@@ -11,6 +11,10 @@
     "test-hands": "mocha ./test/**/hands/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kylemarx86/learn_poker.git"
