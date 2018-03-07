@@ -123,7 +123,8 @@ define(function(){
         for(var suit = 0; suit < this.suits_arr.length; suit++){
             // attempt to find five cards in a row within a suit
                 // lowest possible high rank will be 5 (represented by a 4 in the array) as in a 5-high straight flush
-            for(var high_rank = straight_flush_card_arr[suit].length; high_rank >= 4; high_rank--){
+                // highest possible high rank will be 13, the length - 1
+            for(var high_rank = straight_flush_card_arr[suit].length - 1; high_rank >= 4; high_rank--){
                 //within a suit, if there is at least one card in the ranks array for the high rank and for each of the previous four ranks, then we have a straight flush
                 if(straight_flush_card_arr[suit][high_rank] > 0 
                     && straight_flush_card_arr[suit][high_rank - 1] > 0
