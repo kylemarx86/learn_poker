@@ -4,6 +4,7 @@
   "description": "An educational device to learn to play poker learning to identify possible hands.",
   "main": "script.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha ./test/**/*.test.js",
     "test-card": "mocha ./test/**/card.test.js",
     "test-player_hand": "mocha ./test/**/player_hand.test.js",
