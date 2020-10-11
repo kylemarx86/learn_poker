@@ -28,7 +28,11 @@
   "devDependencies": {
     "amd-loader": "^0.0.8",
     "expect": "^1.20.2",
+<<<<<<< HEAD
     "jquery": "^3.5.1",
+=======
+    "jquery": "^3.5.0",
+>>>>>>> 0208bad3d7d1444e4f64ad954b36e98c535d9568
     "jsdom": "11.3.0",
     "jsdom-global": "3.0.2",
     "mocha": "^3.5.3",
