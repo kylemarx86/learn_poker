@@ -19,7 +19,7 @@ define(['./card', './player_hand'] , function(card, player_hand){
         // empty array of cards in play
         this.cards = [];
         // pick cards from deck
-        this.pick_cards();        
+        this.pick_cards();
         // create players_hands
         this.create_hands();
     }
@@ -45,6 +45,7 @@ define(['./card', './player_hand'] , function(card, player_hand){
         // var test_cards = [3,9,10,11,12, 8,18,19,20];         //ace high straight flush
         // var test_cards = [0,1,2,32,12, 3,18,19,20];         //ace low straight flush
         // var test_cards = [0,14,2,32,12, 3,18,19,20];         //ace low straight
+        // var test_cards = [35, 48, 12, 5, 9, 51,50, 47,24, 1,2, 20,21];   //weird test, wouldn't work with 4 hands
 
         // for(var i = 0; i < test_cards.length; i++){
         //     //assign card value to card
