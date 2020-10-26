@@ -59,7 +59,18 @@ define(function(){
 
         // HIGH CARD
         // hand: (AS, KC, TD, 9H, 8S), 7C, 2D
-        high_card: [12, 50, 34, 20, 6, 44, 26]
+        high_card: [12, 50, 34, 20, 6, 44, 26],
+
+        // FAILED TEST HAND 1
+        // for failed tests
+        // hand: (JD, JC, JS, AS, AC), KC, 7S [FULL HOUSE] {COMM: JD, JC, AS, 7S, JS / POCKET: AC, KC}
+        failed_test_hand_1: [35, 48, 12, 5, 9, 51, 50],
+
+        // FAILED TEST HAND 2
+        // for failed tests
+        // hand: (JD, JC, JS, AS, KH), TC, 7S [THREE OF A KIND] {COMM: JD, JC, AS, 7S, JS / POCKET: TC, 5H}
+        failed_test_hand_2: [35, 48, 12, 5, 9, 47, 24]
+
     }
     return hands;
 });

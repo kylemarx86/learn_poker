@@ -8,6 +8,7 @@ define(function(require){
 
     $(document).ready(function(){
         num_players = 4;
+        // num_players = 2;    // for test case
         game_instance = new game(num_players);
         
         apply_basic_event_handlers();
