@@ -18,15 +18,16 @@ define(function(require){
 
     function apply_basic_event_handlers(){
         $('.deal').click(function(){
-            //empty game board
+            // empty game board
             reset_game_board();
+            // create new game board            
             create_game_board();
         });
         $('#check').click(function(){
-            //compare the cards that are clicked to the ones that are part of the winning hand
+            // compare the cards that are clicked to the ones that are part of the winning hand
             var cards = convert_selected_cards_to_hand();
             game_instance.set_selected_cards(cards);
-            //give feedback
+            // give feedback
             give_feedback_on_selected_hand();
         });
         $('#clear').click(function(){
@@ -52,9 +53,10 @@ define(function(require){
         $('.feedback').empty();
     }
 
-    //maybe rethink the name of this function
+    // maybe rethink the name of this function
     function create_game_board(){
         update_number_of_players();
+        
         create_player_areas();
         // create new game
         game_instance.deal_cards();
@@ -63,12 +65,18 @@ define(function(require){
         apply_card_event_handlers();
         
         game_instance.determine_winners();
-        // determine_winners();
+        // determine_winners();     // superfluous????
         // show_best_hands();   //for diagnostics
     }
 
+    /**
+     * Gets the number of players from the slider
+     * Sets the value of the number of players in the game instance
+     */
     function update_number_of_players(){
         num_players = $('#player_slider').slider("option", "value");
+        // IDEA store the number of players in the game instance. It will keep less variables in the script and more in the game object
+        game_instance.set_number_of_players(num_players);
     }
 
     //set up slider

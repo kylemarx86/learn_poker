@@ -15,6 +15,11 @@ define(['./card', './player_hand'] , function(card, player_hand){
         this.winning_players = [];
     }
 
+    //sets the number of players and hence number of hands and cards
+    game.prototype.set_number_of_players = function(player_count){
+        this.num_players = player_count;
+    }
+
     game.prototype.deal_cards = function(){
         // empty array of cards in play
         this.cards = [];
@@ -23,6 +28,7 @@ define(['./card', './player_hand'] , function(card, player_hand){
         // create players_hands
         this.create_hands();
     }
+
     game.prototype.pick_cards = function(){
         var num_cards = 5 + 2 * this.num_players;
         //create array representing full deck of cards
